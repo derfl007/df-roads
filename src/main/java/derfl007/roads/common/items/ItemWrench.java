@@ -12,7 +12,7 @@ public class ItemWrench extends Item {
 
     public ItemWrench() {
         setUnlocalizedName("item_wrench");
-        setRegistryName("ItemWrench");
+        setRegistryName("item_wrench");
         setCreativeTab(Roads.ROADS_TAB);
     }
 
