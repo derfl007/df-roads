@@ -1,0 +1,424 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "0": "df-roads:blocks/road",
+        "1": "df-roads:blocks/road_white",
+        "particle": "df-roads:blocks/road"
+    },
+    "elements": [
+        {
+            "name": "Base",
+            "from": [
+                0,
+                0,
+                0
+            ],
+            "to": [
+                16,
+                12,
+                16
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        12
+                    ]
+                },
+                "east": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        12
+                    ]
+                },
+                "south": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        12
+                    ]
+                },
+                "west": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        12
+                    ]
+                },
+                "up": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        16
+                    ]
+                },
+                "down": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        16
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Mid",
+            "from": [
+                6,
+                12,
+                6
+            ],
+            "to": [
+                10,
+                13,
+                10
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#1",
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        1
+                    ]
+                },
+                "east": {
+                    "texture": "#1",
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        1
+                    ]
+                },
+                "south": {
+                    "texture": "#1",
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        1
+                    ]
+                },
+                "west": {
+                    "texture": "#1",
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        1
+                    ]
+                },
+                "up": {
+                    "texture": "#1",
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        4
+                    ]
+                },
+                "down": {
+                    "texture": "#1",
+                    "uv": [
+                        0,
+                        0,
+                        4,
+                        4
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Corner",
+            "from": [
+                0,
+                12,
+                0
+            ],
+            "to": [
+                6,
+                13,
+                6
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "east": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "south": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "west": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "up": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                },
+                "down": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Corner",
+            "from": [
+                10,
+                12,
+                0
+            ],
+            "to": [
+                16,
+                13,
+                6
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "east": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "south": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "west": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "up": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                },
+                "down": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Corner",
+            "from": [
+                10,
+                12,
+                10
+            ],
+            "to": [
+                16,
+                13,
+                16
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "east": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "south": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "west": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "up": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                },
+                "down": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Corner",
+            "from": [
+                0,
+                12,
+                10
+            ],
+            "to": [
+                6,
+                13,
+                16
+            ],
+            "faces": {
+                "north": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "east": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "south": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "west": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        1
+                    ]
+                },
+                "up": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                },
+                "down": {
+                    "texture": "#0",
+                    "uv": [
+                        0,
+                        0,
+                        6,
+                        6
+                    ]
+                }
+            }
+        }
+    ]
+}

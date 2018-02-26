@@ -1,0 +1,82 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "df-roads:road_sign_post",
+		"uvlock": true
+	},
+	"variants": {
+		"down": {
+			"true": {
+				"submodel": {
+					"post_down": {
+						"model": "df-roads:road_sign_connector",
+						"uvlock": true
+					}
+				}
+			},
+			"false": { }
+		},
+		"up": {
+			"true": {
+				"submodel": {
+					"post_up": {
+						"model": "df-roads:road_sign_connector",
+						"x": 180,
+						"uvlock": true
+					}
+				}
+			},
+			"false": { }
+		},
+		"north": {
+			"true": {
+				"submodel": {
+					"post_north": {
+						"model": "df-roads:road_sign_connector",
+						"x": -90,
+						"uvlock": true
+					}
+				}
+			},
+			"false": { }
+		},
+		"south": {
+			"true": {
+				"submodel": {
+					"post_south": {
+						"model": "df-roads:road_sign_connector",
+						"x": 90,
+						"uvlock": true
+					}
+				}
+			},
+			"false": { }
+		},
+		"east": {
+			"true": {
+				"submodel": {
+					"post_east": {
+						"model": "df-roads:road_sign_connector",
+						"x": -90,
+						"y": 90,
+						"uvlock": true
+					}
+				}
+			},
+			"false": { }
+		},
+		"west": {
+			"true": {
+				"submodel": {
+					"post_west": {
+						"model": "df-roads:road_sign_connector",
+						"x": -90,
+						"y": -90,
+						"uvlock": true
+					}
+				}
+			},
+			"false": { }
+		}
+	}
+}

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "df-roads",
+  "name": "derfl007's Road Mod",
+  "description": "Road Mod by derfl007",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["derfl007"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

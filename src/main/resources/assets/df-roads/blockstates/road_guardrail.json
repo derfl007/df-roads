@@ -1,0 +1,24 @@
+{
+    "variants": {
+        "facing=east,shape=straight":  { "model": "df-roads:road_guardrail", "y": 270, "uvlock": true },
+        "facing=west,shape=straight":  { "model": "df-roads:road_guardrail", "y": 90, "uvlock": true },
+        "facing=south,shape=straight": { "model": "df-roads:road_guardrail"},
+        "facing=north,shape=straight": { "model": "df-roads:road_guardrail", "y": 180, "uvlock": true },
+        "facing=east,shape=outer_right":  { "model": "df-roads:road_guardrail_corner", "y": 270, "uvlock": true },
+        "facing=west,shape=outer_right":  { "model": "df-roads:road_guardrail_corner", "y": 90, "uvlock": true },
+        "facing=south,shape=outer_right": { "model": "df-roads:road_guardrail_corner", "y": 0, "uvlock": true },
+        "facing=north,shape=outer_right": { "model": "df-roads:road_guardrail_corner", "y": 180, "uvlock": true },
+        "facing=east,shape=outer_left":  { "model": "df-roads:road_guardrail_corner", "y": 180, "uvlock": true },
+        "facing=west,shape=outer_left":  { "model": "df-roads:road_guardrail_corner", "y": 0, "uvlock": true },
+        "facing=south,shape=outer_left": { "model": "df-roads:road_guardrail_corner", "y": 270, "uvlock": true },
+        "facing=north,shape=outer_left": { "model": "df-roads:road_guardrail_corner", "y": 90, "uvlock": true },
+        "facing=east,shape=inner_right":  { "model": "df-roads:road_guardrail_post" },
+        "facing=west,shape=inner_right":  { "model": "df-roads:road_guardrail_post", "y": 180, "uvlock": true },
+        "facing=south,shape=inner_right": { "model": "df-roads:road_guardrail_post", "y": 90, "uvlock": true },
+        "facing=north,shape=inner_right": { "model": "df-roads:road_guardrail_post", "y": 270, "uvlock": true },
+        "facing=east,shape=inner_left":  { "model": "df-roads:road_guardrail_post", "y": 270, "uvlock": true },
+        "facing=west,shape=inner_left":  { "model": "df-roads:road_guardrail_post", "y": 90, "uvlock": true },
+        "facing=south,shape=inner_left": { "model": "df-roads:road_guardrail_post" },
+        "facing=north,shape=inner_left": { "model": "df-roads:road_guardrail_post", "y": 180, "uvlock": true }
+    }
+}
