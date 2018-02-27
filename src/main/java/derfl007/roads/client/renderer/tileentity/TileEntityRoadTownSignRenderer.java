@@ -16,34 +16,6 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityRoadTownSignRenderer extends FastTESR<TileEntityRoadTownSign> {
-
-//    @Override
-//    public void render(TileEntityRoadTownSign te, double x, double y, double z, float partialTicks,
-//                                   int destroyStage, float alpha) {
-//        String message = te.getMessage();
-//        System.out.println("message: "+message);
-//        IBlockState state = getWorld().getBlockState(te.getPos());
-//        if(state.getBlock() instanceof BlockRoadTownSign) {
-//            int rotation = state.getValue(BlockRoadTownSign.FACING).getHorizontalIndex();
-//
-//            GlStateManager.pushMatrix();
-//            {
-//                GlStateManager.translate((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F); //translate to block pos
-//                GlStateManager.rotate(-90F * rotation, 0.0F, 1.0F, 0.0F); //rotate according to block facing
-//                GlStateManager.translate(0.0F, -0.3125F, -0.4375F); //translate
-//                GlStateManager.scale(0.6666667F, -0.6666667F, -0.6666667F); //scale
-//                int lines = getFontRenderer().listFormattedStringToWidth(message, 50).size(); //get number of lines
-//                GlStateManager.translate(0, -(lines * getFontRenderer().FONT_HEIGHT - 1) / 2, 0); //translate according to number of lines
-//                GlStateManager.enableAlpha();
-//                GlStateManager.disableLighting();
-//                drawSplitString(getFontRenderer(), message, 0, 0, 50, Color.black.getRGB()); //display text
-//                GlStateManager.enableLighting();
-//                GlStateManager.disableAlpha();
-//            }
-//            GlStateManager.popMatrix();
-//        }
-//    }
-
     @Override
     public void renderTileEntityFast(TileEntityRoadTownSign te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
         String message = te.getMessage();
@@ -54,25 +26,10 @@ public class TileEntityRoadTownSignRenderer extends FastTESR<TileEntityRoadTownS
             int rotation = state.getValue(BlockRoadTownSign.FACING).getHorizontalIndex();
             GlStateManager.pushMatrix();
             {
-//                GlStateManager.translate((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F); //translate to block pos
-//                GlStateManager.rotate(-90F * rotation, 0.0F, 1.0F, 0.0F); //rotate according to block facing
-//                GlStateManager.translate(0.0F, -0.3125F, -0.4375F); //translate
-//                GlStateManager.scale(0.6666667F, -0.6666667F, -0.6666667F); //scale
-//                int lines = getFontRenderer().listFormattedStringToWidth(message, 50).size(); //get number of lines
-//                GlStateManager.translate(0, -(lines * getFontRenderer().FONT_HEIGHT - 1) / 2, 0); //translate according to number of lines
-//                GlStateManager.enableAlpha();
-//                GlStateManager.disableLighting();
-//                drawSplitString(getFontRenderer(), message, 0, 0, 50, Color.black.getRGB()); //display text
-//                GlStateManager.enableLighting();
-//                GlStateManager.disableAlpha();
-
                 GlStateManager.translate(x, y, z);
                 GlStateManager.translate(0.5, 0.5, 0.5);
                 GlStateManager.rotate(-90F * rotation, 0, 1, 0);
-//                GlStateManager.rotate(180F, 0, 1, 0);
-//                GlStateManager.rotate(-90F, 1, 0, 0);
                 GlStateManager.translate(-0.375, 0, 0.1);
-
                 GlStateManager.scale(1, -1, -1);
                 GlStateManager.scale(0.015625F, 0.015625F, 0.015625F);
                 int lines = getFontRenderer().listFormattedStringToWidth(message, 50).size();
@@ -82,8 +39,6 @@ public class TileEntityRoadTownSignRenderer extends FastTESR<TileEntityRoadTownS
                 drawSplitString(getFontRenderer(), message, 0, 0, 50, Color.black.getRGB());
                 GlStateManager.enableLighting();
                 GlStateManager.disableAlpha();
-
-
             }
             GlStateManager.popMatrix();
         }
