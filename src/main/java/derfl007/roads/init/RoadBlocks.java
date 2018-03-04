@@ -18,16 +18,19 @@ import java.util.List;
 public class RoadBlocks {
 
     public static Block
+            asphalt, //Asphalt Block
             road, //Road Block
             road_white, //White block
             road_white_half, //Half white block
             road_white_quarter, //Quarter white block
             road_slope, //Normal slope
-            road_line_slope, //Slope with line
             road_line, //Single line
+            road_line_simple, //Single line (not connecting)
             road_line_merge, //Merge single and double lines
             road_line_double, //Double Line
+            road_line_double_simple, //Double Line (not connecting)
             road_line_half_double, //Half double line
+            road_line_half_double_simple, //Half double line (not connecting)
             road_line_diagonal, //Diagonal Line
             road_arrow_s, //straight arrow
             road_arrow_r, //right arrow
@@ -138,16 +141,19 @@ public class RoadBlocks {
             road_pedestrian_traffic_light; //Pedestrian Traffic Light
 
     public static void init() {
+        asphalt = new BlockAsphalt("asphalt");
         road = new BlockRoad("road");
         road_white = new BlockRoad("road_white");
         road_white_half = new BlockRoadRotatable("road_white_half");
         road_white_quarter = new BlockRoadRotatable("road_white_quarter");
-        road_slope = new BlockRoadSlope("road_slope");
-        road_line_slope = new BlockRoadRotatable("road_line_slope");
+        road_slope = new BlockRoadRotatable("road_slope");
         road_line = new BlockRoadLine();
+        road_line_simple = new BlockRoadRotatable("road_line_simple");
         road_line_merge = new BlockRoadRotatable("road_line_merge");
-        road_line_double = new BlockRoadRotatable("road_line_double");
-        road_line_half_double = new BlockRoadRotatable("road_line_half_double");
+        road_line_double = new BlockRoadLines("road_line_double");
+        road_line_double_simple = new BlockRoadRotatable("road_line_double_simple");
+        road_line_half_double = new BlockRoadLines("road_line_half_double");
+        road_line_half_double_simple = new BlockRoadRotatable("road_line_half_double_simple");
         road_line_diagonal = new BlockRoadRotatable("road_line_diagonal");
         road_arrow_s = new BlockRoadRotatable("road_arrow_s");
         road_arrow_r = new BlockRoadRotatable("road_arrow_r");
@@ -260,16 +266,19 @@ public class RoadBlocks {
 
     public static void register()
     {
+        registerBlock(asphalt);
         registerBlock(road);
         registerBlock(road_white);
         registerBlock(road_white_half);
         registerBlock(road_white_quarter);
         registerBlock(road_slope);
-        registerBlock(road_line_slope);
         registerBlock(road_line);
+        registerBlock(road_line_simple);
         registerBlock(road_line_merge);
         registerBlock(road_line_double);
+        registerBlock(road_line_double_simple);
         registerBlock(road_line_half_double);
+        registerBlock(road_line_half_double_simple);
         registerBlock(road_line_diagonal);
         registerBlock(road_arrow_s);
         registerBlock(road_arrow_r);
@@ -393,16 +402,19 @@ public class RoadBlocks {
     }
 
     public static void registerModels() {
+        registerModel(asphalt);
         registerModel(road);
         registerModel(road_white);
         registerModel(road_white_half);
         registerModel(road_white_quarter);
         registerModel(road_slope);
-        registerModel(road_line_slope);
         registerModel(road_line);
+        registerModel(road_line_simple);
         registerModel(road_line_merge);
         registerModel(road_line_double);
+        registerModel(road_line_double_simple);
         registerModel(road_line_half_double);
+        registerModel(road_line_half_double_simple);
         registerModel(road_line_diagonal);
         registerModel(road_arrow_s);
         registerModel(road_arrow_r);

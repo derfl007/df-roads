@@ -1,13 +1,18 @@
 item.item_tar.name=Tar
 item.item_wrench.name=Wrench
 
+tile.asphalt.name=Asphalt Block
 tile.road.name=Road Block
 tile.road_white.name=White Road Block
 tile.road_white_half.name=Half White Road Block
 tile.road_white_quarter.name=Quarter White Road Block
-tile.road_line.name=Line
+tile.road_line.name=Single Line
+tile.road_line_simple.name=Single Line (simple)
 tile.road_line_merge.name=Merge Lines
 tile.road_line_double.name=Double Line
+tile.road_line_double_simple.name=Double Line (simple)
+tile.road_line_half_double.name=Half Double Line
+tile.road_line_half_double_simple.name=Half Double Line (simple)
 tile.road_line_diagonal.name=Diagonal Line
 tile.road_arrow_s.name=Straight Arrow
 tile.road_arrow_r.name=Right Arrow
@@ -16,7 +21,6 @@ tile.road_arrow_rl.name=Right + Left Arrow
 tile.road_arrow_sr.name=Straight + Right Arrow
 tile.road_arrow_sl.name=Straight + Left Arrow
 tile.road_arrow_srl.name=Straight + Right + Left Arrow
-tile.road_line_double.name=Road Block Double Line
 tile.road_sign_prohib_1.name=Closed Sign
 tile.road_sign_prohib_2.name=Do not enter Sign
 tile.road_sign_prohib_3a.name=No left turn Sign
@@ -118,6 +122,10 @@ tile.road_sidewalk.name=Sidewalk Curb
 tile.road_sign_post.name=Sign Post
 tile.road_slope.name=Slope
 tile.road_line_slope.name=Slope with Line
-tile.road_line_half_double.name=Half Double Line Road Block
+
 
 itemGroup.tabRoads=Road Mod
+
+block.road_lines.tooltip=If you do not want the lines to connect automatically, use the simple version of the desired block
+block.road_rotatable.tooltip=Place this block on top of a normal road block or a road block with a connectable line to make a slope out of it. Use the wrench to rotate the texture on top
+gui.tooltip.view_more=Press shift to view more
