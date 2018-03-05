@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "T  ",
+        "TT ",
+        "TTT"
+    ],
+    "key": {
+        "T": {
+            "item": "df-roads:item_tar"
+        }
+    },
+    "result": {
+        "item": "df-roads:road_slope"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "",
+        "DS",
+        "SS"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:stone_bricks"
+        },
+        "D": {
+            "item": "minecraft:stone",
+            "data": 3
+        }
+    },
+    "result": {
+        "item": "df-roads:road_sidewalk",
+        "count": 4
+    }
+}
