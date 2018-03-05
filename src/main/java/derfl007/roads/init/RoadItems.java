@@ -1,6 +1,7 @@
 package derfl007.roads.init;
 
 import derfl007.roads.Reference;
+import derfl007.roads.common.items.ItemTar;
 import derfl007.roads.common.items.ItemWrench;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -15,13 +16,17 @@ import java.util.List;
 public class RoadItems {
 
     public static Item wrench;
+    public static Item tar;
+
     public static void init() {
         wrench = new ItemWrench();
+        tar = new ItemTar();
     }
 
     public static void register()
     {
         registerItem(wrench);
+        registerItem(tar);
     }
 
     public static void registerItem(Item item)
@@ -31,6 +36,7 @@ public class RoadItems {
 
     public static void registerModels() {
         registerModel(wrench);
+        registerModel(tar);
     }
 
     public static void registerModel(Item item) {

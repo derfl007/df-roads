@@ -67,7 +67,7 @@ public class BlockRoadLine extends Block {
 
     public enum connectableBlocks {
         ROAD_LINE(RoadBlocks.road_line), //
-        ROAD_LINE_SLOPE(RoadBlocks.road_line_slope), //
+        ROAD_LINE_SLOPE(RoadBlocks.road_line_simple), //
         ROAD_LINE_MERGE(RoadBlocks.road_line_merge), //
         ROAD_LINE_DIAGONAL(RoadBlocks.road_line_diagonal), //
         ROAD_WHITE_QUARTER(RoadBlocks.road_white_quarter), //
