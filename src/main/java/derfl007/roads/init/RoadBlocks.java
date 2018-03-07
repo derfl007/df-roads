@@ -2,6 +2,8 @@ package derfl007.roads.init;
 
 import derfl007.roads.common.blocks.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSign;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -138,7 +140,8 @@ public class RoadBlocks {
             road_traffic_light_red, //Traffic Light (Red)
             road_traffic_light_green, //Traffic Light (Green)
             road_traffic_light_yellow, //Traffic Light (Yellow blinking)
-            road_pedestrian_traffic_light; //Pedestrian Traffic Light
+            road_pedestrian_traffic_light, //Pedestrian Traffic Light
+            sign_printer;
 
     public static void init() {
         asphalt = new BlockAsphalt("asphalt");
@@ -262,6 +265,7 @@ public class RoadBlocks {
         road_traffic_light_yellow = new BlockRoadSign("road_traffic_light_yellow");
         road_traffic_light_green = new BlockRoadSign("road_traffic_light_green");
         road_pedestrian_traffic_light = new BlockRoadSign("road_pedestrian_traffic_light");
+        sign_printer = new BlockSignPrinter();
     }
 
     public static void register()
@@ -387,6 +391,7 @@ public class RoadBlocks {
         registerBlock(road_traffic_light_yellow);
         registerBlock(road_traffic_light_green);
         registerBlock(road_pedestrian_traffic_light);
+        registerBlock(sign_printer);
     }
 
     private static void registerBlock(Block block)
@@ -523,6 +528,7 @@ public class RoadBlocks {
         registerModel(road_traffic_light_yellow);
         registerModel(road_traffic_light_green);
         registerModel(road_pedestrian_traffic_light);
+        registerModel(sign_printer);
     }
 
     @SideOnly(Side.CLIENT)
