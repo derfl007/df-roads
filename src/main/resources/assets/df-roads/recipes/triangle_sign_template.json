@@ -10,7 +10,7 @@
             "item": "minecraft:iron_ingot"
         },
         "s": {
-            "item": "df-roads:sign_post"
+            "item": "df-roads:road_sign_post"
         }
     },
     "result": {
