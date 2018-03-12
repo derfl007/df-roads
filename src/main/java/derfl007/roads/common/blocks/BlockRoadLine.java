@@ -66,22 +66,16 @@ public class BlockRoadLine extends Block {
     }
 
     public enum connectableBlocks {
-        ROAD_LINE(RoadBlocks.road_line), //
-        ROAD_LINE_MERGE(RoadBlocks.road_line_merge), //
-        ROAD_LINE_DIAGONAL(RoadBlocks.road_line_diagonal), //
-        ROAD_WHITE_QUARTER(RoadBlocks.road_white_quarter), //
-        ROAD_WHITE_HALF(RoadBlocks.road_white_half), //
-        // ROAD_EXCL_ZONE(RoadBlocks.road_excl_zone), //
-        // ROAD_EXCL_ZONE_CORNER_IN(RoadBlocks.road_excl_zone_corner_in), //
-        // ROAD_EXCL_ZONE_CORNER_OUT(RoadBlocks.road_excl_zone_corner_out), //
-        // ROAD_EXCL_ZONE_DIAGONAL_IN(RoadBlocks.road_excl_zone_diagonal_in), //
-        // ROAD_EXCL_ZONE_DIAGONAL_OUT(RoadBlocks.road_excl_zone_diagonal_out),
-        // //
-        // ROAD_EXCL_ZONE_LINE(RoadBlocks.road_excl_zone_line), //
-        ROAD_EXCL_ZONE_SPLIT_IN_L(RoadBlocks.road_excl_zone_split_in_l), //
-        ROAD_EXCL_ZONE_SPLIT_IN_R(RoadBlocks.road_excl_zone_split_in_r), //
-        ROAD_EXCL_ZONE_SPLIT_OUT_L(RoadBlocks.road_excl_zone_split_out_l), //
-        ROAD_EXCL_ZONE_SPLIT_OUT_R(RoadBlocks.road_excl_zone_split_out_r); //
+        ROAD_LINE(RoadBlocks.road_line),
+        ROAD_LINE_SIMPLE(RoadBlocks.road_line_simple),
+        ROAD_LINE_MERGE(RoadBlocks.road_line_merge),
+        ROAD_LINE_DIAGONAL(RoadBlocks.road_line_diagonal),
+        ROAD_WHITE_QUARTER(RoadBlocks.road_white_quarter),
+        ROAD_WHITE_HALF(RoadBlocks.road_white_half),
+        ROAD_EXCL_ZONE_SPLIT_IN_L(RoadBlocks.road_excl_zone_split_in_l),
+        ROAD_EXCL_ZONE_SPLIT_IN_R(RoadBlocks.road_excl_zone_split_in_r),
+        ROAD_EXCL_ZONE_SPLIT_OUT_L(RoadBlocks.road_excl_zone_split_out_l),
+        ROAD_EXCL_ZONE_SPLIT_OUT_R(RoadBlocks.road_excl_zone_split_out_r);
 
         private final Block block;
 
