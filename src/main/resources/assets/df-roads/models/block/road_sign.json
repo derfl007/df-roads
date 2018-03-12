@@ -1,19 +1,19 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "0": "df-roads:blocks/road_sign_prohib_10a_40",
-        "1": "df-roads:blocks/road_sign_back_round",
+        "front": "df-roads:blocks/road_sign_warn_11a",
+        "back": "df-roads:blocks/road_sign_back_triangle",
         "2": "df-roads:blocks/metal",
         "particle": "df-roads:blocks/metal"
     },
     "elements": [
         {
             "name": "Cube",
-            "from": [ 3.0, 3.0, 6.9 ], 
-            "to": [ 13.0, 13.0, 6.9 ], 
+            "from": [ 1.0, 1.0, 6.9 ], 
+            "to": [ 15.0, 15.0, 6.9 ], 
             "faces": {
-                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "north" },
-                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "south" }
+                "north": { "texture": "#front", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "north" },
+                "south": { "texture": "#back", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "south" }
             }
         },
         {
