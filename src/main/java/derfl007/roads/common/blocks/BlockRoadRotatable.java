@@ -3,7 +3,6 @@ package derfl007.roads.common.blocks;
 import derfl007.roads.Reference;
 import derfl007.roads.Roads;
 import derfl007.roads.common.items.ItemWrench;
-import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -26,7 +25,6 @@ import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 public class BlockRoadRotatable extends BlockHorizontal {
     public BlockRoadRotatable(String name) {
@@ -71,7 +69,7 @@ public class BlockRoadRotatable extends BlockHorizontal {
     private static final AxisAlignedBB WEST_1 = new AxisAlignedBB(0.1D, -0.1D,0.0D, 1.0D, 0.0D, 1.0D);
     private static final AxisAlignedBB WEST_2 = new AxisAlignedBB(0.2D, 0.0D, 0.0D, 1.0D, 0.1D, 1.0D);
     private static final AxisAlignedBB WEST_3 = new AxisAlignedBB(0.3D, 0.1D, 0.0D, 1.0D, 0.2D, 1.0D);
-    private static final AxisAlignedBB WEST_4 = new AxisAlignedBB(0.4D, 0.2D, 0.0D, 1.0D, 0.3D, 1.0D);
+    private static final AxisAlignedBB WEST_4 = new AxisAlignedBB(0.5D, 0.2D, 0.0D, 1.0D, 0.3D, 1.0D);
     private static final AxisAlignedBB WEST_5 = new AxisAlignedBB(0.5D, 0.3D, 0.0D, 1.0D, 0.4D, 1.0D);
     private static final AxisAlignedBB WEST_6 = new AxisAlignedBB(0.6D, 0.4D, 0.0D, 1.0D, 0.5D, 1.0D);
     private static final AxisAlignedBB WEST_7 = new AxisAlignedBB(0.7D, 0.5D, 0.0D, 1.0D, 0.6D, 1.0D);
@@ -82,7 +80,7 @@ public class BlockRoadRotatable extends BlockHorizontal {
     private static final AxisAlignedBB NORTH_1 = new AxisAlignedBB(0.0D, -0.1D,0.1D, 1.0D, 0.0D, 1.0D);
     private static final AxisAlignedBB NORTH_2 = new AxisAlignedBB(0.0D, 0.0D, 0.2D, 1.0D, 0.1D, 1.0D);
     private static final AxisAlignedBB NORTH_3 = new AxisAlignedBB(0.0D, 0.1D, 0.3D, 1.0D, 0.2D, 1.0D);
-    private static final AxisAlignedBB NORTH_4 = new AxisAlignedBB(0.0D, 0.2D, 0.4D, 1.0D, 0.3D, 1.0D);
+    private static final AxisAlignedBB NORTH_4 = new AxisAlignedBB(0.0D, 0.2D, 0.5D, 1.0D, 0.3D, 1.0D);
     private static final AxisAlignedBB NORTH_5 = new AxisAlignedBB(0.0D, 0.3D, 0.5D, 1.0D, 0.4D, 1.0D);
     private static final AxisAlignedBB NORTH_6 = new AxisAlignedBB(0.0D, 0.4D, 0.6D, 1.0D, 0.5D, 1.0D);
     private static final AxisAlignedBB NORTH_7 = new AxisAlignedBB(0.0D, 0.5D, 0.7D, 1.0D, 0.6D, 1.0D);
@@ -93,7 +91,6 @@ public class BlockRoadRotatable extends BlockHorizontal {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static final PropertyDirection SLOPE_FACING = PropertyDirection.create("slope_facing", EnumFacing.Plane.HORIZONTAL);
     private static final PropertyBool SLOPE = PropertyBool.create("slope");
-
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {

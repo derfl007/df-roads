@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " I ",
+        "IsI",
+        " I "
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "s": {
+            "item": "df-roads:sign_post"
+        }
+    },
+    "result": {
+        "item": "df-roads:round_sign_template",
+        "count": 4
+    }
+}

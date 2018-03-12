@@ -26,22 +26,22 @@
         "slope_facing": {
             "north": {
                 "textures": {
-                    "top": "df-roads:blocks/road_white"
+                    "top": "df-roads:blocks/road_line_double"
                 }
             },
             "east": {
                 "textures": {
-                    "top": "df-roads:blocks/road_white"
+                    "top": "df-roads:blocks/road_line_double_h"
                 }
             },
             "south": {
                 "textures": {
-                    "top": "df-roads:blocks/road_white"
+                    "top": "df-roads:blocks/road_line_double"
                 }
             },
             "west": {
                 "textures": {
-                    "top": "df-roads:blocks/road_white"
+                    "top": "df-roads:blocks/road_line_double_h"
                 }
             }
         }

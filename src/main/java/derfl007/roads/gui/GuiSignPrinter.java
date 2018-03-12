@@ -1,7 +1,9 @@
 package derfl007.roads.gui;
 
+import derfl007.roads.RecipesSign;
 import derfl007.roads.common.tileentities.TileEntitySignPrinter;
 import derfl007.roads.gui.containers.ContainerSignPrinter;
+import derfl007.roads.init.RoadItems;
 import derfl007.roads.network.PacketHandler;
 import derfl007.roads.network.message.MessageSignPrinterClosed;
 import derfl007.roads.network.message.MessageSignPrinterPrint;
@@ -25,6 +27,11 @@ public class GuiSignPrinter extends GuiContainer {
     private int currentSign;
     private int currentTab;
     private ItemStack inputSlot;
+    private ItemStack magentaSlot;
+    private ItemStack yellowSlot;
+    private ItemStack cyanSlot;
+    private Item baseItem;
+
 
 
     public GuiSignPrinter(InventoryPlayer inventoryPlayer, TileEntitySignPrinter te) {
@@ -118,12 +125,22 @@ public class GuiSignPrinter extends GuiContainer {
                 System.out.println(te.getCurrentSign());
                 break;
             case 7:
-                this.inputSlot = this.te.getStackInSlot(0);
+                this.inputSlot = this.inventorySlots.getSlot(0).getStack();
+                this.magentaSlot = this.inventorySlots.getSlot(1).getStack();
+                this.yellowSlot = this.inventorySlots.getSlot(2).getStack();
+                this.cyanSlot = this.inventorySlots.getSlot(3).getStack();
+                this.baseItem = RecipesSign.getBaseItem(currentTab);
+                int magentaRequired = 32 - RecipesSign.getDamage("M", currentSign, currentTab);
+                int yellowRequired = 32 - RecipesSign.getDamage("Y", currentSign, currentTab);
+                int cyanRequired = 32 - RecipesSign.getDamage("C", currentSign, currentTab);
                 if (inputSlot != null) {
-                    if (inputSlot.getItem() == Items.IRON_INGOT) {
-                        if (inputSlot.getCount() == 4) {
+                    if (inputSlot.getItem() == baseItem &&
+                            (magentaSlot.getItem() == RoadItems.magenta_ink_cartridge) &&
+                            (yellowSlot.getItem() == RoadItems.yellow_ink_cartridge) &&
+                            (cyanSlot.getItem() == RoadItems.cyan_ink_cartridge)) {
+                        if (inputSlot.getCount() == RecipesSign.getBaseItemCount(currentTab) && magentaSlot.getItemDamage() < magentaRequired && yellowSlot.getItemDamage() < yellowRequired && cyanSlot.getItemDamage() < cyanRequired) {
                             PacketHandler.INSTANCE.sendToServer(new MessageSignPrinterPrint(currentSign, currentTab, this.te.getPos().getX(), this.te.getPos().getY(), this.te.getPos().getZ(), true));
-                        } else if (inputSlot.getCount() > 4) {
+                        } else if (inputSlot.getCount() > RecipesSign.getBaseItemCount(currentTab) && magentaSlot.getItemDamage() < magentaRequired && yellowSlot.getItemDamage() < yellowRequired && cyanSlot.getItemDamage() < cyanRequired) {
                             PacketHandler.INSTANCE.sendToServer(new MessageSignPrinterPrint(currentSign, currentTab, this.te.getPos().getX(), this.te.getPos().getY(), this.te.getPos().getZ(), false));
                         }
                     }
@@ -139,9 +156,6 @@ public class GuiSignPrinter extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        int centerX = this.width/2;
-        int centerY = this.height/2;
-
         GL11.glPushMatrix();
         RenderHelper.enableGUIStandardItemLighting();
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -168,13 +182,14 @@ public class GuiSignPrinter extends GuiContainer {
             itemRender.renderItemAndEffectIntoGUI(next, 136, 24);
             itemRender.renderItemOverlays(this.fontRenderer, next, 136, 24);
         }
-        ItemStack iron = Items.IRON_INGOT.getDefaultInstance();
-        itemRender.renderItemAndEffectIntoGUI(iron, 90, 67);
-        itemRender.renderItemOverlays(this.fontRenderer, iron, 90, 67);
+        ItemStack iron = RecipesSign.getBaseItem(currentTab).getDefaultInstance();
+
+        itemRender.renderItemAndEffectIntoGUI(iron, 90, 47);
+        itemRender.renderItemOverlays(this.fontRenderer, iron, 90, 47);
         itemRender.zLevel = 0.0F;
         GL11.glDisable(GL11.GL_LIGHTING);
 
-        this.fontRenderer.drawString("x4", 110, 71, 0);
+        this.fontRenderer.drawString("x" + RecipesSign.getBaseItemCount(currentTab), 110, 51, 0);
 
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_LIGHTING);
@@ -184,8 +199,6 @@ public class GuiSignPrinter extends GuiContainer {
 
     @Override
     public void drawScreen(int par1, int par2, float par3) {
-        int centerX = width/2;
-        int centerY = height/2;
         this.drawDefaultBackground();
         super.drawScreen(par1, par2, par3);
         ItemStack currentSign = Item.getItemFromBlock(te.getCurrentSet()[this.currentSign]).getDefaultInstance();

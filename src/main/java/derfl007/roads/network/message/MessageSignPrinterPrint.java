@@ -1,5 +1,6 @@
 package derfl007.roads.network.message;
 
+import derfl007.roads.RecipesSign;
 import derfl007.roads.common.tileentities.TileEntitySignPrinter;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
@@ -61,10 +62,17 @@ public class MessageSignPrinterPrint implements IMessage, IMessageHandler<Messag
 
             if(inputSlot == null) return null;
 
+            int currentDamageM = tileEntitySignPrinter.getStackInSlot(1).getItemDamage();
+            int currentDamageY = tileEntitySignPrinter.getStackInSlot(2).getItemDamage();
+            int currentDamageC = tileEntitySignPrinter.getStackInSlot(3).getItemDamage();
+            tileEntitySignPrinter.setStackDamage(1, currentDamageM + RecipesSign.getDamage("M", message.currentTab, message.currentSign));
+            tileEntitySignPrinter.setStackDamage(2, currentDamageY + RecipesSign.getDamage("Y", message.currentTab, message.currentSign));
+            tileEntitySignPrinter.setStackDamage(3, currentDamageC + RecipesSign.getDamage("C", message.currentTab, message.currentSign));
+
             if (message.clear) {
                 tileEntitySignPrinter.clear();
             } else {
-                tileEntitySignPrinter.decrStackSize(0, 4);
+                tileEntitySignPrinter.decrStackSize(0, RecipesSign.getBaseItemCount(message.currentTab));
             }
             EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, Item.getItemFromBlock(tileEntitySignPrinter.getSetByTabID(message.currentTab)[message.currentSign]).getDefaultInstance());
             player.world.spawnEntity(entityItem);

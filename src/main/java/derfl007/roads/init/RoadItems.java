@@ -1,6 +1,7 @@
 package derfl007.roads.init;
 
-import derfl007.roads.Reference;
+import derfl007.roads.common.items.ItemColorCartridge;
+import derfl007.roads.common.items.ItemSignTemplate;
 import derfl007.roads.common.items.ItemTar;
 import derfl007.roads.common.items.ItemWrench;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -17,16 +18,34 @@ public class RoadItems {
 
     public static Item wrench;
     public static Item tar;
+    public static Item round_sign_template;
+    public static Item triangle_sign_template;
+    public static Item square_sign_template;
+    public static Item magenta_ink_cartridge;
+    public static Item yellow_ink_cartridge;
+    public static Item cyan_ink_cartridge;
 
     public static void init() {
         wrench = new ItemWrench();
         tar = new ItemTar();
+        round_sign_template = new ItemSignTemplate("round_sign_template");
+        triangle_sign_template = new ItemSignTemplate("triangle_sign_template");
+        square_sign_template = new ItemSignTemplate("square_sign_template");
+        magenta_ink_cartridge = new ItemColorCartridge("magenta_ink_cartridge");
+        yellow_ink_cartridge = new ItemColorCartridge("yellow_ink_cartridge");
+        cyan_ink_cartridge = new ItemColorCartridge("cyan_ink_cartridge");
     }
 
     public static void register()
     {
         registerItem(wrench);
         registerItem(tar);
+        registerItem(round_sign_template);
+        registerItem(square_sign_template);
+        registerItem(triangle_sign_template);
+        registerItem(magenta_ink_cartridge);
+        registerItem(yellow_ink_cartridge);
+        registerItem(cyan_ink_cartridge);
     }
 
     public static void registerItem(Item item)
@@ -37,6 +56,12 @@ public class RoadItems {
     public static void registerModels() {
         registerModel(wrench);
         registerModel(tar);
+        registerModel(round_sign_template);
+        registerModel(square_sign_template);
+        registerModel(triangle_sign_template);
+        registerModel(magenta_ink_cartridge);
+        registerModel(yellow_ink_cartridge);
+        registerModel(cyan_ink_cartridge);
     }
 
     public static void registerModel(Item item) {

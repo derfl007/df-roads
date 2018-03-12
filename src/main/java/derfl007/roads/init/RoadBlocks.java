@@ -146,7 +146,7 @@ public class RoadBlocks {
     public static void init() {
         asphalt = new BlockAsphalt("asphalt");
         road = new BlockRoad("road");
-        road_white = new BlockRoad("road_white");
+        road_white = new BlockRoadRotatable("road_white");
         road_white_half = new BlockRoadRotatable("road_white_half");
         road_white_quarter = new BlockRoadRotatable("road_white_quarter");
         road_slope = new BlockRoadRotatable("road_slope");
