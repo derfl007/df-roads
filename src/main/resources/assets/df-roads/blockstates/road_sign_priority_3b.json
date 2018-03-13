@@ -2,8 +2,8 @@
     "forge_marker": 1,
     "defaults" : {
         "textures": {
-            "front": "df-roads:blocks/road_sign_prohib_3b",
-            "back": "df-roads:blocks/road_sign_back_round"
+            "front": "df-roads:blocks/road_sign_priority_3b",
+            "back": "df-roads:blocks/road_sign_priority_3_back"
         }
     },
     "variants": {
