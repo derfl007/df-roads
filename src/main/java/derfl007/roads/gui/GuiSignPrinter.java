@@ -10,6 +10,7 @@ import derfl007.roads.network.message.MessageSignPrinterPrint;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -50,16 +51,16 @@ public class GuiSignPrinter extends GuiContainer {
         int centerX = width/2;
         int centerY = height/2+10;
 
-        tab_1 = new GuiButton(0, centerX - 79, centerY - 114, 59, 20, "Warning");
-        tab_2 = new GuiButton(1, centerX - 79, centerY - 92, 59, 20, "Mandatory");
-        tab_3 = new GuiButton(2, centerX - 79, centerY - 70, 59, 20, "Info");
-        tab_4 = new GuiButton(3, centerX - 79, centerY - 48, 59, 20,  "Prohibitory");
-        tab_5 = new GuiButton(4, centerX - 79, centerY - 26, 59, 20, "Others");
+        tab_1 = new GuiButton(0, centerX - 79, centerY - 114, 59, 20, I18n.format("gui.sign_printer.warning"));
+        tab_2 = new GuiButton(1, centerX - 79, centerY - 92, 59, 20, I18n.format("gui.sign_printer.mandatory"));
+        tab_3 = new GuiButton(2, centerX - 79, centerY - 70, 59, 20, I18n.format("gui.sign_printer.info"));
+        tab_4 = new GuiButton(3, centerX - 79, centerY - 48, 59, 20,  I18n.format("gui.sign_printer.prohibitory"));
+        tab_5 = new GuiButton(4, centerX - 79, centerY - 26, 59, 20, I18n.format("gui.sign_printer.others"));
 
         next = new GuiButton(5,centerX + 67, centerY - 94, 15, 20, ">");
         prev = new GuiButton(6,centerX -15, centerY - 94, 15, 20, "<");
 
-        print = new GuiButton(7, centerX + 40, centerY - 23, 40, 20, "Print");
+        print = new GuiButton(7, centerX + 40, centerY - 23, 40, 20, I18n.format("gui.sign_printer.print"));
 
         buttonList.add(tab_1);
         buttonList.add(tab_2);

@@ -25,7 +25,6 @@ public class RoadBlocks {
             road_white, //White block
             road_white_half, //Half white block
             road_white_quarter, //Quarter white block
-            road_slope, //Normal slope
             road_line, //Single line
             road_line_simple, //Single line (not connecting)
             road_line_merge, //Merge single and double lines
@@ -145,11 +144,10 @@ public class RoadBlocks {
 
     public static void init() {
         asphalt = new BlockAsphalt("asphalt");
-        road = new BlockRoad("road");
+        road = new BlockRoadRotatable("road");
         road_white = new BlockRoadRotatable("road_white");
         road_white_half = new BlockRoadRotatable("road_white_half");
         road_white_quarter = new BlockRoadRotatable("road_white_quarter");
-        road_slope = new BlockRoadRotatable("road_slope");
         road_line = new BlockRoadLine();
         road_line_simple = new BlockRoadRotatable("road_line_simple");
         road_line_merge = new BlockRoadRotatable("road_line_merge");
@@ -275,7 +273,6 @@ public class RoadBlocks {
         registerBlock(road_white);
         registerBlock(road_white_half);
         registerBlock(road_white_quarter);
-        registerBlock(road_slope);
         registerBlock(road_line);
         registerBlock(road_line_simple);
         registerBlock(road_line_merge);
@@ -412,7 +409,6 @@ public class RoadBlocks {
         registerModel(road_white);
         registerModel(road_white_half);
         registerModel(road_white_quarter);
-        registerModel(road_slope);
         registerModel(road_line);
         registerModel(road_line_simple);
         registerModel(road_line_merge);

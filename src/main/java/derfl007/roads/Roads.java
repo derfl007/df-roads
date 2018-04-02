@@ -1,6 +1,7 @@
 package derfl007.roads;
 
 import derfl007.roads.gui.GuiHandler;
+import derfl007.roads.init.RoadCrafting;
 import derfl007.roads.init.RoadTileEntities;
 import derfl007.roads.network.PacketHandler;
 import derfl007.roads.proxy.CommonProxy;

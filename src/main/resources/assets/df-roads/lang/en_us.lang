@@ -1,5 +1,11 @@
 item.item_tar.name=Tar
 item.item_wrench.name=Wrench
+item.round_sign_template.name=Round Sign Template
+item.square_sign_template.name=Rectangular Sign Template
+item.triangular_sign_template.name=Triangular Sign Template
+item.magenta_ink_cartridge.name=Magenta Ink Cartridge
+item.yellow_ink_cartridge.name=Yellow Ink Cartridge
+item.cyan_ink_cartridge.name=Cyan Ink Cartridge
 
 tile.asphalt.name=Asphalt Block
 tile.road.name=Road Block
@@ -122,10 +128,16 @@ tile.road_sidewalk.name=Sidewalk Curb
 tile.road_sign_post.name=Sign Post
 tile.road_slope.name=Slope
 tile.road_line_slope.name=Slope with Line
+tile.sign_printer.name=Sign Printer
 
-
-itemGroup.tabRoads=Road Mod
+itemGroup.tabRoads=derfl007's Road Mod
 
 block.road_lines.tooltip=If you do not want the lines to connect automatically, use the simple version of the desired block
 block.road_rotatable.tooltip=Place this block on top of a normal road block or a road block with a connectable line to make a slope out of it. Use the wrench to rotate the texture on top
 gui.tooltip.view_more=Press shift to view more
+gui.sign_printer.print=Print
+gui.sign_printer.info=Info
+gui.sign_printer.warning=Warning
+gui.sign_printer.mandatory=Mandatory
+gui.sign_printer.prohibitory=Prohibitory
+gui.sign_printer.others=Others

@@ -1,13 +1,10 @@
 package derfl007.roads.common.blocks;
 
-
 import derfl007.roads.Roads;
 import derfl007.roads.common.tileentities.TileEntityRoadTownSign;
 import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -15,9 +12,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemDye;
-import net.minecraft.item.ItemNameTag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -27,15 +21,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
 public class BlockRoadTownSign extends Block {
 
     public BlockRoadTownSign(String name) {
         super(Material.IRON);
-        setUnlocalizedName(name);
-        setRegistryName(name);
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.4F);
     }
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -51,7 +44,6 @@ public class BlockRoadTownSign extends Block {
         return true;
     }
 
-    @Nullable
     @Override
     public TileEntity createTileEntity(World worldIn, IBlockState state) {
         return new TileEntityRoadTownSign();

@@ -24,6 +24,7 @@ public class BlockSignPrinter extends BlockHorizontal {
         this.setRegistryName("sign_printer");
         this.setUnlocalizedName("sign_printer");
         this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.2F);
     }
 
     public static PropertyDirection FACING = BlockHorizontal.FACING;

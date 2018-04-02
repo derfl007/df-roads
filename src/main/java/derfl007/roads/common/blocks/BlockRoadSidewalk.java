@@ -1,11 +1,6 @@
 package derfl007.roads.common.blocks;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Lists;
-
 import derfl007.roads.Reference;
 import derfl007.roads.Roads;
 import derfl007.roads.init.RoadBlocks;
@@ -13,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -28,15 +22,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
+
 public class BlockRoadSidewalk extends Block {
 
     public BlockRoadSidewalk() {
         super(Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(SHAPE,
                 BlockStairs.EnumShape.STRAIGHT));
-        setRegistryName("road_sidewalk");
-        setUnlocalizedName("road_sidewalk");
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setRegistryName("road_sidewalk");
+        this.setUnlocalizedName("road_sidewalk");
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.5F);
     }
 
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -44,7 +41,7 @@ public class BlockRoadSidewalk extends Block {
             BlockStairs.EnumShape.class);
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState) {
         state = this.getActualState(state, worldIn, pos);
 
         for (AxisAlignedBB axisalignedbb : getCollisionBoxList(state)) {

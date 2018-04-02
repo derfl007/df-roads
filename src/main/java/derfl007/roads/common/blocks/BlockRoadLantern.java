@@ -25,7 +25,6 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockRoadLantern  extends Block {
@@ -34,8 +33,9 @@ public class BlockRoadLantern  extends Block {
     public BlockRoadLantern(String name, boolean isOn) {
         super(Material.IRON);
         this.isOn = isOn;
-        setUnlocalizedName(name);
-        setRegistryName(name);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
+        this.setHardness(1.2F);
         if(!isOn) setCreativeTab(Roads.ROADS_TAB);
         if(isOn) this.setLightLevel(1.0F);
     }
@@ -96,10 +96,9 @@ public class BlockRoadLantern  extends Block {
         }
     }
 
-    @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileEntityRoadLantern();
+        return new TileEntityRoadLantern(this, state);
     }
 
     @Override

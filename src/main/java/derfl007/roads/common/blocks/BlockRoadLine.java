@@ -22,12 +22,13 @@ public class BlockRoadLine extends Block {
 
     public BlockRoadLine() {
         super(Material.ROCK);
-        setRegistryName("road_line");
-        setUnlocalizedName("road_line");
-        setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false)
+        this.setRegistryName("road_line");
+        this.setUnlocalizedName("road_line");
+        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false)
                 .withProperty(EAST, false).withProperty(SOUTH, false)
                 .withProperty(WEST, false));
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.5F);
     }
 
     @Override

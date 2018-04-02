@@ -23,9 +23,10 @@ public class BlockRoadGuardrail extends BlockHorizontal {
         super(Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(SHAPE,
                 BlockStairs.EnumShape.STRAIGHT));
-        setRegistryName("road_guardrail");
-        setUnlocalizedName("road_guardrail");
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setRegistryName("road_guardrail");
+        this.setUnlocalizedName("road_guardrail");
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.4F);
     }
 
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
