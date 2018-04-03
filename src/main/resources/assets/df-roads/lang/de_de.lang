@@ -1,13 +1,21 @@
 item.item_tar.name=Teer
 item.item_wrench.name=Schraubenschlüssel
+item.round_sign_template.name=Runde Schildvorlage
+item.square_sign_template.name=Viereckige Schildvorlage
+item.triangle_sign_template.name=Dreieckige Schildvorlage
+item.magenta_ink_cartridge.name=Magenta Tintenpatrone
+item.yellow_ink_cartridge.name=Gelbe Tintenpatrone
+item.cyan_ink_cartridge.name=Cyan Tintenpatrone
 
 tile.road.name=Straßenblock
 tile.road_white.name=Weißer Straßenblock
 tile.road_white_half.name=Halb weißer Straßenblock
 tile.road_white_quarter.name=Viertelt weißer Straßenblock
-tile.road_line.name=Einfache Linie
+tile.road_line.name=Linie
+tile.road_line_simple.name=Linie (Einfache Version)
 tile.road_line_merge.name=Einfach-Doppelt-Verbindung
 tile.road_line_double.name=Doppelte Linie
+tile.road_line_double_simple.name=Doppelte Linie (Einfache Version)
 tile.road_line_diagonal.name=Diagonale Linie
 tile.road_arrow_s.name=Gerader Pfeil
 tile.road_arrow_r.name=Rechter Pfeil
@@ -117,6 +125,18 @@ tile.road_sidewalk.name=Gehsteig
 tile.road_sign_post.name=Schildstange
 tile.road_slope.name=Rampe
 tile.road_line_slope.name=Rampe mit Linie
-tile.road_line_half_double.name=Straßenblock mit halber Doppelinie
+tile.road_line_half_double.name=Halbe Doppellinie
+tile.road_line_half_double_simple.name=Halbe Doppellinie (Einfache Version)
+tile.sign_printer.name=Schildbedrucker
 
-itemGroup.tabRoads=Road Mod
+itemGroup.tabRoads=derfl007's Road Mod
+
+block.road_lines.tooltip=Wenn du möchtest dass sich die Linien nicht automatisch verbinden, verwende die einfache Version des Blocks
+block.road_rotatable.tooltip=Platziere diesen Block auf einem anderen Straßenblock um daraus eine Rampe zu machen. Mit dem Schraubenschlüssel kannst du die Texturen drehen.
+gui.tooltip.view_more=Drücke Shift um mehr Informationen zu zeigen
+gui.sign_printer.print=Drucken
+gui.sign_printer.info=Info
+gui.sign_printer.warning=Warnung
+gui.sign_printer.mandatory=Gebot
+gui.sign_printer.prohibitory=Verbot
+gui.sign_printer.others=Andere
