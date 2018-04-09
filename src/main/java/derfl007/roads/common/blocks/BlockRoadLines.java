@@ -28,8 +28,6 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
-;
-
 @SuppressWarnings("Duplicates")
 public class BlockRoadLines extends Block {
     public BlockRoadLines(String name) {
