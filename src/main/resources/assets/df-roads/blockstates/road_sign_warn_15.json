@@ -1,23 +1,29 @@
 {
     "forge_marker": 1,
+    "defaults" : {
+        "textures": {
+            "front": "df-roads:blocks/road_sign_warn_15",
+            "back": "df-roads:blocks/road_sign_back_triangle"
+        }
+    },
     "variants": {
         "facing": {
             "north": {
-                "model": "df-roads:road_sign_warn_15",
+                "model": "df-roads:road_sign",
                 "uvlock": false
             },
             "east": {
-                "model": "df-roads:road_sign_warn_15",
+                "model": "df-roads:road_sign",
                 "y": 90,
                 "uvlock": false
             },
             "south": {
-                "model": "df-roads:road_sign_warn_15",
+                "model": "df-roads:road_sign",
                 "y": 180,
                 "uvlock": false
             },
             "west": {
-                "model": "df-roads:road_sign_warn_15",
+                "model": "df-roads:road_sign",
                 "y": 270,
                 "uvlock": false
             }
@@ -100,11 +106,11 @@
             {
                 "submodel": {
                     "post_north": {
-                        "model": "df-roads:road_sign_warn_15",
+                        "model": "df-roads:road_sign",
                         "uvlock": true
                     },
                     "post_south": {
-                        "model": "df-roads:road_sign_warn_15",
+                        "model": "df-roads:road_sign",
                         "y": 180,
                         "uvlock": true
                     }

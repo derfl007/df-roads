@@ -22,13 +22,14 @@ public class BlockRoadSignPost extends Block {
 
     public BlockRoadSignPost() {
         super(Material.IRON);
-        setRegistryName("road_sign_post");
-        setUnlocalizedName("road_sign_post");
-        setDefaultState(this.blockState.getBaseState().withProperty(UP, false)
+        this.setRegistryName("road_sign_post");
+        this.setUnlocalizedName("road_sign_post");
+        this.setDefaultState(this.blockState.getBaseState().withProperty(UP, false)
                 .withProperty(DOWN, false).withProperty(NORTH, false)
                 .withProperty(EAST, false).withProperty(SOUTH, false)
                 .withProperty(WEST,false));
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.0F);
     }
 
     @Override

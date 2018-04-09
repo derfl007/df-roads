@@ -2,6 +2,8 @@ package derfl007.roads.init;
 
 import derfl007.roads.common.blocks.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSign;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -23,7 +25,6 @@ public class RoadBlocks {
             road_white, //White block
             road_white_half, //Half white block
             road_white_quarter, //Quarter white block
-            road_slope, //Normal slope
             road_line, //Single line
             road_line_simple, //Single line (not connecting)
             road_line_merge, //Merge single and double lines
@@ -138,15 +139,15 @@ public class RoadBlocks {
             road_traffic_light_red, //Traffic Light (Red)
             road_traffic_light_green, //Traffic Light (Green)
             road_traffic_light_yellow, //Traffic Light (Yellow blinking)
-            road_pedestrian_traffic_light; //Pedestrian Traffic Light
+            road_pedestrian_traffic_light, //Pedestrian Traffic Light
+            sign_printer;
 
     public static void init() {
         asphalt = new BlockAsphalt("asphalt");
-        road = new BlockRoad("road");
-        road_white = new BlockRoad("road_white");
+        road = new BlockRoadRotatable("road");
+        road_white = new BlockRoadRotatable("road_white");
         road_white_half = new BlockRoadRotatable("road_white_half");
         road_white_quarter = new BlockRoadRotatable("road_white_quarter");
-        road_slope = new BlockRoadRotatable("road_slope");
         road_line = new BlockRoadLine();
         road_line_simple = new BlockRoadRotatable("road_line_simple");
         road_line_merge = new BlockRoadRotatable("road_line_merge");
@@ -262,6 +263,7 @@ public class RoadBlocks {
         road_traffic_light_yellow = new BlockRoadSign("road_traffic_light_yellow");
         road_traffic_light_green = new BlockRoadSign("road_traffic_light_green");
         road_pedestrian_traffic_light = new BlockRoadSign("road_pedestrian_traffic_light");
+        sign_printer = new BlockSignPrinter();
     }
 
     public static void register()
@@ -271,7 +273,6 @@ public class RoadBlocks {
         registerBlock(road_white);
         registerBlock(road_white_half);
         registerBlock(road_white_quarter);
-        registerBlock(road_slope);
         registerBlock(road_line);
         registerBlock(road_line_simple);
         registerBlock(road_line_merge);
@@ -387,6 +388,7 @@ public class RoadBlocks {
         registerBlock(road_traffic_light_yellow);
         registerBlock(road_traffic_light_green);
         registerBlock(road_pedestrian_traffic_light);
+        registerBlock(sign_printer);
     }
 
     private static void registerBlock(Block block)
@@ -407,7 +409,6 @@ public class RoadBlocks {
         registerModel(road_white);
         registerModel(road_white_half);
         registerModel(road_white_quarter);
-        registerModel(road_slope);
         registerModel(road_line);
         registerModel(road_line_simple);
         registerModel(road_line_merge);
@@ -523,6 +524,7 @@ public class RoadBlocks {
         registerModel(road_traffic_light_yellow);
         registerModel(road_traffic_light_green);
         registerModel(road_pedestrian_traffic_light);
+        registerModel(sign_printer);
     }
 
     @SideOnly(Side.CLIENT)

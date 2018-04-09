@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IdI",
+        " I "
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "d": {
+            "item": "minecraft:dye",
+            "data": 6
+        }
+    },
+    "result": {
+        "item": "df-roads:cyan_ink_cartridge"
+    }
+}

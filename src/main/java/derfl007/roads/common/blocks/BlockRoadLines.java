@@ -7,14 +7,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,15 +24,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
-import scala.tools.nsc.backend.icode.Primitives;
 
-import javax.annotation.Nullable;
-import java.awt.event.KeyListener;
 import java.util.List;
-
-;
 
 @SuppressWarnings("Duplicates")
 public class BlockRoadLines extends Block {
@@ -43,6 +35,7 @@ public class BlockRoadLines extends Block {
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
         this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.5F);
     }
 
     private static final AxisAlignedBB AABB_QTR_TOP_WEST = new AxisAlignedBB(0.0D, 0.3125D, 0.0D, 0.5D, 0.8125D, 1.0D);
@@ -55,7 +48,7 @@ public class BlockRoadLines extends Block {
     private static final PropertyEnum<BlockStairs.EnumShape> SHAPE = PropertyEnum.create("shape", BlockStairs.EnumShape.class);
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
             tooltip.add(I18n.format("block.road_lines.tooltip"));
         } else {
@@ -77,7 +70,7 @@ public class BlockRoadLines extends Block {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-            return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
     }
 
     @Override
@@ -91,7 +84,7 @@ public class BlockRoadLines extends Block {
     }
 
     public static BlockStairs.EnumShape getShape(IBlockState state, IBlockAccess worldIn,
-                                                        BlockPos pos) {
+                                                 BlockPos pos) {
         EnumFacing enumfacing = state.getValue(FACING);
         IBlockState iblockstate = worldIn.getBlockState(pos.offset(enumfacing.rotateYCCW()));
         Block blockcurrent = worldIn.getBlockState(pos).getBlock();

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "TTw",
+        "TTw"
+    ],
+    "key": {
+        "T": {
+            "item": "df-roads:item_tar"
+        },
+        "w": {
+            "item": "minecraft:dye",
+            "data": 15
+        }
+    },
+    "result": {
+        "item": "df-roads:road_line_half_double_simple"
+    }
+}

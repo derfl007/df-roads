@@ -1,6 +1,7 @@
 package derfl007.roads;
 
 import derfl007.roads.gui.GuiHandler;
+import derfl007.roads.init.RoadCrafting;
 import derfl007.roads.init.RoadTileEntities;
 import derfl007.roads.network.PacketHandler;
 import derfl007.roads.proxy.CommonProxy;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystems;
 
-@Mod(modid = "df-roads", useMetadata = true)
+@Mod(modid = "df-roads", useMetadata = true, updateJSON = "https://raw.githubusercontent.com/derfl007/Road-Mod-Remake/master/update.json")
 public class Roads {
 
     @Instance(Reference.MOD_ID)

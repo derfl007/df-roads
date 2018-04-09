@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "TTT",
+        "Tww",
+        "TwE"
+    ],
+    "key": {
+        "T": {
+            "item": "df-roads:item_tar"
+        },
+        "w": {
+            "item": "minecraft:dye",
+            "data": 15
+        },
+        "E": {
+            "item": "df-roads:road_excl_zone"
+        }
+    },
+    "result": {
+        "item": "df-roads:road_excl_zone_corner_in"
+    }
+}

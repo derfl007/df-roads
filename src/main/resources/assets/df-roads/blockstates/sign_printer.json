@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east":  { "model": "df-roads:sign_printer", "y": 90  },
+        "facing=west":  { "model": "df-roads:sign_printer", "y": 270 },
+        "facing=south": { "model": "df-roads:sign_printer", "y": 180 },
+        "facing=north": { "model": "df-roads:sign_printer", "y": 0   }
+    }
+}

@@ -23,19 +23,19 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockRoadRotatable extends BlockHorizontal {
     public BlockRoadRotatable(String name) {
         super(Material.ROCK);
-        setUnlocalizedName(name);
-        setRegistryName(name);
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.5F);
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
             tooltip.add(I18n.format("block.road_rotatable.tooltip"));
         } else {
@@ -93,7 +93,7 @@ public class BlockRoadRotatable extends BlockHorizontal {
     private static final PropertyBool SLOPE = PropertyBool.create("slope");
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState) {
         Boolean isSlope = shouldBeSlope(worldIn, pos, state);
         EnumFacing facing = state.getValue(FACING);
         if(isSlope) {
@@ -181,7 +181,7 @@ public class BlockRoadRotatable extends BlockHorizontal {
 
     private boolean shouldBeSlope(IBlockAccess worldIn, BlockPos pos, IBlockState state) {
         Block block_under = worldIn.getBlockState(pos.offset(EnumFacing.DOWN)).getBlock();
-        return block_under instanceof BlockRoad || block_under instanceof BlockRoadLine;
+        return block_under instanceof BlockRoadRotatable || block_under instanceof BlockRoadLine;
     }
 
     @Override
@@ -248,7 +248,7 @@ public class BlockRoadRotatable extends BlockHorizontal {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(worldIn.isRemote) {
-            return false;
+            return true;
         }
         if(playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemWrench) {
             EnumFacing slopeFacing = worldIn.getBlockState(pos).getValue(SLOPE_FACING);
@@ -263,6 +263,7 @@ public class BlockRoadRotatable extends BlockHorizontal {
             } else {
                 worldIn.setBlockState(pos, state.withProperty(SLOPE_FACING, EnumFacing.NORTH).withProperty(SLOPE, shouldBeSlope(worldIn, pos, state)));
             }
+            System.out.println("texture rotated");
             return true;
         }
         return false;

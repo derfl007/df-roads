@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ID ",
+        "LII"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "L": {
+            "item": "minecraft:redstone_lamp"
+        },
+        "D": {
+            "item": "minecraft:daylight_detector"
+        }
+    },
+    "result": {
+        "item": "df-roads:road_lantern"
+    }
+}

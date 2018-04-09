@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=east":  { "model": "df-roads:road_lantern_lit", "y": 270  },
-        "facing=west":  { "model": "df-roads:road_lantern_lit", "y": 90   },
-        "facing=south": { "model": "df-roads:road_lantern_lit", "y": 0    },
-        "facing=north": { "model": "df-roads:road_lantern_lit", "y": 180  }
+        "facing=east":  { "model": "df-roads:road_lantern_lit", "y": 90  },
+        "facing=west":  { "model": "df-roads:road_lantern_lit", "y": 270 },
+        "facing=south": { "model": "df-roads:road_lantern_lit", "y": 180 },
+        "facing=north": { "model": "df-roads:road_lantern_lit", "y": 0   }
     }
 }

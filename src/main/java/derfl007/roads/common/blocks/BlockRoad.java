@@ -14,7 +14,8 @@ public class BlockRoad extends Block {
         super(Material.ROCK);
         this.setRegistryName(name);
         this.setUnlocalizedName(name);
-        setCreativeTab(Roads.ROADS_TAB);
+        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setHardness(1.5F);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package derfl007.roads.network.message;
 
 import derfl007.roads.common.tileentities.TileEntityRoadTownSign;
-import derfl007.roads.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

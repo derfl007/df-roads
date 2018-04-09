@@ -1,20 +1,20 @@
 {
     "parent": "block/cube_all",
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "0": "df-roads:blocks/metal"
+        "1": "df-roads:blocks/metal"
     },
     "elements": [
         {
-            "name": "Cube",
-            "from": [ 7.0, 7.0, 6.899999998509884 ], 
-            "to": [ 9.0, 9.0, 8.999999998509884 ], 
+            "name": "post",
+            "from": [ 7.0, 0.0, 2.0 ], 
+            "to": [ 9.0, 15.0, 4.0 ], 
             "faces": {
-                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 2.1, 2.0 ] },
-                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
-                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 2.1, 2.0 ] },
-                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 2.1 ] },
-                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 2.1 ] }
+                "north": { "texture": "#1", "uv": [ 1.0, 1.0, 3.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 1.0, 1.0, 3.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 1.0, 1.0, 3.0, 16.0 ] },
+                "west": { "texture": "#1", "uv": [ 1.0, 1.0, 3.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 1.0, 1.0, 3.0, 3.0 ] },
+                "down": { "texture": "#1", "uv": [ 1.0, 1.0, 3.0, 3.0 ] }
             }
         }
     ]
