@@ -37,6 +37,16 @@ public class BlockRoadLines extends Block {
         this.setCreativeTab(Roads.ROADS_TAB);
         this.setHardness(1.5F);
     }
+    
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
     private static final AxisAlignedBB AABB_QTR_TOP_WEST = new AxisAlignedBB(0.0D, 0.3125D, 0.0D, 0.5D, 0.8125D, 1.0D);
     private static final AxisAlignedBB AABB_QTR_TOP_EAST = new AxisAlignedBB(0.5D, 0.3125D, 0.0D, 1.0D, 0.8125D, 1.0D);
