@@ -1,10 +1,10 @@
 {
-  "homepage": "https://derfl007.jimdo.com/",
+  "homepage": "https://derfl007.000webhost.com",
   "1.12.2": {
-    "1.14": "Survival update: Added crafting recipes, a sign printer and asphalt generation for a better survival experience. Also added some more stuff, you can find the complete changelog on planetminecraft or my website"
+    "1.4-mc1.12.2": "Survival update: Added crafting recipes, a sign printer and asphalt generation for a better survival experience. Also added some more stuff, you can find the complete changelog on planetminecraft or my website"
   },
   "promos": {
-    "1.12.2-latest": "1.14",
-    "1.12.2-recommended": "1.14"
+    "1.12.2-latest": "1.4-mc1.12.2",
+    "1.12.2-recommended": "1.4-mc1.12.2"
   }
 }
