@@ -54,12 +54,28 @@ public class RecipesSign {
     public static Block[] signs_2 = {
             road_sign_info_1a, // parking lot or parking lane
             road_sign_info_1b, // parking lot
+            road_sign_info_2, // hospital
+            road_sign_info_2a, // pedestrian crossing
+            road_sign_info_2b, // bicycle crossing
+            road_sign_info_2c_a, // pedestrian and bicycle crossing
+            road_sign_info_2c_b, // bicycle and pedestrian crossing
+            road_sign_info_3, // first aid
+            road_sign_info_3a, // church
+            road_sign_info_4, // breakdown services
+            road_sign_info_5, // telephone
+            road_sign_info_6a, // taxi
+            road_sign_info_7a, // priority over oncoming traffic
             road_sign_info_8a, // expressway
             road_sign_info_8b, // end of expressway
             road_sign_info_8c, // motor road
             road_sign_info_8d, // end of motor road
             road_sign_info_9a, // pedestrian zone
             road_sign_info_9b, // end of pedestrian zone
+            road_sign_info_9c, // residential street
+            road_sign_info_9d, // end of residential street
+            road_sign_info_9e, // shared space zone
+            road_sign_info_9f, // end of shared space zone
+            road_sign_info_9g, // tunnel
             road_sign_info_10a, // one-way left
             road_sign_info_10b, // one-way right
             road_sign_info_10c, // one-way left (german)
@@ -69,6 +85,8 @@ public class RecipesSign {
             road_sign_info_16b, // detour left
             road_sign_info_16c, //detour right (german)
             road_sign_info_16d, //detour left (german)
+            road_sign_info_17a, //town sign
+            road_sign_info_17b, //end of town sign
             road_sign_info_23, // two lanes merge into one
             road_sign_info_23b, // two lanes merge into one (german)
     };
@@ -103,12 +121,15 @@ public class RecipesSign {
             road_sign_priority_1, // give way
             road_sign_priority_2, // stop
             road_sign_priority_3a, // priority road
-            road_sign_priority_3b, // end of priority road
-            road_town_sign
+            road_sign_priority_3b // end of priority road
     };
 
     public void setBaseItem(Item baseItem, int currentSet) {
         this.baseItem[currentSet] = baseItem;
+    }
+
+    private static int cmyDamage(String colorId, int cyan, int magenta, int yellow) {
+        return (colorId == "C") ? cyan : (colorId == "M") ? magenta : (colorId == "Y") ? yellow : 0;
     }
 
     public static int getDamage(String colorId, int currentSet, int currentSign) {
@@ -132,9 +153,9 @@ public class RecipesSign {
                 case 15:
                 case 16:
                 case 18:
-                    return (colorId == "M") ? 2 : (colorId == "Y") ? 2 : (colorId == "C") ? 1 : 0;
+                    return cmyDamage(colorId, 1,2, 2);
                 case 17:
-                    return (colorId == "M") ? 2 : (colorId == "Y") ? 4 : (colorId == "C") ? 2 : 0;
+                    return cmyDamage(colorId, 2,2, 4);
             }
         }
         if(currentSet == 1) {
@@ -149,7 +170,7 @@ public class RecipesSign {
                 case 7:
                 case 8:
                 case 9:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 0 : (colorId == "C") ? 1 : 0;
+                    return cmyDamage(colorId, 1,1, 0);
             }
         }
         if(currentSet == 2) {
@@ -157,35 +178,52 @@ public class RecipesSign {
                 case 0:
                 case 1:
                 case 2:
-                case 4:
+                case 13:
+                case 15:
+                case 19:
+                    return cmyDamage(colorId, 1, 1, 0); //blue, white
+                case 7:
                 case 12:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 0 : (colorId == "C") ? 1 : 0;
+                case 14:
+                case 16:
+                case 20:
+                    return cmyDamage(colorId, 1, 2, 1); //blue, red, white
                 case 3:
+                case 4:
                 case 5:
-                    return (colorId == "M") ? 2 : (colorId == "Y") ? 1 : (colorId == "C") ? 1 : 0;
                 case 6:
                 case 8:
                 case 9:
                 case 10:
                 case 11:
-                    return (colorId == "M") ? 2 : (colorId == "Y") ? 1 : (colorId == "C") ? 2 : 0;
-                case 7:
-                    return (colorId == "M") ? 3 : (colorId == "Y") ? 2 : (colorId == "C") ? 2 : 0;
-                case 13:
-                case 14:
-                case 15:
-                case 16:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 2 : (colorId == "C") ? 1 : 0;
                 case 17:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 33:
+                    return cmyDamage(colorId, 2, 2, 1); //blue, black, white
                 case 18:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 1 : (colorId == "C") ? 1 : 0;
+                case 21:
+                case 22:
+                case 34:
+                    return cmyDamage(colorId, 2, 3, 2); //blue, red, black, white
+                case 35:
+                case 36:
+                    return cmyDamage(colorId, 1, 1, 1); //black, white
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                    return cmyDamage(colorId, 1, 1, 2); //yellow, black
             }
         }
         if(currentSet == 3) {
             switch (currentSign) {
                 case 0:
                 case 1:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 1 : (colorId == "C") ? 0 : 0;
+                    return cmyDamage(colorId, 0, 1, 1);
                 case 2:
                 case 3:
                 case 4:
@@ -198,7 +236,7 @@ public class RecipesSign {
                 case 12:
                 case 13:
                 case 14:
-                    return (colorId == "M") ? 2 : (colorId == "Y") ? 2 : (colorId == "C") ? 1 : 0;
+                    return cmyDamage(colorId, 1, 2, 2);
                 case 6:
                 case 15:
                 case 16:
@@ -208,7 +246,7 @@ public class RecipesSign {
                 case 20:
                 case 21:
                 case 22:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 1 : (colorId == "C") ? 1 : 0;
+                    return cmyDamage(colorId, 1, 1, 1);
             }
         }
         if(currentSet == 4) {
@@ -216,11 +254,9 @@ public class RecipesSign {
                 case 0:
                 case 1:
                 case 2:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 1 : (colorId == "C") ? 0 : 0;
+                    return cmyDamage(colorId, 0, 1, 1);
                 case 3:
-                    return (colorId == "M") ? 0 : (colorId == "Y") ? 1 : (colorId == "C") ? 0 : 0;
-                case 4:
-                    return (colorId == "M") ? 1 : (colorId == "Y") ? 2 : (colorId == "C") ? 1 : 0;
+                    return cmyDamage(colorId, 0, 1, 0);
             }
         }
         return 0;

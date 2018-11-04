@@ -115,12 +115,28 @@ public class RoadBlocks {
             road_sign_priority_3b, // end of priority road
             road_sign_info_1a, // parking lot or parking lane
             road_sign_info_1b, // parking lot
+            road_sign_info_2, // hospital
+            road_sign_info_2a, // pedestrian crossing
+            road_sign_info_2b, // bicycle crossing
+            road_sign_info_2c_a, // pedestrian and bicycle crossing
+            road_sign_info_2c_b, // bicycle and pedestrian crossing
+            road_sign_info_3, // first aid
+            road_sign_info_3a, // church
+            road_sign_info_4, // breakdown services
+            road_sign_info_5, // telephone
+            road_sign_info_6a, // taxi
+            road_sign_info_7a, // priority over oncoming traffic
             road_sign_info_8a, // expressway
             road_sign_info_8b, // end of expressway
             road_sign_info_8c, // motor road
             road_sign_info_8d, // end of motor road
             road_sign_info_9a, // pedestrian zone
             road_sign_info_9b, // end of pedestrian zone
+            road_sign_info_9c, // residential street
+            road_sign_info_9d, // end of residential street
+            road_sign_info_9e, // shared space zone
+            road_sign_info_9f, // end of shared space zone
+            road_sign_info_9g, // tunnel
             road_sign_info_10a, // one-way left
             road_sign_info_10b, // one-way right
             road_sign_info_10c, // one-way left (german)
@@ -130,9 +146,10 @@ public class RoadBlocks {
             road_sign_info_16b, // detour left
             road_sign_info_16c, //detour right (german)
             road_sign_info_16d, //detour left (german)
+            road_sign_info_17a, //town sign
+            road_sign_info_17b, //end of town sign
             road_sign_info_23, // two lanes merge into one
             road_sign_info_23b, // two lanes merge into one (german)
-            road_town_sign,
             road_lantern, //Road Lantern unlit
             road_lantern_lit, //Road Lantern lit
             road_traffic_light, //Traffic Light (Animated)
@@ -238,12 +255,28 @@ public class RoadBlocks {
         road_sign_priority_3b = new BlockRoadSign("road_sign_priority_3b");
         road_sign_info_1a = new BlockRoadSign("road_sign_info_1a");
         road_sign_info_1b = new BlockRoadSign("road_sign_info_1b");
+        road_sign_info_2 = new BlockRoadSign("road_sign_info_2");
+        road_sign_info_2a = new BlockRoadSign("road_sign_info_2a");
+        road_sign_info_2b = new BlockRoadSign("road_sign_info_2b");
+        road_sign_info_2c_a = new BlockRoadSign("road_sign_info_2c_a");
+        road_sign_info_2c_b = new BlockRoadSign("road_sign_info_2c_b");
+        road_sign_info_3 = new BlockRoadSign("road_sign_info_3");
+        road_sign_info_3a = new BlockRoadSign("road_sign_info_3a");
+        road_sign_info_4 = new BlockRoadSign("road_sign_info_4");
+        road_sign_info_5 = new BlockRoadSign("road_sign_info_5");
+        road_sign_info_6a = new BlockRoadSign("road_sign_info_6a");
+        road_sign_info_7a = new BlockRoadSign("road_sign_info_7a");
         road_sign_info_8a = new BlockRoadSign("road_sign_info_8a");
         road_sign_info_8b = new BlockRoadSign("road_sign_info_8b");
         road_sign_info_8c = new BlockRoadSign("road_sign_info_8c");
         road_sign_info_8d = new BlockRoadSign("road_sign_info_8d");
         road_sign_info_9a = new BlockRoadSign("road_sign_info_9a");
         road_sign_info_9b = new BlockRoadSign("road_sign_info_9b");
+        road_sign_info_9c = new BlockRoadSign("road_sign_info_9c");
+        road_sign_info_9d = new BlockRoadSign("road_sign_info_9d");
+        road_sign_info_9e = new BlockRoadSign("road_sign_info_9e");
+        road_sign_info_9f = new BlockRoadSign("road_sign_info_9f");
+        road_sign_info_9g = new BlockRoadSign("road_sign_info_9g");
         road_sign_info_10a = new BlockRoadSign("road_sign_info_10a");
         road_sign_info_10b = new BlockRoadSign("road_sign_info_10b");
         road_sign_info_10c = new BlockRoadSign("road_sign_info_10c");
@@ -253,9 +286,10 @@ public class RoadBlocks {
         road_sign_info_16b = new BlockRoadSign("road_sign_info_16b");
         road_sign_info_16c = new BlockRoadSign("road_sign_info_16c");
         road_sign_info_16d = new BlockRoadSign("road_sign_info_16d");
+        road_sign_info_17a = new BlockRoadTownSign("road_sign_info_17a");
+        road_sign_info_17b = new BlockRoadTownSign("road_sign_info_17b");
         road_sign_info_23 = new BlockRoadSign("road_sign_info_23");
         road_sign_info_23b = new BlockRoadSign("road_sign_info_23b");
-        road_town_sign = new BlockRoadTownSign("road_town_sign");
         road_lantern = new BlockRoadLantern("road_lantern", false);
         road_lantern_lit = new BlockRoadLantern("road_lantern_lit", true);
         road_traffic_light = new BlockRoadSign("road_traffic_light");
@@ -363,12 +397,28 @@ public class RoadBlocks {
         registerBlock(road_sign_priority_3b);
         registerBlock(road_sign_info_1a);
         registerBlock(road_sign_info_1b);
+        registerBlock(road_sign_info_2);
+        registerBlock(road_sign_info_2a);
+        registerBlock(road_sign_info_2b);
+        registerBlock(road_sign_info_2c_a);
+        registerBlock(road_sign_info_2c_b);
+        registerBlock(road_sign_info_3);
+        registerBlock(road_sign_info_3a);
+        registerBlock(road_sign_info_4);
+        registerBlock(road_sign_info_5);
+        registerBlock(road_sign_info_6a);
+        registerBlock(road_sign_info_7a);
         registerBlock(road_sign_info_8a);
         registerBlock(road_sign_info_8b);
         registerBlock(road_sign_info_8c);
         registerBlock(road_sign_info_8d);
         registerBlock(road_sign_info_9a);
         registerBlock(road_sign_info_9b);
+        registerBlock(road_sign_info_9c);
+        registerBlock(road_sign_info_9d);
+        registerBlock(road_sign_info_9e);
+        registerBlock(road_sign_info_9f);
+        registerBlock(road_sign_info_9g);
         registerBlock(road_sign_info_10a);
         registerBlock(road_sign_info_10b);
         registerBlock(road_sign_info_10c);
@@ -378,9 +428,10 @@ public class RoadBlocks {
         registerBlock(road_sign_info_16b);
         registerBlock(road_sign_info_16c);
         registerBlock(road_sign_info_16d);
+        registerBlock(road_sign_info_17a);
+        registerBlock(road_sign_info_17b);
         registerBlock(road_sign_info_23);
         registerBlock(road_sign_info_23b);
-        registerBlock(road_town_sign);
         registerBlock(road_lantern);
         registerBlock(road_lantern_lit);
         registerBlock(road_traffic_light);
@@ -499,12 +550,27 @@ public class RoadBlocks {
         registerModel(road_sign_priority_3b);
         registerModel(road_sign_info_1a);
         registerModel(road_sign_info_1b);
-        registerModel(road_sign_info_8a);
+        registerModel(road_sign_info_2);
+        registerModel(road_sign_info_2a);
+        registerModel(road_sign_info_2b);
+        registerModel(road_sign_info_2c_a);
+        registerModel(road_sign_info_2c_b);
+        registerModel(road_sign_info_3);
+        registerModel(road_sign_info_3a);
+        registerModel(road_sign_info_4);
+        registerModel(road_sign_info_5);
+        registerModel(road_sign_info_6a);
+        registerModel(road_sign_info_7a);
         registerModel(road_sign_info_8b);
         registerModel(road_sign_info_8c);
         registerModel(road_sign_info_8d);
         registerModel(road_sign_info_9a);
         registerModel(road_sign_info_9b);
+        registerModel(road_sign_info_9c);
+        registerModel(road_sign_info_9d);
+        registerModel(road_sign_info_9e);
+        registerModel(road_sign_info_9f);
+        registerModel(road_sign_info_9g);
         registerModel(road_sign_info_10a);
         registerModel(road_sign_info_10b);
         registerModel(road_sign_info_10c);
@@ -514,9 +580,10 @@ public class RoadBlocks {
         registerModel(road_sign_info_16b);
         registerModel(road_sign_info_16c);
         registerModel(road_sign_info_16d);
+        registerModel(road_sign_info_17a);
+        registerModel(road_sign_info_17b);
         registerModel(road_sign_info_23);
         registerModel(road_sign_info_23b);
-        registerModel(road_town_sign);
         registerModel(road_lantern);
         registerModel(road_lantern_lit);
         registerModel(road_traffic_light);
