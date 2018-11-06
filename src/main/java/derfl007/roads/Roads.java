@@ -31,6 +31,8 @@ public class Roads {
     public static CommonProxy proxy;
 
     public static final CreativeTabs ROADS_TAB = new RoadsTab();
+    public static final CreativeTabs YELLOW_ROADS_TAB = new YellowRoadsTab();
+    public static final CreativeTabs SIGNS_TAB = new SignsTab();
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

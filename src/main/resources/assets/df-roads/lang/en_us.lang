@@ -106,6 +106,7 @@ tile.road_sign_info_16d.name=Detour left Sign (German)
 tile.road_sign_info_23.name=Two lanes merge into one Sign
 tile.road_sign_info_23b.name=Two lanes merge into one Sign (German)
 tile.road_town_sign.name=Town Sign
+tile.road_end_of_town_sign.name=End of Town Sign
 tile.road_guardrail.name=Guardrail
 tile.road_lantern.name=Lantern
 tile.road_traffic_light.name=Traffic Lights

@@ -20,10 +20,10 @@ public class BlockRoadLine extends Block {
     private static final PropertyBool SOUTH = PropertyBool.create("south");
     private static final PropertyBool WEST = PropertyBool.create("west");
 
-    public BlockRoadLine() {
+    public BlockRoadLine(String name) {
         super(Material.ROCK);
-        this.setRegistryName("road_line");
-        this.setUnlocalizedName("road_line");
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false)
                 .withProperty(EAST, false).withProperty(SOUTH, false)
                 .withProperty(WEST, false));
