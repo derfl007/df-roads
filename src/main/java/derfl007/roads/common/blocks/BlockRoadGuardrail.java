@@ -30,7 +30,7 @@ public class BlockRoadGuardrail extends BlockHorizontal {
     }
 
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final PropertyEnum<BlockStairs.EnumShape> SHAPE = PropertyEnum.<BlockStairs.EnumShape>create("shape",
+    private static final PropertyEnum<BlockStairs.EnumShape> SHAPE = PropertyEnum.create("shape",
             BlockStairs.EnumShape.class);
 
     @Override

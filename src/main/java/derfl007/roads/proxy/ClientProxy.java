@@ -15,7 +15,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.awt.*;
+
 public class ClientProxy implements CommonProxy {
+
     @Override
     public void preInit() {
         MinecraftForge.EVENT_BUS.register(this);
@@ -27,6 +30,7 @@ public class ClientProxy implements CommonProxy {
         System.out.println("special renderer bound!");
         GameRegistry.registerWorldGenerator(new WorldGenOre(), 0);
         RoadCrafting.register();
+
     }
 
     @Override

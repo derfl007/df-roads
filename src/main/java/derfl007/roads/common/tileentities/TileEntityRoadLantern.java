@@ -11,6 +11,7 @@ public class TileEntityRoadLantern extends TileEntity implements ITickable {
     BlockRoadLantern blockRoadLantern;
     IBlockState state;
 
+    public TileEntityRoadLantern() {}
     public TileEntityRoadLantern(BlockRoadLantern blockRoadLantern, IBlockState state) {
         this.blockRoadLantern = blockRoadLantern;
         this.state = state;
@@ -21,7 +22,7 @@ public class TileEntityRoadLantern extends TileEntity implements ITickable {
     public void update() {
         if (this.world != null && !this.world.isRemote && this.world.getTotalWorldTime() % 20L == 0L) {
             this.blockType = this.getBlockType();
-            this.blockRoadLantern.updateLight(this.world, this.pos, this.blockRoadLantern.getDefaultState().withProperty(blockRoadLantern.FACING, this.state.getValue(blockRoadLantern.FACING)));
+            this.blockRoadLantern.updateLight(this.world, this.pos, this.blockRoadLantern.getDefaultState().withProperty(BlockRoadLantern.FACING, this.state.getValue(BlockRoadLantern.FACING)));
         }
     }
 }
