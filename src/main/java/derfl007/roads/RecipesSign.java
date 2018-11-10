@@ -49,6 +49,18 @@ public class RecipesSign {
             road_sign_mandat_8, // turn left or right
             road_sign_mandat_9, // follow left lane
             road_sign_mandat_10, // follow right lane
+            road_sign_mandat_16,
+            road_sign_mandat_16a,
+            road_sign_mandat_17,
+            road_sign_mandat_17a_a,
+            road_sign_mandat_17a_b,
+            road_sign_mandat_17a_c,
+            road_sign_mandat_17a_d,
+            road_sign_mandat_17b,
+            road_sign_mandat_17c,
+            road_sign_mandat_18,
+            road_sign_mandat_22,
+            road_sign_mandat_22a
     };
 
     public static Block[] signs_2 = {
@@ -99,6 +111,27 @@ public class RecipesSign {
             road_sign_prohib_3c, // no u-turn
             road_sign_prohib_4a, // no overtaking
             road_sign_prohib_4b, // end of overtaking restriction
+            road_sign_prohib_4c, //7
+            road_sign_prohib_4d,
+            road_sign_prohib_5,
+            road_sign_prohib_6a,
+            road_sign_prohib_6b,
+            road_sign_prohib_6c,
+            road_sign_prohib_6d,
+            road_sign_prohib_7a,
+            road_sign_prohib_7al,
+            road_sign_prohib_7aw,
+            road_sign_prohib_7b,
+            road_sign_prohib_7c,
+            road_sign_prohib_7e,
+            road_sign_prohib_7f,
+            road_sign_prohib_8a,
+            road_sign_prohib_8b,
+            road_sign_prohib_8c,
+            road_sign_prohib_9a,
+            road_sign_prohib_9b,
+            road_sign_prohib_9c,
+            road_sign_prohib_9d, //27
             road_sign_prohib_10a20, // speed sign 20
             road_sign_prohib_10a30, // speed sign 30
             road_sign_prohib_10a40, // speed sign 40
@@ -114,7 +147,16 @@ public class RecipesSign {
             road_sign_prohib_10b60, // end speed sign 60
             road_sign_prohib_10b70, // end speed sign 70
             road_sign_prohib_10b80, // end speed sign 80
-            road_sign_prohib_10b100 // end speed sign 100
+            road_sign_prohib_10b100, // end speed sign 100
+            road_sign_prohib_11,
+            road_sign_prohib_11a,
+            road_sign_prohib_11b,
+            road_sign_prohib_12,
+            road_sign_prohib_13a,
+            road_sign_prohib_13b,
+            road_sign_prohib_13d,
+            road_sign_prohib_13e,
+            road_sign_prohib_14
     };
 
     public static Block[] signs_4 = {
@@ -153,9 +195,9 @@ public class RecipesSign {
                 case 15:
                 case 16:
                 case 18:
-                    return cmyDamage(colorId, 1,2, 2);
+                    return cmyDamage(colorId, 1,2, 2); //red, black, white
                 case 17:
-                    return cmyDamage(colorId, 2,2, 4);
+                    return cmyDamage(colorId, 2,2, 4); //red, yellow, green
             }
         }
         if(currentSet == 1) {
@@ -170,7 +212,20 @@ public class RecipesSign {
                 case 7:
                 case 8:
                 case 9:
-                    return cmyDamage(colorId, 1,1, 0);
+                case 10:
+                case 12:
+                case 13:
+                case 14:
+                case 17:
+                case 19:
+                case 20:
+                    return cmyDamage(colorId, 1,1, 0); //blue
+                case 11:
+                case 15:
+                case 16:
+                case 18:
+                case 21:
+                    return cmyDamage(colorId, 1, 2, 1); //blue, red
             }
         }
         if(currentSet == 2) {
@@ -223,7 +278,7 @@ public class RecipesSign {
             switch (currentSign) {
                 case 0:
                 case 1:
-                    return cmyDamage(colorId, 0, 1, 1);
+                    return cmyDamage(colorId, 0, 1, 1); //red, white
                 case 2:
                 case 3:
                 case 4:
@@ -236,27 +291,56 @@ public class RecipesSign {
                 case 12:
                 case 13:
                 case 14:
-                    return cmyDamage(colorId, 1, 2, 2);
-                case 6:
                 case 15:
                 case 16:
                 case 17:
                 case 18:
-                case 19:
                 case 20:
                 case 21:
                 case 22:
-                    return cmyDamage(colorId, 1, 1, 1);
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 45:
+                case 52:
+                    return cmyDamage(colorId, 1, 2, 2); //red, black, white
+                case 6:
+                case 36:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                case 41:
+                case 42:
+                case 43:
+                case 44:
+                case 46:
+                case 51:
+                    return cmyDamage(colorId, 1, 1, 1); //black, white
+                case 48:
+                case 49:
+                case 50:
+                    return cmyDamage(colorId, 1, 2, 1); //red, blue, black, white
             }
         }
         if(currentSet == 4) {
             switch (currentSign) {
                 case 0:
                 case 1:
+                    return cmyDamage(colorId, 0, 1, 1); //red, white
                 case 2:
-                    return cmyDamage(colorId, 0, 1, 1);
                 case 3:
-                    return cmyDamage(colorId, 0, 1, 0);
+                    return cmyDamage(colorId, 1, 2, 1); //black, yellow, white
             }
         }
         return 0;
