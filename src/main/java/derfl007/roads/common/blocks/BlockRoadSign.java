@@ -15,6 +15,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,6 +36,17 @@ public class BlockRoadSign extends Block {
     private static final PropertyBool SOUTH = PropertyBool.create("south");
     private static final PropertyBool EAST = PropertyBool.create("east");
     private static final PropertyBool WEST = PropertyBool.create("west");
+    public static final IUnlistedProperty<String> MESSAGE = "";
+
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer.Builder(this).add(FACING).add(UP).add(DOWN).add(NORTH).add(SOUTH).add(EAST).add(WEST).add(MESSAGE).build();
+    }
+
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        IExtendedBlockState ext = (IExtendedBlockState) state;
+        ext = ext.withProperty(MESSAGE, message);
+    }
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
