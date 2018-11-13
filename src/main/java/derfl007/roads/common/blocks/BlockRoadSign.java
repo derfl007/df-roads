@@ -45,7 +45,7 @@ public class BlockRoadSign extends Block {
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         IExtendedBlockState ext = (IExtendedBlockState) state;
-        ext = ext.withProperty(MESSAGE, message);
+        return ext;
     }
 
     @Override

@@ -87,9 +87,11 @@ public class MessageSignPrinterPrint implements IMessage, IMessageHandler<Messag
             if(text != null) {
                 BlockRoadSign block = tileEntitySignPrinter.getSetByTabID(currentTab)[message.currentSign].getDefaultState().withProperty(BlockRoadSign.MESSAGE, text);
                 EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, Item.getItemFromBlock(block).getDefaultInstance());
+            } else {
+                BlockRoadSign block = tileEntitySignPrinter.getSetByTabID(message.currentTab)[message.currentSign];
+                EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, Item.getItemFromBlock(block).getDefaultInstance());
+                player.world.spawnEntity(entityItem);
             }
-            EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, Item.getItemFromBlock(tileEntitySignPrinter.getSetByTabID(message.currentTab)[message.currentSign]).getDefaultInstance());
-            player.world.spawnEntity(entityItem);
         }
         return null;
     }
