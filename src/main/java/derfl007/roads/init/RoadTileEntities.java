@@ -8,9 +8,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RoadTileEntities {
     public static void register() {
-        GameRegistry.registerTileEntity(TileEntityRoadTownSign.class, Reference.MOD_ID + "road_town_sign");
-        GameRegistry.registerTileEntity(TileEntityRoadLantern.class, Reference.MOD_ID + "road_lantern");
-        GameRegistry.registerTileEntity(TileEntitySignPrinter.class, Reference.MOD_ID + "sign_printer");
+        GameRegistry.registerTileEntity(TileEntityRoadTownSign.class, Reference.MOD_ID + ":road_town_sign");
+        GameRegistry.registerTileEntity(TileEntityRoadLantern.class, Reference.MOD_ID + ":road_lantern");
+        GameRegistry.registerTileEntity(TileEntitySignPrinter.class, Reference.MOD_ID + ":sign_printer");
 
         System.out.println("tile entitiies registered!");
     }
