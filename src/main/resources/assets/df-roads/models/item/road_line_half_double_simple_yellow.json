@@ -1,7 +1,7 @@
 {
     "parent": "df-roads:block/road",
     "textures": {
-        "top": "df-roads:blocks/road_line_half_double_simple_yellow"
+        "top": "df-roads:blocks/road_line_half_double_yellow"
     },
     "display": {
         "thirdperson_righthand": {
