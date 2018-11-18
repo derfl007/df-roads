@@ -76,7 +76,17 @@ public class BlockRoadLine extends Block {
         ROAD_EXCL_ZONE_SPLIT_IN_L(RoadBlocks.road_excl_zone_split_in_l),
         ROAD_EXCL_ZONE_SPLIT_IN_R(RoadBlocks.road_excl_zone_split_in_r),
         ROAD_EXCL_ZONE_SPLIT_OUT_L(RoadBlocks.road_excl_zone_split_out_l),
-        ROAD_EXCL_ZONE_SPLIT_OUT_R(RoadBlocks.road_excl_zone_split_out_r);
+        ROAD_EXCL_ZONE_SPLIT_OUT_R(RoadBlocks.road_excl_zone_split_out_r),
+        ROAD_LINE_YELLOW(RoadBlocks.road_line_yellow),
+        ROAD_LINE_SIMPLE_YELLOW(RoadBlocks.road_line_simple_yellow),
+        ROAD_LINE_MERGE_YELLOW(RoadBlocks.road_line_merge_yellow),
+        ROAD_LINE_DIAGONAL_YELLOW(RoadBlocks.road_line_diagonal_yellow),
+        ROAD_WHITE_QUARTER_YELLOW(RoadBlocks.road_white_quarter_yellow),
+        ROAD_WHITE_HALF_YELLOW(RoadBlocks.road_white_half_yellow),
+        ROAD_EXCL_ZONE_SPLIT_IN_L_YELLOW(RoadBlocks.road_excl_zone_split_in_l_yellow),
+        ROAD_EXCL_ZONE_SPLIT_IN_R_YELLOW(RoadBlocks.road_excl_zone_split_in_r_yellow),
+        ROAD_EXCL_ZONE_SPLIT_OUT_L_YELLOW(RoadBlocks.road_excl_zone_split_out_l_yellow),
+        ROAD_EXCL_ZONE_SPLIT_OUT_R_YELLOW(RoadBlocks.road_excl_zone_split_out_r_yellow);
 
         private final Block block;
 
