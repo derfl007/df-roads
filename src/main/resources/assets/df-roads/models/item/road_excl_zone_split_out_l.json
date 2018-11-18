@@ -1,5 +1,5 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/cube",
     "textures": {
         "0": "df-roads:blocks/road",
         "1": "df-roads:blocks/road_excl_zone_split_out_l"
