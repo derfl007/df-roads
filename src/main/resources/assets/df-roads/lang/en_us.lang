@@ -27,6 +27,7 @@ tile.road_arrow_rl.name=Right + Left Arrow
 tile.road_arrow_sr.name=Straight + Right Arrow
 tile.road_arrow_sl.name=Straight + Left Arrow
 tile.road_arrow_srl.name=Straight + Right + Left Arrow
+
 tile.road_yellow.name=Yellow Road Block
 tile.road_white_half_yellow.name=Half Yellow Road Block
 tile.road_white_quarter_yellow.name=Quarter Yellow Road Block
@@ -201,11 +202,11 @@ tile.road_sign_info_16a.name=Detour right Sign
 tile.road_sign_info_16b.name=Detour left Sign
 tile.road_sign_info_16c.name=Detour right Sign (German)
 tile.road_sign_info_16d.name=Detour left Sign (German)
+tile.road_sign_info_17a.name=Town Sign
+tile.road_sign_info_17b.name=End of Town Sign
 tile.road_sign_info_23.name=Two lanes merge into one Sign
 tile.road_sign_info_23b.name=Two lanes merge into one Sign (German)
 
-tile.road_town_sign.name=Town Sign
-tile.road_end_of_town_sign.name=End of Town Sign
 tile.road_guardrail.name=Guardrail
 tile.road_lantern.name=Lantern
 tile.road_traffic_light.name=Traffic Lights
