@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ww ",
+        "TTT",
+        "TTT"
+    ],
+    "key": {
+        "T": {
+            "item": "df-roads:item_tar"
+        },
+        "w": {
+            "item": "minecraft:dye",
+            "data": 11
+        }
+    },
+    "result": {
+        "item": "df-roads:road_white_half_yellow"
+    }
+}
