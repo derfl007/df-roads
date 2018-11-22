@@ -26,10 +26,10 @@ public class TileEntityRoadTownSignRenderer extends FastTESR<TileEntityRoadTownS
             int rotation = state.getValue(BlockRoadTownSign.FACING).getHorizontalIndex();
             GlStateManager.pushMatrix();
             {
-                GlStateManager.translate(x, y, z);
-                GlStateManager.translate(0.5, 0.5, 0.5);
-                GlStateManager.rotate(-90F * rotation, 0, 1, 0);
-                GlStateManager.translate(-0.375, 0, 0.1);
+                GlStateManager.translate(x, y, z); //set block as origin
+                GlStateManager.translate(0.5, 0.5, 0.5); //translate origin to the middle of the block
+                GlStateManager.rotate(-90F * rotation, 0, 1, 0); //rotate origin according to block facing
+                GlStateManager.translate(-0.375, 0, 0.1); //translate origin to the left side of the sign and to the correct depth
                 GlStateManager.scale(1, -1, -1);
                 GlStateManager.scale(0.015625F, 0.015625F, 0.015625F);
                 int lines = getFontRenderer().listFormattedStringToWidth(message, 50).size();

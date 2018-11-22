@@ -38,7 +38,7 @@ public class ContainerSignPrinter extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotId) {
         ItemStack itemCopy = ItemStack.EMPTY;
-        Slot slot = (Slot) this.inventorySlots.get(slotId);
+        Slot slot = this.inventorySlots.get(slotId);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack item = slot.getStack();

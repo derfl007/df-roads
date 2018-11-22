@@ -1,6 +1,6 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
-    "parent": "block/cube_all",
+    "parent": "block/cube",
     "textures": {
         "0": "blocks/iron_block",
         "1": "df-roads:blocks/metal"

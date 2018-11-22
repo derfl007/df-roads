@@ -31,7 +31,7 @@ public class TileEntitySignPrinter extends TileEntityLockable implements IInvent
     private boolean isUsed;
 
     public TileEntitySignPrinter() {
-        this.inventory = NonNullList.<ItemStack>withSize(getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class TileEntitySignPrinter extends TileEntityLockable implements IInvent
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return (ItemStack) this.inventory.get(index);
+        return this.inventory.get(index);
     }
 
     @Override

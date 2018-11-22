@@ -27,7 +27,7 @@ public class BlockRoadTownSign extends Block {
         super(Material.IRON);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
-        this.setCreativeTab(Roads.ROADS_TAB);
+        this.setCreativeTab(Roads.SIGNS_TAB);
         this.setHardness(1.4F);
     }
 

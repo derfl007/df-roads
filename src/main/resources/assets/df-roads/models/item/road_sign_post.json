@@ -1,5 +1,5 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/cube",
     "textures": {
         "1": "df-roads:blocks/metal"
     },
