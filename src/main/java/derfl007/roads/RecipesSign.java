@@ -22,10 +22,25 @@ public class RecipesSign {
             road_sign_warn_3a,  // junction
             road_sign_warn_3b,  // junction with roundabout
             road_sign_warn_4,   // crossroad with non-priority road
+            road_sign_warn_6a,
+            road_sign_warn_6b,
+            road_sign_warn_6c_i_r,
+            road_sign_warn_6c_i_l,
+            road_sign_warn_6c_ii_r,
+            road_sign_warn_6c_ii_l,
+            road_sign_warn_6c_iii_r,
+            road_sign_warn_6c_iii_l,
+            road_sign_warn_6d_a,
+            road_sign_warn_6d_b,
+            road_sign_warn_6d_c,
+            road_sign_warn_6d_d,
+            road_sign_warn_7,
+            road_sign_warn_7a,
             road_sign_warn_8a,  // road narrows on both sides
             road_sign_warn_8b,  // road narrows from left
             road_sign_warn_8c,  // road narrows from right
             road_sign_warn_9,   // road works
+            road_sign_warn_10,
             road_sign_warn_10a, // slippery road
             road_sign_warn_10b, // crosswind
             road_sign_warn_10c, // falling rocks
@@ -195,8 +210,21 @@ public class RecipesSign {
                 case 15:
                 case 16:
                 case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 32:
                     return cmyDamage(colorId, 1,2, 2); //red, black, white
-                case 17:
+                case 31:
                     return cmyDamage(colorId, 2,2, 4); //red, yellow, green
             }
         }

@@ -150,10 +150,25 @@ public class RoadBlocks {
             road_sign_warn_3a, // junction
             road_sign_warn_3b, // junction with roundabout
             road_sign_warn_4, // crossroad with non-priority road
+            road_sign_warn_6a,
+            road_sign_warn_6b,
+            road_sign_warn_6c_i_r,
+            road_sign_warn_6c_i_l,
+            road_sign_warn_6c_ii_r,
+            road_sign_warn_6c_ii_l,
+            road_sign_warn_6c_iii_r,
+            road_sign_warn_6c_iii_l,
+            road_sign_warn_6d_a,
+            road_sign_warn_6d_b,
+            road_sign_warn_6d_c,
+            road_sign_warn_6d_d,
+            road_sign_warn_7,
+            road_sign_warn_7a,
             road_sign_warn_8a, // road narrows on both sides
             road_sign_warn_8b, // road narrows from left
             road_sign_warn_8c, // road narrows from right
             road_sign_warn_9, // road works
+            road_sign_warn_10,
             road_sign_warn_10a, // slippery road
             road_sign_warn_10b, // crosswind
             road_sign_warn_10c, // falling rocks
@@ -369,10 +384,25 @@ public class RoadBlocks {
         road_sign_warn_3a = new BlockRoadSign("road_sign_warn_3a");
         road_sign_warn_3b = new BlockRoadSign("road_sign_warn_3b");
         road_sign_warn_4 = new BlockRoadSign("road_sign_warn_4");
+        road_sign_warn_6a = new BlockRoadSign("road_sign_warn_6a");
+        road_sign_warn_6b = new BlockRoadSign("road_sign_warn_6b");
+        road_sign_warn_6c_i_r = new BlockRoadSign("road_sign_warn_6c_i_r");
+        road_sign_warn_6c_i_l = new BlockRoadSign("road_sign_warn_6c_i_l");
+        road_sign_warn_6c_ii_r = new BlockRoadSign("road_sign_warn_6c_ii_r");
+        road_sign_warn_6c_ii_l = new BlockRoadSign("road_sign_warn_6c_ii_l");
+        road_sign_warn_6c_iii_r = new BlockRoadSign("road_sign_warn_6c_iii_r");
+        road_sign_warn_6c_iii_l = new BlockRoadSign("road_sign_warn_6c_iii_l");
+        road_sign_warn_6d_a = new BlockRoadSign("road_sign_warn_6d_a");
+        road_sign_warn_6d_b = new BlockRoadSign("road_sign_warn_6d_b");
+        road_sign_warn_6d_c = new BlockRoadSign("road_sign_warn_6d_c");
+        road_sign_warn_6d_d = new BlockRoadSign("road_sign_warn_6d_d");
+        road_sign_warn_7 = new BlockRoadSign("road_sign_warn_7");
+        road_sign_warn_7a = new BlockRoadSign("road_sign_warn_7a");
         road_sign_warn_8a = new BlockRoadSign("road_sign_warn_8a");
         road_sign_warn_8b = new BlockRoadSign("road_sign_warn_8b");
         road_sign_warn_8c = new BlockRoadSign("road_sign_warn_8c");
         road_sign_warn_9 = new BlockRoadSign("road_sign_warn_9");
+        road_sign_warn_10 = new BlockRoadSign("road_sign_warn_10");
         road_sign_warn_10a = new BlockRoadSign("road_sign_warn_10a");
         road_sign_warn_10b = new BlockRoadSign("road_sign_warn_10b");
         road_sign_warn_10c = new BlockRoadSign("road_sign_warn_10c");
@@ -596,10 +626,25 @@ public class RoadBlocks {
         registerBlock(road_sign_warn_3a);
         registerBlock(road_sign_warn_3b);
         registerBlock(road_sign_warn_4);
+        registerBlock(road_sign_warn_6a);
+        registerBlock(road_sign_warn_6b);
+        registerBlock(road_sign_warn_6c_i_r);
+        registerBlock(road_sign_warn_6c_i_l);
+        registerBlock(road_sign_warn_6c_ii_r);
+        registerBlock(road_sign_warn_6c_ii_l);
+        registerBlock(road_sign_warn_6c_iii_r);
+        registerBlock(road_sign_warn_6c_iii_l);
+        registerBlock(road_sign_warn_6d_a);
+        registerBlock(road_sign_warn_6d_b);
+        registerBlock(road_sign_warn_6d_c);
+        registerBlock(road_sign_warn_6d_d);
+        registerBlock(road_sign_warn_7);
+        registerBlock(road_sign_warn_7a);
         registerBlock(road_sign_warn_8a);
         registerBlock(road_sign_warn_8b);
         registerBlock(road_sign_warn_8c);
         registerBlock(road_sign_warn_9);
+        registerBlock(road_sign_warn_10);
         registerBlock(road_sign_warn_10a);
         registerBlock(road_sign_warn_10b);
         registerBlock(road_sign_warn_10c);
@@ -821,10 +866,25 @@ public class RoadBlocks {
         registerModel(road_sign_warn_3a);
         registerModel(road_sign_warn_3b);
         registerModel(road_sign_warn_4);
+        registerModel(road_sign_warn_6a);
+        registerModel(road_sign_warn_6b);
+        registerModel(road_sign_warn_6c_i_r);
+        registerModel(road_sign_warn_6c_i_l);
+        registerModel(road_sign_warn_6c_ii_r);
+        registerModel(road_sign_warn_6c_ii_l);
+        registerModel(road_sign_warn_6c_iii_r);
+        registerModel(road_sign_warn_6c_iii_l);
+        registerModel(road_sign_warn_6d_a);
+        registerModel(road_sign_warn_6d_b);
+        registerModel(road_sign_warn_6d_c);
+        registerModel(road_sign_warn_6d_d);
+        registerModel(road_sign_warn_7);
+        registerModel(road_sign_warn_7a);
         registerModel(road_sign_warn_8a);
         registerModel(road_sign_warn_8b);
         registerModel(road_sign_warn_8c);
         registerModel(road_sign_warn_9);
+        registerModel(road_sign_warn_10);
         registerModel(road_sign_warn_10a);
         registerModel(road_sign_warn_10b);
         registerModel(road_sign_warn_10c);
