@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystems;
 
-@Mod(modid = "df-roads", useMetadata = true, updateJSON = "https://raw.githubusercontent.com/derfl007/Road-Mod-Remake/master/update.json")
+@Mod(modid = "df-roads", useMetadata = true, updateJSON = "https://raw.githubusercontent.com/derfl007/df-roads/master/update.json")
 public class Roads {
 
     @Instance(Reference.MOD_ID)
