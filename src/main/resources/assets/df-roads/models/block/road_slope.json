@@ -3,7 +3,8 @@
 		"0": "df-roads:blocks/road",
 		"1": "df-roads:blocks/road_slope_right",
 		"2": "df-roads:blocks/road_slope_left",
-		"top": "df-roads:blocks/road_crosswalk"
+		"top": "df-roads:blocks/road",
+		"particle": "df-roads:blocks/road"
 	},
 	"elements": [
 		{
