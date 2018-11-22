@@ -1,10 +1,11 @@
 {
   "homepage": "http://df-roads.derfl007.tk",
   "1.12.2": {
-    "1.4-mc1.12.2": "Survival update: Added crafting recipes, a sign printer and asphalt generation for a better survival experience. Also added some more stuff, you can find the complete changelog on planetminecraft or my website"
+    "1.4-mc1.12.2": "Survival update: Added crafting recipes, a sign printer and asphalt generation for a better survival experience. Also added some more stuff, you can find the complete changelog on planetminecraft or my website",
+    "1.5-mc1.12.2": "Added yellow road line blocks and new signs and fixed most known issues"
   },
   "promos": {
-    "1.12.2-latest": "1.4-mc1.12.2",
-    "1.12.2-recommended": "1.4-mc1.12.2"
+    "1.12.2-latest": "1.5-mc1.12.2",
+    "1.12.2-recommended": "1.5-mc1.12.2"
   }
 }
