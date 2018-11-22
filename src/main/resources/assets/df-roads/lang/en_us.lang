@@ -242,8 +242,8 @@ tile.road_line_slope.name=Slope with Line
 tile.sign_printer.name=Sign Printer
 
 itemGroup.tabRoads=derfl007's Road Mod
-itemGroup.tabYellowRoads = Yellow Road Blocks (df-roads)
-itemGroup.tabSigns = Road Signs (df-roads)
+itemGroup.tabYellowRoads=Yellow Road Blocks (df-roads)
+itemGroup.tabSigns=Road Signs (df-roads)
 
 block.road_lines.tooltip=If you do not want the lines to connect automatically, use the simple version of the desired block
 block.road_rotatable.tooltip=Place this block on top of a normal road block or a road block with a connectable line to make a slope out of it. Use the wrench to rotate the texture on top
