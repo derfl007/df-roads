@@ -11,7 +11,7 @@ public class ServerProxy implements CommonProxy {
 
     @Override
     public void init() {
-        GameRegistry.registerWorldGenerator(new WorldGenOre(), 0);
+
     }
 
     @Override

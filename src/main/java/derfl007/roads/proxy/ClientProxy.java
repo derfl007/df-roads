@@ -28,8 +28,6 @@ public class ClientProxy implements CommonProxy {
     public void init() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRoadTownSign.class, new TileEntityRoadTownSignRenderer());
         System.out.println("special renderer bound!");
-        GameRegistry.registerWorldGenerator(new WorldGenOre(), 0);
-        RoadCrafting.register();
 
     }
 
