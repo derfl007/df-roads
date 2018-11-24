@@ -5,6 +5,7 @@ import derfl007.roads.init.RoadCrafting;
 import derfl007.roads.init.RoadTileEntities;
 import derfl007.roads.network.PacketHandler;
 import derfl007.roads.proxy.CommonProxy;
+import derfl007.roads.world.WorldGenOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.io.IOException;
 import java.net.URI;
@@ -50,6 +52,8 @@ public class Roads {
         System.out.println("Init");
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         proxy.init();
+        GameRegistry.registerWorldGenerator(new WorldGenOre(), 0);
+        RoadCrafting.register();
 
     }
 
