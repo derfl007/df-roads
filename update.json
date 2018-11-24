@@ -6,7 +6,7 @@
     "1.5.1-mc1.12.2": "Fixed a server bug"
   },
   "promos": {
-    "1.12.2-latest": "1.5-mc1.12.2",
-    "1.12.2-recommended": "1.5-mc1.12.2"
+    "1.12.2-latest": "1.5.1-mc1.12.2",
+    "1.12.2-recommended": "1.5.1-mc1.12.2"
   }
 }
