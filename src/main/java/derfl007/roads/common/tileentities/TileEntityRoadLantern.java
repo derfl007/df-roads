@@ -20,7 +20,7 @@ public class TileEntityRoadLantern extends TileEntity implements ITickable {
      * Like the old updateEntity(), except more generic.
      */
     public void update() {
-        if (this.world != null && !this.world.isRemote && this.world.getTotalWorldTime() % 20L == 0L) {
+        if (this.world != null && !this.world.isRemote && this.world.getTotalWorldTime() % 20L == 0L && this.blockRoadLantern != null && this.state != null) {
             this.blockType = this.getBlockType();
             this.blockRoadLantern.updateLight(this.world, this.pos, this.blockRoadLantern.getDefaultState().withProperty(BlockRoadLantern.FACING, this.state.getValue(BlockRoadLantern.FACING)));
         }
