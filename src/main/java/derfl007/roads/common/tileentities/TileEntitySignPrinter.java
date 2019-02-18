@@ -131,7 +131,7 @@ public class TileEntitySignPrinter extends TileEntityLockable implements IInvent
 
     @Override
     public void clear() {
-        this.setInventorySlotContents(0, Items.AIR.getDefaultInstance());
+        this.setInventorySlotContents(0, new ItemStack(Items.AIR));
     }
 
     @Override
@@ -186,19 +186,7 @@ public class TileEntitySignPrinter extends TileEntityLockable implements IInvent
     }
 
     public Block[] getCurrentSet() {
-        switch(this.currentTab) {
-            case 0:
-                return RecipesSign.signs_0;
-            case 1:
-                return RecipesSign.signs_1;
-            case 2:
-                return RecipesSign.signs_2;
-            case 3:
-                return RecipesSign.signs_3;
-            case 4:
-                return RecipesSign.signs_4;
-        }
-        return RecipesSign.signs_0;
+        return getSetByTabID(this.currentTab);
     }
 
     public Block[] getSetByTabID(int id) {
