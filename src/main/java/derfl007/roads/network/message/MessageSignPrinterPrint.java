@@ -74,7 +74,7 @@ public class MessageSignPrinterPrint implements IMessage, IMessageHandler<Messag
             } else {
                 tileEntitySignPrinter.decrStackSize(0, RecipesSign.getBaseItemCount(message.currentTab));
             }
-            EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, Item.getItemFromBlock(tileEntitySignPrinter.getSetByTabID(message.currentTab)[message.currentSign]).getDefaultInstance());
+            EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, new ItemStack(Item.getItemFromBlock(tileEntitySignPrinter.getSetByTabID(message.currentTab)[message.currentSign])));
             player.world.spawnEntity(entityItem);
         }
         return null;

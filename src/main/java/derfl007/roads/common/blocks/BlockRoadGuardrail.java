@@ -8,6 +8,7 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -121,7 +122,7 @@ public class BlockRoadGuardrail extends BlockHorizontal {
     }
 
     @Override
-    @SuppressWarnings({ "incomplete-switch", "deprecation" })
+    @SuppressWarnings({"incomplete-switch", "deprecation", "Duplicates"})
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         EnumFacing enumfacing = state.getValue(FACING);
         BlockStairs.EnumShape blockstairs$enumshape = state.getValue(SHAPE);
@@ -177,5 +178,9 @@ public class BlockRoadGuardrail extends BlockHorizontal {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, SHAPE);
+    }
+
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
     }
 }
