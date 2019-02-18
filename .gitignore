@@ -21,38 +21,5 @@ build
 eclipse
 run
 
-gradle/
-
-*.pdn
-
-CREDITS-fml\.txt
-
-LICENSE-new\.txt
-
-MinecraftForge-Credits\.txt
-
-forge-1\.12\.2-14\.23\.2\.2624-changelog\.txt
-
-gradle\.properties
-
-gradlew
-
-gradlew\.bat
-
-Paulscode IBXM Library License\.txt
-
-Paulscode SoundSystem CodecIBXM License\.txt
-
-README\.txt
-
-CREDITS\.txt
-
-forge-1\.12\.2-14\.23\.4\.2705-changelog\.txt
-
-forge-1\.12\.2-14\.23\.5\.2772-changelog\.txt
-
-LICENSE-Paulscode IBXM Library\.txt
-
-LICENSE\.txt
-
-LICENSE-Paulscode SoundSystem CodecIBXM\.txt
+# Files from Forge MDK
+forge*changelog.txt
