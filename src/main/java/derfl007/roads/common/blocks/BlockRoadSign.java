@@ -1,6 +1,7 @@
 package derfl007.roads.common.blocks;
 
 import derfl007.roads.Roads;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen;
 import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -149,10 +150,13 @@ public class BlockRoadSign extends Block {
 		Block block = iblockstate.getBlock();
 		String blockname = block.getRegistryName().toString();
 		try {
-			return block instanceof BlockRoadSign || block == RoadBlocks.road_traffic_light_manual
-					|| block == RoadBlocks.road_pedestrian_traffic_light;
+			return block instanceof BlockRoadSign || block == RoadBlocks.road_traffic_light
+					|| block == RoadBlocks.road_traffic_light_manual || block == RoadBlocks.road_traffic_light_green
+					|| block == RoadBlocks.road_traffic_light_yellow_fixed || block == RoadBlocks.road_traffic_light_red
+					|| block instanceof BlockRoadTrafficLightGen || block == RoadBlocks.road_pedestrian_traffic_light
+					|| block == RoadBlocks.road_pedestrian_traffic_light_manual;
 		} catch (StringIndexOutOfBoundsException e) {
-			return block == RoadBlocks.road_traffic_light_manual || block == RoadBlocks.road_pedestrian_traffic_light;
+			return block == RoadBlocks.road_traffic_light || block == RoadBlocks.road_pedestrian_traffic_light;
 		}
 	}
 

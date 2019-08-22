@@ -2,6 +2,7 @@
     "forge_marker": 1,
     "variants": {
 		"powered": {"true": {}, "false": {} },
+		"control_mode": {"redstone_controlled":{}, "command_controlled": {}, "deactivated": {}},
         "facing": {
             "south": {
                 "model": "df-roads:road_pedestrian_traffic_light_red",

@@ -1,5 +1,9 @@
 package derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -17,10 +21,10 @@ public class BlockRoadPedestrianTrafficLightRed extends BlockRoadPedestrianTraff
 			setBlockState(worldIn, pos, state, RoadBlocks.road_pedestrian_traffic_light_green);
 		}
 	}
-
+	
 	@Override
-	protected void blockToggled(World worldIn, BlockPos pos, IBlockState state) {
-		setBlockState(worldIn, pos, state, RoadBlocks.road_pedestrian_traffic_light_off);
+	protected List<Mode> getLegalModes() {
+		return new ArrayList<Mode>(Arrays.asList(Mode.redstone_controlled, Mode.command_controlled));
 	}
 
 }
