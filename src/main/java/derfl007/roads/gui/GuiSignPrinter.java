@@ -8,6 +8,7 @@ import derfl007.roads.network.PacketHandler;
 import derfl007.roads.network.message.MessageSignPrinterClosed;
 import derfl007.roads.network.message.MessageSignPrinterPrint;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
@@ -25,6 +26,7 @@ public class GuiSignPrinter extends GuiContainer {
     private TileEntitySignPrinter te;
     private GuiButton tab_1, tab_2, tab_3, tab_4, tab_5;
     private GuiButton next, prev, print;
+    private GuiTextField text;
     private int currentSign;
     private int currentTab;
     private ItemStack inputSlot;
@@ -39,7 +41,7 @@ public class GuiSignPrinter extends GuiContainer {
         super(new ContainerSignPrinter(inventoryPlayer, te));
         this.te = te;
         this.xSize = 176;
-        this.ySize = 207;
+        this.ySize = 208;
     }
 
     @Override
@@ -48,19 +50,18 @@ public class GuiSignPrinter extends GuiContainer {
 
         buttonList.clear();
 
-        int centerX = width/2;
-        int centerY = height/2+10;
+        tab_1 = new GuiButton(0, 9, 10, 59, 20, I18n.format("gui.sign_printer.warning"));
+        tab_2 = new GuiButton(1, 9, 32, 59, 20, I18n.format("gui.sign_printer.mandatory"));
+        tab_3 = new GuiButton(2, 9, 54, 59, 20, I18n.format("gui.sign_printer.info"));
+        tab_4 = new GuiButton(3, 9, 76, 59, 20,  I18n.format("gui.sign_printer.prohibitory"));
+        tab_5 = new GuiButton(4, 9, 98, 59, 20, I18n.format("gui.sign_printer.others"));
 
-        tab_1 = new GuiButton(0, centerX - 79, centerY - 114, 59, 20, I18n.format("gui.sign_printer.warning"));
-        tab_2 = new GuiButton(1, centerX - 79, centerY - 92, 59, 20, I18n.format("gui.sign_printer.mandatory"));
-        tab_3 = new GuiButton(2, centerX - 79, centerY - 70, 59, 20, I18n.format("gui.sign_printer.info"));
-        tab_4 = new GuiButton(3, centerX - 79, centerY - 48, 59, 20,  I18n.format("gui.sign_printer.prohibitory"));
-        tab_5 = new GuiButton(4, centerX - 79, centerY - 26, 59, 20, I18n.format("gui.sign_printer.others"));
+        next = new GuiButton(5,155, 31, 15, 20, ">");
+        prev = new GuiButton(6,73, 31, 15, 20, "<");
 
-        next = new GuiButton(5,centerX + 67, centerY - 94, 15, 20, ">");
-        prev = new GuiButton(6,centerX -15, centerY - 94, 15, 20, "<");
+        print = new GuiButton(7, 128, 101, 40, 20, I18n.format("gui.sign_printer.print"));
 
-        print = new GuiButton(7, centerX + 40, centerY - 23, 40, 20, I18n.format("gui.sign_printer.print"));
+        text = new GuiTextField(8, fontRenderer, 73, 7, 96, 20);
 
         buttonList.add(tab_1);
         buttonList.add(tab_2);
@@ -73,6 +74,7 @@ public class GuiSignPrinter extends GuiContainer {
 
         this.currentSign = te.getCurrentSign();
         this.currentTab = te.getCurrentTab();
+        text.setEnabled(RecipesSign.getWritable(currentTab, currentSign));
     }
 
     @Override
@@ -114,6 +116,7 @@ public class GuiSignPrinter extends GuiContainer {
                 if (currentSign > te.getCurrentSet().length - 1) {
                     currentSign = te.getCurrentSet().length - 1;
                 }
+                text.setEnabled(RecipesSign.getWritable(currentTab, currentSign));
                 this.te.setCurrentSign(currentSign);
                 System.out.println(te.getCurrentSign());
                 break;
@@ -122,6 +125,7 @@ public class GuiSignPrinter extends GuiContainer {
                 if (currentSign < 0) {
                     currentSign = 0;
                 }
+                text.setEnabled(RecipesSign.getWritable(currentTab, currentSign));
                 this.te.setCurrentSign(currentSign);
                 System.out.println(te.getCurrentSign());
                 break;

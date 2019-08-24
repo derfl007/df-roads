@@ -1,52 +1,64 @@
 package derfl007.roads.common.blocks;
 
 import derfl007.roads.Roads;
+import derfl007.roads.common.tileentities.TileEntityRoadSignWritable;
+import derfl007.roads.common.tileentities.TileEntityRoadTownSign;
 import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.IUnlistedProperty;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockRoadSign extends Block {
-    public BlockRoadSign(String name) {
+public class BlockRoadSignWritable extends Block {
+
+    public int x;
+    public int y;
+    public int textSize;
+    public BlockRoadSignWritable(String name, int x, int y, int textSize) {
         super(Material.IRON);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
-        this.setCreativeTab(Roads.SIGNS_TAB);
+        this.setCreativeTab(Roads.ROADS_TAB);
         this.setHardness(1.4F);
+        this.x = x;
+        this.y = y;
+        this.textSize = textSize;
     }
 
-    private static final PropertyDirection FACING = BlockHorizontal.FACING;
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static final PropertyBool UP = PropertyBool.create("up");
     private static final PropertyBool DOWN = PropertyBool.create("down");
     private static final PropertyBool NORTH = PropertyBool.create("north");
     private static final PropertyBool SOUTH = PropertyBool.create("south");
     private static final PropertyBool EAST = PropertyBool.create("east");
     private static final PropertyBool WEST = PropertyBool.create("west");
-    public static final IUnlistedProperty<String> MESSAGE = "";
 
-    public BlockStateContainer createBlockState() {
-        return new BlockStateContainer.Builder(this).add(FACING).add(UP).add(DOWN).add(NORTH).add(SOUTH).add(EAST).add(WEST).add(MESSAGE).build();
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
     }
 
     @Override
-    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        IExtendedBlockState ext = (IExtendedBlockState) state;
-        return ext;
+    public TileEntity createTileEntity(World worldIn, IBlockState state) {
+        return new TileEntityRoadSignWritable(x, y, textSize);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
     }
 
     @Override
@@ -57,38 +69,6 @@ public class BlockRoadSign extends Block {
     }
 
     @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
-                                        EnumFacing side) {
-        return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        super.onBlockAdded(worldIn, pos, state);
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        getActualState(state, worldIn, pos);
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
     }
@@ -96,6 +76,11 @@ public class BlockRoadSign extends Block {
     @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getHorizontalIndex();
+    }
+
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        if (placer instanceof EntityPlayer) ((EntityPlayer) placer).openGui(Roads.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
     }
 
     @Override
@@ -141,34 +126,20 @@ public class BlockRoadSign extends Block {
 
     }
 
-    @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
-    }
-
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
-    }
-
     private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
-        String blockname = block.getRegistryName().toString();
-        try {
-            return block instanceof BlockRoadSign || block == RoadBlocks.road_traffic_light
-                    || block == RoadBlocks.road_pedestrian_traffic_light;
-        } catch (StringIndexOutOfBoundsException e) {
-            return block == RoadBlocks.road_traffic_light || block == RoadBlocks.road_pedestrian_traffic_light;
-        }
+        return block.getClass() == RoadBlocks.road_sign_info_1a.getClass() || block == RoadBlocks.road_traffic_light
+                || block == RoadBlocks.road_pedestrian_traffic_light || block == RoadBlocks.road_sign_post;
+    }
+
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, UP, DOWN, NORTH, SOUTH, EAST, WEST);
-    }
-
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-        return BlockFaceShape.UNDEFINED;
     }
 }
