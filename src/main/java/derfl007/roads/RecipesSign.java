@@ -374,44 +374,6 @@ public class RecipesSign {
         return 0;
     }
 
-    public static boolean getWritable(int currentSet, int currentSign) {
-        if(currentSet == 0) {
-            switch (currentSign) {
-                //left here to add more if necessary
-                default:
-                    return false;
-            }
-        }
-        if(currentSet == 1) {
-            switch (currentSign) {
-                //left here to add more if necessary
-                default:
-                    return false;
-            }
-        }
-        if(currentSet == 2) {
-            switch (currentSign) {
-                case 33:
-                case 34:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        if(currentSet == 3) {
-            switch (currentSign) {
-                case 24:
-                case 25:
-                case 26:
-                case 27:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        return false;
-    }
-
     public static Item getBaseItem(int currentSet) {
         switch (currentSet) {
             case 0:
