@@ -1,10 +1,7 @@
 package derfl007.roads.trafficlights;
 
-import derfl007.roads.Roads;
 import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen;
 import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen.Mode;
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightRed;
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightYellow;
 import derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights.BlockRoadPedestrianTrafficLightGen;
 import derfl007.roads.init.RoadBlocks;
 import net.minecraft.server.MinecraftServer;
@@ -19,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ServerTickHandler {
 
 	public static final int TICK_RATE = 20;
+	private int tickCount = 0;
 
 	private BlockRoadTrafficLightGen getTrafficLight(World world, BlockPos pos) {
 		if (world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightGen) {
@@ -39,7 +37,7 @@ public class ServerTickHandler {
 
 	@SubscribeEvent
 	public synchronized void onServerTick(ServerTickEvent event) {
-		if (event.phase != Phase.END || event.side != Side.SERVER)
+		if (event.phase != Phase.END || event.side != Side.SERVER || ++tickCount % 2 != 0)
 			return;
 
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
@@ -136,10 +134,7 @@ public class ServerTickHandler {
 		if (world.getBlockState(pos).getBlock() instanceof BlockRoadPedestrianTrafficLightGen) {
 			block.setBlockState(world, pos, world.getBlockState(pos), RoadBlocks.road_pedestrian_traffic_light_red);
 		} else {
-			if (!(world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightRed)
-					&& !(world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightYellow)) {
-				block.setBlockState(world, pos, world.getBlockState(pos), RoadBlocks.road_traffic_light_yellow_dyn);
-			}
+			block.setBlockState(world, pos, world.getBlockState(pos), RoadBlocks.road_traffic_light_yellow_dyn);
 		}
 	}
 
