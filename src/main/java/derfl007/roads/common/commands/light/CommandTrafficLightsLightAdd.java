@@ -1,7 +1,7 @@
 package derfl007.roads.common.commands.light;
 
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen;
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen.Mode;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase.TrafficLightsControlMode;
 import derfl007.roads.common.commands.CommandTrafficLights;
 import derfl007.roads.common.commands.CommandTrafficLightsBase;
 import derfl007.roads.trafficlights.LightsSetList;
@@ -28,8 +28,8 @@ public class CommandTrafficLightsLightAdd extends CommandTrafficLightsBase {
 	}
 
 	public static void addLight(BlockPos pos, EntityPlayer player) {
-		if (player.world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightGen) {
-			BlockRoadTrafficLightGen block = (BlockRoadTrafficLightGen) player.world.getBlockState(pos).getBlock();
+		if (player.world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightBase) {
+			BlockRoadTrafficLightBase block = (BlockRoadTrafficLightBase) player.world.getBlockState(pos).getBlock();
 			addLight(pos, player, block, player.world, player.world.getBlockState(pos));
 		} else {
 			player.sendMessage(new TextComponentTranslation("command.trafficlights.light.notalight", pos.getX(),
@@ -37,10 +37,10 @@ public class CommandTrafficLightsLightAdd extends CommandTrafficLightsBase {
 		}
 	}
 
-	public static void addLight(BlockPos pos, EntityPlayer player, BlockRoadTrafficLightGen block, World world,
+	public static void addLight(BlockPos pos, EntityPlayer player, BlockRoadTrafficLightBase block, World world,
 			IBlockState state) {
 
-		if (block.getMode(state) != Mode.command_controlled) {
+		if (block.getMode(state) != TrafficLightsControlMode.command_controlled) {
 			player.sendMessage(new TextComponentTranslation("command.trafficlights.light.invalidmode"));
 			return;
 		}

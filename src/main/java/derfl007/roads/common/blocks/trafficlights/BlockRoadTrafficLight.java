@@ -1,26 +1,43 @@
 package derfl007.roads.common.blocks.trafficlights;
 
-import derfl007.roads.common.blocks.BlockRoadSign;
-import derfl007.roads.init.RoadBlocks;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.properties.PropertyDirection;
+import derfl007.roads.Roads;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockRoadTrafficLight extends BlockRoadSign {
-	
-	  public static final PropertyDirection FACING = BlockHorizontal.FACING;
-	
-	public BlockRoadTrafficLight(){
+public class BlockRoadTrafficLight extends BlockRoadTrafficLightBase {
+
+	public BlockRoadTrafficLight() {
 		super("road_traffic_light_manual");
 	}
-	
+
+	@Override
+	public CreativeTabs getCreativeTabToDisplayOn() {
+		return Roads.SIGNS_TAB;
+	}
+
 	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-		super.onBlockAdded(worldIn, pos, state);
-		worldIn.setBlockState(pos, RoadBlocks.road_traffic_light_green_dyn.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
+		setLightsState(worldIn, pos, LightsState.GREEN);
+	}
+
+	@Override
+	public LightsState getState() {
+		// TODO Auto-generated method stub
+		return LightsState.GREEN; // for item rendering
+	}
+
+	@Override
+	protected void redstoneSignalReceived(World worldIn, BlockPos pos, IBlockState state) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void redstoneSignalInterrupted(World worldIn, BlockPos pos, IBlockState state) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

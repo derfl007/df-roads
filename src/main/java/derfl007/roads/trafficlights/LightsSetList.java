@@ -50,12 +50,15 @@ public class LightsSetList extends WorldSavedData implements Iterable<Map.Entry<
 		if (!force && lightsSets.containsKey(name)) {
 			return;
 		}
-		if(force && !resetSyncState && lightsSets.containsKey(name)) {
-			value.currentGreenGroup = lightsSets.get(name).currentGreenGroup;
-			value.greenStartTime = lightsSets.get(name).greenStartTime;
-		}else {
-			value.currentGreenGroup = 0;
-			value.greenStartTime = 0;
+		if (force && !resetSyncState && lightsSets.containsKey(name)) {
+
+			if (value.setCurrentGreenGroup(value.indexOf(lightsSets.get(name).getCurrentGreenGroup()))) {
+				value.setGreenStartTime(lightsSets.get(name).getGreenStartTime());
+			}
+
+		} else {
+			value.setCurrentGreenGroup(0);
+			value.setGreenStartTime(0);
 		}
 		lightsSets.put(name, value);
 		this.markDirty();
@@ -144,7 +147,7 @@ public class LightsSetList extends WorldSavedData implements Iterable<Map.Entry<
 		if ((blockPos = findFirstDuplicatedLight()) != null) {
 			lightsSets.clear();
 			Roads.logger.error(String.format(
-					"Found traffic lights linked to multiple groups, which is not authorized. Traffic lights sets cleared. First duplicate found at %s",
+					"Found traffic lights linked to multiple groups; this is not authorized. Traffic lights sets cleared. First duplicate found at %s",
 					blockPos.toString()));
 			return;
 		}
@@ -187,12 +190,8 @@ public class LightsSetList extends WorldSavedData implements Iterable<Map.Entry<
 
 	public boolean lightAlreadyUsed(BlockPos pos) {
 		for (LightsSet set : lightsSets.values()) {
-			for (LightsGroup group : set) {
-				for (BlockPos blockPos : group.getLights()) {
-					if (blockPos.equals(pos)) {
-						return true;
-					}
-				}
+			if (lightAlreadyUsed(set, pos)) {
+				return true;
 			}
 		}
 		return false;

@@ -1,5 +1,7 @@
 package derfl007.roads;
 
+import java.io.File;
+
 import org.apache.logging.log4j.Logger;
 
 import derfl007.roads.common.commands.CommandTrafficLights;
@@ -33,6 +35,7 @@ import derfl007.roads.trafficlights.ServerTickHandler;
 import derfl007.roads.world.WorldGenOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -46,7 +49,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.server.permission.DefaultPermissionLevel;
 import net.minecraftforge.server.permission.PermissionAPI;
 
-@Mod(modid = "df-roads", useMetadata = true, updateJSON = "https://raw.githubusercontent.com/derfl007/df-roads/master/update.json")
+@Mod(modid = "df-roads", useMetadata = true, updateJSON = "https://raw.githubusercontent.com/E-Mans-Application/df-roads/master/update.json")
 public class Roads {
 
 	@Instance(Reference.MOD_ID)
@@ -67,17 +70,26 @@ public class Roads {
 		MinecraftForge.EVENT_BUS.register(proxy);
 		PacketHandler.init();
 		RoadTileEntities.register();
+
 		proxy.preInit();
 		logger = event.getModLog();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-
 		System.out.println("Init");
+
+		Configuration config = new Configuration(new File("config/df-roads.cfg"));
+		config.load();
+
+		boolean generateAsphalt = config.get("general", "generate_asphalt", true).getBoolean();
+		config.save();
+
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		proxy.init();
-		GameRegistry.registerWorldGenerator(new WorldGenOre(), 0);
+		if (generateAsphalt)
+			GameRegistry.registerWorldGenerator(new WorldGenOre(), 0);
+
 		RoadCrafting.register();
 		MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
 		PermissionAPI.registerNode("dfroads.command.trafficlights", DefaultPermissionLevel.ALL,

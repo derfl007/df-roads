@@ -3,16 +3,17 @@ package derfl007.roads.init;
 import java.util.LinkedList;
 import java.util.List;
 
-import derfl007.roads.Roads;
 import derfl007.roads.common.blocks.BlockAsphalt;
+import derfl007.roads.common.blocks.BlockRoad;
 import derfl007.roads.common.blocks.BlockRoadGuardrail;
 import derfl007.roads.common.blocks.BlockRoadLantern;
 import derfl007.roads.common.blocks.BlockRoadLine;
 import derfl007.roads.common.blocks.BlockRoadLines;
-import derfl007.roads.common.blocks.BlockRoadRotatable;
+import derfl007.roads.common.blocks.BlockRoadMarker;
 import derfl007.roads.common.blocks.BlockRoadSidewalk;
-import derfl007.roads.common.blocks.BlockRoadSign;
+import derfl007.roads.common.blocks.BlockRoadSignLegacy;
 import derfl007.roads.common.blocks.BlockRoadSignPost;
+import derfl007.roads.common.blocks.BlockRoadSignRotatable;
 import derfl007.roads.common.blocks.BlockRoadTownSign;
 import derfl007.roads.common.blocks.BlockSignPrinter;
 import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLight;
@@ -24,11 +25,13 @@ import derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights.BlockR
 import derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights.BlockRoadPedestrianTrafficLightGreen;
 import derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights.BlockRoadPedestrianTrafficLightOff;
 import derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights.BlockRoadPedestrianTrafficLightRed;
+import derfl007.roads.models.RoadSignModelLoader;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -37,18 +40,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RoadBlocks {
 
-	public static Block asphalt, // Asphalt Block
-			road, // Road Block
-
+	public static Block[] road, // Road Block
 			road_white, // White block
 			road_white_half, // Half white block
 			road_white_quarter, // Quarter white block
 			road_line, // Single line
 			road_line_simple, // Single line (not connecting)
 			road_line_merge, // Merge single and double lines
-			road_line_double, // Double Line
 			road_line_double_simple, // Double Line (not connecting)
-			road_line_half_double, // Half double line
 			road_line_half_double_simple, // Half double line (not connecting)
 			road_line_diagonal, // Diagonal Line
 			road_arrow_s, // straight arrow
@@ -70,15 +69,18 @@ public class RoadBlocks {
 			road_excl_zone_split_out_r, //
 			road_excl_zone_split_out_l, //
 
+			road_line_double, // Double Line
+			road_line_double_yellow, // Double Line
+			road_line_half_double, // Half double line
+			road_line_half_double_yellow, // Half double line
+
 			road_yellow, // White block
 			road_white_half_yellow, // Half white block
 			road_white_quarter_yellow, // Quarter white block
 			road_line_yellow, // Single line
 			road_line_simple_yellow, // Single line (not connecting)
 			road_line_merge_yellow, // Merge single and double lines
-			road_line_double_yellow, // Double Line
 			road_line_double_simple_yellow, // Double Line (not connecting)
-			road_line_half_double_yellow, // Half double line
 			road_line_half_double_simple_yellow, // Half double line (not connecting)
 			road_line_diagonal_yellow, // Diagonal Line
 			road_arrow_s_yellow, // straight arrow
@@ -98,11 +100,14 @@ public class RoadBlocks {
 			road_excl_zone_split_in_r_yellow, //
 			road_excl_zone_split_in_l_yellow, //
 			road_excl_zone_split_out_r_yellow, //
-			road_excl_zone_split_out_l_yellow, //
+			road_excl_zone_split_out_l_yellow; //
+
+	public static Block asphalt, // Asphalt Block
 
 			road_sidewalk, // Sidewalk
 			road_guardrail, // Guardrail
 			road_sign_post, // Sign Post
+			road_junction_marker,
 
 			road_sign_prohib_1, // closed in both directions for all vehicles
 			road_sign_prohib_2, // no entry
@@ -216,18 +221,33 @@ public class RoadBlocks {
 			road_sign_info_17b, // end of town sign
 			road_sign_info_23, // two lanes merge into one
 			road_sign_info_23b, // two lanes merge into one (german)
+			road_sign_info_24, // cut across
+			road_sign_info_25a, // curve left
+			road_sign_info_25b, // curve right
+			road_sign_info_26a, // no oncoming traffic
+			road_sign_info_26b, // two lanes
+			road_sign_info_26c, // three lanes
+			road_sign_info_27a, // left lane merging (two lanes)
+			road_sign_info_27b, // left lane merging (three lanes)
+			road_sign_info_27c, // left lane merging (four lanes)
+			road_sign_info_28a, // choose direction (two lanes)
+			road_sign_info_28b, // choose direction (three lanes)
+
+			road_sign_meta_1, // reminder (French)
+			road_sign_meta_2a, // 50 m ahead
+			road_sign_meta_2b, // 100 m ahead
+			road_sign_meta_2c, // 150 m ahead
+			road_sign_meta_2d, // 300 m ahead
+			road_sign_meta_2e, // 500 m ahead
 
 			road_lantern, // Road Lantern unlit
 			road_lantern_lit, // Road Lantern lit
 
 			road_traffic_light, // Traffic Light (Auto animated)
-			road_traffic_light_manual, // Traffic Light (Can be switched)
-			road_traffic_light_yellow_fixed, // Traffic Light (Yellow) (fixed)
-			road_traffic_light_red, // Traffic Light (Red) (Cannot be switched)
-			road_traffic_light_red_dyn,// Traffic Light (Red)
-			road_traffic_light_green, // Traffic Light (Green) (Cannot be switched)
-			road_traffic_light_green_dyn,// Traffic Light (Green)
-			road_traffic_light_yellow_dyn, // Traffic Light (Yellow) (Switching to red)
+			road_traffic_light_manual, // Traffic Light
+			road_traffic_light_red, // Traffic Light (Red)
+			road_traffic_light_green, // Traffic Light (Green)
+			road_traffic_light_yellow, // Traffic Light (Yellow)
 			road_traffic_light_yellow_blinking, // Traffic Light (Yellow blinking)
 
 //			road_traffic_light_off,
@@ -239,246 +259,311 @@ public class RoadBlocks {
 
 	public static void init() {
 		asphalt = new BlockAsphalt("asphalt");
-		road = new BlockRoadRotatable("road");
+		road = BlockRoad.create("road");
 		// white road blocks
-		road_white = new BlockRoadRotatable("road_white");
-		road_white_half = new BlockRoadRotatable("road_white_half");
-		road_white_quarter = new BlockRoadRotatable("road_white_quarter");
-		road_line = new BlockRoadLine("road_line");
-		road_line_simple = new BlockRoadRotatable("road_line_simple");
-		road_line_merge = new BlockRoadRotatable("road_line_merge");
-		road_line_double = new BlockRoadLines("road_line_double");
-		road_line_double_simple = new BlockRoadRotatable("road_line_double_simple");
-		road_line_half_double = new BlockRoadLines("road_line_half_double");
-		road_line_half_double_simple = new BlockRoadRotatable("road_line_half_double_simple");
-		road_line_diagonal = new BlockRoadRotatable("road_line_diagonal");
-		road_arrow_s = new BlockRoadRotatable("road_arrow_s");
-		road_arrow_r = new BlockRoadRotatable("road_arrow_r");
-		road_arrow_l = new BlockRoadRotatable("road_arrow_l");
-		road_arrow_rl = new BlockRoadRotatable("road_arrow_rl");
-		road_arrow_sr = new BlockRoadRotatable("road_arrow_sr");
-		road_arrow_sl = new BlockRoadRotatable("road_arrow_sl");
-		road_arrow_srl = new BlockRoadRotatable("road_arrow_srl");
-		road_crosswalk = new BlockRoadRotatable("road_crosswalk");
-		road_excl_zone = new BlockRoadRotatable("road_excl_zone");
-		road_excl_zone_line = new BlockRoadRotatable("road_excl_zone_line");
-		road_excl_zone_corner_in = new BlockRoadRotatable("road_excl_zone_corner_in");
-		road_excl_zone_corner_out = new BlockRoadRotatable("road_excl_zone_corner_out");
-		road_excl_zone_diagonal_in = new BlockRoadRotatable("road_excl_zone_diagonal_in");
-		road_excl_zone_diagonal_out = new BlockRoadRotatable("road_excl_zone_diagonal_out");
-		road_excl_zone_split_in_r = new BlockRoadRotatable("road_excl_zone_split_in_r");
-		road_excl_zone_split_in_l = new BlockRoadRotatable("road_excl_zone_split_in_l");
-		road_excl_zone_split_out_r = new BlockRoadRotatable("road_excl_zone_split_out_r");
-		road_excl_zone_split_out_l = new BlockRoadRotatable("road_excl_zone_split_out_l");
+		road_white = BlockRoad.create("road_white");
+		road_white_half = BlockRoad.create("road_white_half");
+		road_white_quarter = BlockRoad.create("road_white_quarter");
+		road_line = BlockRoadLine.create();
+		road_line_simple = BlockRoad.create("road_line_simple", "road_line_single");
+		road_line_merge = BlockRoad.create("road_line_merge");
+		road_line_double = BlockRoadLines.create("road_line_double", "road_line_double");
+		road_line_double_simple = BlockRoad.create("road_line_double_simple", "road_line_double");
+		road_line_half_double = BlockRoadLines.create("road_line_half_double", "road_line_half_double");
+		road_line_half_double_simple = BlockRoad.create("road_line_half_double_simple", "road_line_half_double");
+		road_line_diagonal = BlockRoad.create("road_line_diagonal");
+		road_arrow_s = BlockRoad.create("road_arrow_s");
+		road_arrow_r = BlockRoad.create("road_arrow_r");
+		road_arrow_l = BlockRoad.create("road_arrow_l");
+		road_arrow_rl = BlockRoad.create("road_arrow_rl");
+		road_arrow_sr = BlockRoad.create("road_arrow_sr");
+		road_arrow_sl = BlockRoad.create("road_arrow_sl");
+		road_arrow_srl = BlockRoad.create("road_arrow_srl");
+		road_crosswalk = BlockRoad.create("road_crosswalk");
+		road_excl_zone = BlockRoad.create("road_excl_zone");
+		road_excl_zone_line = BlockRoad.create("road_excl_zone_line");
+		road_excl_zone_corner_in = BlockRoad.create("road_excl_zone_corner_in");
+		road_excl_zone_corner_out = BlockRoad.create("road_excl_zone_corner_out");
+		road_excl_zone_diagonal_in = BlockRoad.create("road_excl_zone_diagonal_in");
+		road_excl_zone_diagonal_out = BlockRoad.create("road_excl_zone_diagonal_out");
+		road_excl_zone_split_in_r = BlockRoad.create("road_excl_zone_split_in_r");
+		road_excl_zone_split_in_l = BlockRoad.create("road_excl_zone_split_in_l");
+		road_excl_zone_split_out_r = BlockRoad.create("road_excl_zone_split_out_r");
+		road_excl_zone_split_out_l = BlockRoad.create("road_excl_zone_split_out_l");
 
 		// yellow road blocks
-		road_yellow = new BlockRoadRotatable("road_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_white_half_yellow = new BlockRoadRotatable("road_white_half_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_white_quarter_yellow = new BlockRoadRotatable("road_white_quarter_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_yellow = new BlockRoadLine("road_line_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_simple_yellow = new BlockRoadRotatable("road_line_simple_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_merge_yellow = new BlockRoadRotatable("road_line_merge_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_double_yellow = new BlockRoadLines("road_line_double_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_double_simple_yellow = new BlockRoadRotatable("road_line_double_simple_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_half_double_yellow = new BlockRoadLines("road_line_half_double_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_half_double_simple_yellow = new BlockRoadRotatable("road_line_half_double_simple_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_line_diagonal_yellow = new BlockRoadRotatable("road_line_diagonal_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_s_yellow = new BlockRoadRotatable("road_arrow_s_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_r_yellow = new BlockRoadRotatable("road_arrow_r_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_l_yellow = new BlockRoadRotatable("road_arrow_l_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_rl_yellow = new BlockRoadRotatable("road_arrow_rl_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_sr_yellow = new BlockRoadRotatable("road_arrow_sr_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_sl_yellow = new BlockRoadRotatable("road_arrow_sl_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_arrow_srl_yellow = new BlockRoadRotatable("road_arrow_srl_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_crosswalk_yellow = new BlockRoadRotatable("road_crosswalk_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_yellow = new BlockRoadRotatable("road_excl_zone_yellow").setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_line_yellow = new BlockRoadRotatable("road_excl_zone_line_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_corner_in_yellow = new BlockRoadRotatable("road_excl_zone_corner_in_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_corner_out_yellow = new BlockRoadRotatable("road_excl_zone_corner_out_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_diagonal_in_yellow = new BlockRoadRotatable("road_excl_zone_diagonal_in_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_diagonal_out_yellow = new BlockRoadRotatable("road_excl_zone_diagonal_out_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_split_in_r_yellow = new BlockRoadRotatable("road_excl_zone_split_in_r_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_split_in_l_yellow = new BlockRoadRotatable("road_excl_zone_split_in_l_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_split_out_r_yellow = new BlockRoadRotatable("road_excl_zone_split_out_r_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
-		road_excl_zone_split_out_l_yellow = new BlockRoadRotatable("road_excl_zone_split_out_l_yellow")
-				.setCreativeTab(Roads.YELLOW_ROADS_TAB);
+		road_yellow = BlockRoad.createYellow("road_yellow");
+		road_white_half_yellow = BlockRoad.createYellow("road_white_half_yellow");
+		road_white_quarter_yellow = BlockRoad.createYellow("road_white_quarter_yellow");
+		road_line_yellow = BlockRoadLine.createYellow();
+		road_line_simple_yellow = BlockRoad.createYellow("road_line_simple_yellow", "road_line_single_yellow");
+		road_line_merge_yellow = BlockRoad.createYellow("road_line_merge_yellow");
+		road_line_double_yellow = BlockRoadLines.createYellow("road_line_double_yellow", "road_line_double");
+		road_line_double_simple_yellow = BlockRoad.createYellow("road_line_double_simple_yellow", "road_line_double_yellow");
+		road_line_half_double_yellow = BlockRoadLines.createYellow("road_line_half_double_yellow", "road_line_half_double");
+
+		road_line_half_double_simple_yellow = BlockRoad.createYellow("road_line_half_double_simple_yellow",
+				"road_line_half_double_yellow");
+		road_line_diagonal_yellow = BlockRoad.createYellow("road_line_diagonal_yellow");
+		road_arrow_s_yellow = BlockRoad.createYellow("road_arrow_s_yellow");
+		road_arrow_r_yellow = BlockRoad.createYellow("road_arrow_r_yellow");
+		road_arrow_l_yellow = BlockRoad.createYellow("road_arrow_l_yellow");
+		road_arrow_rl_yellow = BlockRoad.createYellow("road_arrow_rl_yellow");
+		road_arrow_sr_yellow = BlockRoad.createYellow("road_arrow_sr_yellow");
+		road_arrow_sl_yellow = BlockRoad.createYellow("road_arrow_sl_yellow");
+		road_arrow_srl_yellow = BlockRoad.createYellow("road_arrow_srl_yellow");
+		road_crosswalk_yellow = BlockRoad.createYellow("road_crosswalk_yellow");
+		road_excl_zone_yellow = BlockRoad.createYellow("road_excl_zone_yellow");
+		road_excl_zone_line_yellow = BlockRoad.createYellow("road_excl_zone_line_yellow");
+		road_excl_zone_corner_in_yellow = BlockRoad.createYellow("road_excl_zone_corner_in_yellow");
+		road_excl_zone_corner_out_yellow = BlockRoad.createYellow("road_excl_zone_corner_out_yellow");
+		road_excl_zone_diagonal_in_yellow = BlockRoad.createYellow("road_excl_zone_diagonal_in_yellow");
+		road_excl_zone_diagonal_out_yellow = BlockRoad.createYellow("road_excl_zone_diagonal_out_yellow");
+		road_excl_zone_split_in_r_yellow = BlockRoad.createYellow("road_excl_zone_split_in_r_yellow");
+		road_excl_zone_split_in_l_yellow = BlockRoad.createYellow("road_excl_zone_split_in_l_yellow");
+		road_excl_zone_split_out_r_yellow = BlockRoad.createYellow("road_excl_zone_split_out_r_yellow");
+		road_excl_zone_split_out_l_yellow = BlockRoad.createYellow("road_excl_zone_split_out_l_yellow");
 
 		// road signs
-		road_sign_prohib_1 = new BlockRoadSign("road_sign_prohib_1");
-		road_sign_prohib_2 = new BlockRoadSign("road_sign_prohib_2");
-		road_sign_prohib_3a = new BlockRoadSign("road_sign_prohib_3a");
-		road_sign_prohib_3b = new BlockRoadSign("road_sign_prohib_3b");
-		road_sign_prohib_3c = new BlockRoadSign("road_sign_prohib_3c");
-		road_sign_prohib_4a = new BlockRoadSign("road_sign_prohib_4a");
-		road_sign_prohib_4b = new BlockRoadSign("road_sign_prohib_4b");
-		road_sign_prohib_4c = new BlockRoadSign("road_sign_prohib_4c");
-		road_sign_prohib_4d = new BlockRoadSign("road_sign_prohib_4d");
-		road_sign_prohib_5 = new BlockRoadSign("road_sign_prohib_5");
-		road_sign_prohib_6a = new BlockRoadSign("road_sign_prohib_6a");
-		road_sign_prohib_6b = new BlockRoadSign("road_sign_prohib_6b");
-		road_sign_prohib_6c = new BlockRoadSign("road_sign_prohib_6c");
-		road_sign_prohib_6d = new BlockRoadSign("road_sign_prohib_6d");
-		road_sign_prohib_7a = new BlockRoadSign("road_sign_prohib_7a");
-		road_sign_prohib_7al = new BlockRoadSign("road_sign_prohib_7al");
-		road_sign_prohib_7aw = new BlockRoadSign("road_sign_prohib_7aw");
-		road_sign_prohib_7b = new BlockRoadSign("road_sign_prohib_7b");
-		road_sign_prohib_7c = new BlockRoadSign("road_sign_prohib_7c");
-		road_sign_prohib_7e = new BlockRoadSign("road_sign_prohib_7e");
-		road_sign_prohib_7f = new BlockRoadSign("road_sign_prohib_7f");
-		road_sign_prohib_8a = new BlockRoadSign("road_sign_prohib_8a");
-		road_sign_prohib_8b = new BlockRoadSign("road_sign_prohib_8b");
-		road_sign_prohib_8c = new BlockRoadSign("road_sign_prohib_8c");
-		road_sign_prohib_9a = new BlockRoadSign("road_sign_prohib_9a");
-		road_sign_prohib_9b = new BlockRoadSign("road_sign_prohib_9b");
-		road_sign_prohib_9c = new BlockRoadSign("road_sign_prohib_9c");
-		road_sign_prohib_9d = new BlockRoadSign("road_sign_prohib_9d");
-		road_sign_prohib_10a20 = new BlockRoadSign("road_sign_prohib_10a20");
-		road_sign_prohib_10a30 = new BlockRoadSign("road_sign_prohib_10a30");
-		road_sign_prohib_10a40 = new BlockRoadSign("road_sign_prohib_10a40");
-		road_sign_prohib_10a50 = new BlockRoadSign("road_sign_prohib_10a50");
-		road_sign_prohib_10a60 = new BlockRoadSign("road_sign_prohib_10a60");
-		road_sign_prohib_10a70 = new BlockRoadSign("road_sign_prohib_10a70");
-		road_sign_prohib_10a80 = new BlockRoadSign("road_sign_prohib_10a80");
-		road_sign_prohib_10a100 = new BlockRoadSign("road_sign_prohib_10a100");
-		road_sign_prohib_10b20 = new BlockRoadSign("road_sign_prohib_10b20");
-		road_sign_prohib_10b30 = new BlockRoadSign("road_sign_prohib_10b30");
-		road_sign_prohib_10b40 = new BlockRoadSign("road_sign_prohib_10b40");
-		road_sign_prohib_10b50 = new BlockRoadSign("road_sign_prohib_10b50");
-		road_sign_prohib_10b60 = new BlockRoadSign("road_sign_prohib_10b60");
-		road_sign_prohib_10b70 = new BlockRoadSign("road_sign_prohib_10b70");
-		road_sign_prohib_10b80 = new BlockRoadSign("road_sign_prohib_10b80");
-		road_sign_prohib_10b100 = new BlockRoadSign("road_sign_prohib_10b100");
-		road_sign_prohib_11 = new BlockRoadSign("road_sign_prohib_11");
-		road_sign_prohib_11a = new BlockRoadSign("road_sign_prohib_11a");
-		road_sign_prohib_11b = new BlockRoadSign("road_sign_prohib_11b");
-		road_sign_prohib_12 = new BlockRoadSign("road_sign_prohib_12");
-		road_sign_prohib_13a = new BlockRoadSign("road_sign_prohib_13a");
-		road_sign_prohib_13b = new BlockRoadSign("road_sign_prohib_13b");
-		road_sign_prohib_13d = new BlockRoadSign("road_sign_prohib_13d");
-		road_sign_prohib_13e = new BlockRoadSign("road_sign_prohib_13e");
-		road_sign_prohib_14 = new BlockRoadSign("road_sign_prohib_14");
+		road_sign_prohib_1 = new BlockRoadSignRotatable("road_sign_prohib_1", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_2 = new BlockRoadSignRotatable("road_sign_prohib_2", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_3a = new BlockRoadSignRotatable("road_sign_prohib_3a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_3b = new BlockRoadSignRotatable("road_sign_prohib_3b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_3c = new BlockRoadSignRotatable("road_sign_prohib_3c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_4a = new BlockRoadSignRotatable("road_sign_prohib_4a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_4b = new BlockRoadSignRotatable("road_sign_prohib_4b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_4c = new BlockRoadSignRotatable("road_sign_prohib_4c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_4d = new BlockRoadSignRotatable("road_sign_prohib_4d", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_5 = new BlockRoadSignRotatable("road_sign_prohib_5", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_6a = new BlockRoadSignRotatable("road_sign_prohib_6a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_6b = new BlockRoadSignRotatable("road_sign_prohib_6b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_6c = new BlockRoadSignRotatable("road_sign_prohib_6c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_6d = new BlockRoadSignRotatable("road_sign_prohib_6d", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_7a = new BlockRoadSignRotatable("road_sign_prohib_7a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_7al = new BlockRoadSignRotatable("road_sign_prohib_7al", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_7aw = new BlockRoadSignRotatable("road_sign_prohib_7aw", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_7b = new BlockRoadSignRotatable("road_sign_prohib_7b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_7c = new BlockRoadSignRotatable("road_sign_prohib_7c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_7e = new BlockRoadSignRotatable("road_sign_prohib_7e", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_prohib_7f = new BlockRoadSignRotatable("road_sign_prohib_7f", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_8a = new BlockRoadSignRotatable("road_sign_prohib_8a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_8b = new BlockRoadSignRotatable("road_sign_prohib_8b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_8c = new BlockRoadSignRotatable("road_sign_prohib_8c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_9a = new BlockRoadSignRotatable("road_sign_prohib_9a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_9b = new BlockRoadSignRotatable("road_sign_prohib_9b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_9c = new BlockRoadSignRotatable("road_sign_prohib_9c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_9d = new BlockRoadSignRotatable("road_sign_prohib_9d", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a20 = new BlockRoadSignRotatable("road_sign_prohib_10a20",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a30 = new BlockRoadSignRotatable("road_sign_prohib_10a30",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a40 = new BlockRoadSignRotatable("road_sign_prohib_10a40",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a50 = new BlockRoadSignRotatable("road_sign_prohib_10a50",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a60 = new BlockRoadSignRotatable("road_sign_prohib_10a60",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a70 = new BlockRoadSignRotatable("road_sign_prohib_10a70",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a80 = new BlockRoadSignRotatable("road_sign_prohib_10a80",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10a100 = new BlockRoadSignRotatable("road_sign_prohib_10a100",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b20 = new BlockRoadSignRotatable("road_sign_prohib_10b20",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b30 = new BlockRoadSignRotatable("road_sign_prohib_10b30",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b40 = new BlockRoadSignRotatable("road_sign_prohib_10b40",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b50 = new BlockRoadSignRotatable("road_sign_prohib_10b50",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b60 = new BlockRoadSignRotatable("road_sign_prohib_10b60",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b70 = new BlockRoadSignRotatable("road_sign_prohib_10b70",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b80 = new BlockRoadSignRotatable("road_sign_prohib_10b80",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_10b100 = new BlockRoadSignRotatable("road_sign_prohib_10b100",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_11 = new BlockRoadSignRotatable("road_sign_prohib_11", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_11a = new BlockRoadSignRotatable("road_sign_prohib_11a",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_prohib_11b = new BlockRoadSignRotatable("road_sign_prohib_11b",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_prohib_12 = new BlockRoadSignRotatable("road_sign_prohib_12", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_13a = new BlockRoadSignRotatable("road_sign_prohib_13a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_13b = new BlockRoadSignRotatable("road_sign_prohib_13b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_prohib_13d = new BlockRoadSignRotatable("road_sign_prohib_13d",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_prohib_13e = new BlockRoadSignRotatable("road_sign_prohib_13e", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_prohib_14 = new BlockRoadSignRotatable("road_sign_prohib_14", BlockRoadSignRotatable.BACK_ROUND);
 
-		road_sign_warn_1 = new BlockRoadSign("road_sign_warn_1");
-		road_sign_warn_2a = new BlockRoadSign("road_sign_warn_2a");
-		road_sign_warn_2b = new BlockRoadSign("road_sign_warn_2b");
-		road_sign_warn_2c = new BlockRoadSign("road_sign_warn_2c");
-		road_sign_warn_2d = new BlockRoadSign("road_sign_warn_2d");
-		road_sign_warn_3a = new BlockRoadSign("road_sign_warn_3a");
-		road_sign_warn_3b = new BlockRoadSign("road_sign_warn_3b");
-		road_sign_warn_4 = new BlockRoadSign("road_sign_warn_4");
-		road_sign_warn_6a = new BlockRoadSign("road_sign_warn_6a");
-		road_sign_warn_6b = new BlockRoadSign("road_sign_warn_6b");
-		road_sign_warn_6c_i_r = new BlockRoadSign("road_sign_warn_6c_i_r");
-		road_sign_warn_6c_i_l = new BlockRoadSign("road_sign_warn_6c_i_l");
-		road_sign_warn_6c_ii_r = new BlockRoadSign("road_sign_warn_6c_ii_r");
-		road_sign_warn_6c_ii_l = new BlockRoadSign("road_sign_warn_6c_ii_l");
-		road_sign_warn_6c_iii_r = new BlockRoadSign("road_sign_warn_6c_iii_r");
-		road_sign_warn_6c_iii_l = new BlockRoadSign("road_sign_warn_6c_iii_l");
-		road_sign_warn_6d_a = new BlockRoadSign("road_sign_warn_6d_a");
-		road_sign_warn_6d_b = new BlockRoadSign("road_sign_warn_6d_b");
-		road_sign_warn_6d_c = new BlockRoadSign("road_sign_warn_6d_c");
-		road_sign_warn_6d_d = new BlockRoadSign("road_sign_warn_6d_d");
-		road_sign_warn_7 = new BlockRoadSign("road_sign_warn_7");
-		road_sign_warn_7a = new BlockRoadSign("road_sign_warn_7a");
-		road_sign_warn_8a = new BlockRoadSign("road_sign_warn_8a");
-		road_sign_warn_8b = new BlockRoadSign("road_sign_warn_8b");
-		road_sign_warn_8c = new BlockRoadSign("road_sign_warn_8c");
-		road_sign_warn_9 = new BlockRoadSign("road_sign_warn_9");
-		road_sign_warn_10 = new BlockRoadSign("road_sign_warn_10");
-		road_sign_warn_10a = new BlockRoadSign("road_sign_warn_10a");
-		road_sign_warn_10b = new BlockRoadSign("road_sign_warn_10b");
-		road_sign_warn_10c = new BlockRoadSign("road_sign_warn_10c");
-		road_sign_warn_11a = new BlockRoadSign("road_sign_warn_11a");
-		road_sign_warn_11b = new BlockRoadSign("road_sign_warn_11b");
-		road_sign_warn_12 = new BlockRoadSign("road_sign_warn_12");
-		road_sign_warn_13 = new BlockRoadSign("road_sign_warn_13");
-		road_sign_warn_14 = new BlockRoadSign("road_sign_warn_14");
-		road_sign_warn_15 = new BlockRoadSign("road_sign_warn_15");
-		road_sign_warn_16 = new BlockRoadSign("road_sign_warn_16");
+		road_sign_warn_1 = new BlockRoadSignRotatable("road_sign_warn_1", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_2a = new BlockRoadSignRotatable("road_sign_warn_2a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_2b = new BlockRoadSignRotatable("road_sign_warn_2b", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_2c = new BlockRoadSignRotatable("road_sign_warn_2c", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_2d = new BlockRoadSignRotatable("road_sign_warn_2d", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_3a = new BlockRoadSignRotatable("road_sign_warn_3a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_3b = new BlockRoadSignRotatable("road_sign_warn_3b", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_4 = new BlockRoadSignRotatable("road_sign_warn_4", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_6a = new BlockRoadSignRotatable("road_sign_warn_6a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_6b = new BlockRoadSignRotatable("road_sign_warn_6b", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_6c_i_r = new BlockRoadSignRotatable("road_sign_warn_6c_i_r",
+				BlockRoadSignRotatable.BACK_SMALL_VERTICAL_RECTANGLE);
+		road_sign_warn_6c_i_l = new BlockRoadSignRotatable("road_sign_warn_6c_i_l",
+				BlockRoadSignRotatable.BACK_SMALL_VERTICAL_RECTANGLE);
+		road_sign_warn_6c_ii_r = new BlockRoadSignRotatable("road_sign_warn_6c_ii_r",
+				BlockRoadSignRotatable.BACK_SMALL_VERTICAL_RECTANGLE);
+		road_sign_warn_6c_ii_l = new BlockRoadSignRotatable("road_sign_warn_6c_ii_l",
+				BlockRoadSignRotatable.BACK_SMALL_VERTICAL_RECTANGLE);
+		road_sign_warn_6c_iii_r = new BlockRoadSignRotatable("road_sign_warn_6c_iii_r",
+				BlockRoadSignRotatable.BACK_SMALL_VERTICAL_RECTANGLE);
+		road_sign_warn_6c_iii_l = new BlockRoadSignRotatable("road_sign_warn_6c_iii_l",
+				BlockRoadSignRotatable.BACK_SMALL_VERTICAL_RECTANGLE);
+		road_sign_warn_6d_a = new BlockRoadSignRotatable("road_sign_warn_6d_a", "road_sign_warn_6d_a_back");
+		road_sign_warn_6d_b = new BlockRoadSignRotatable("road_sign_warn_6d_b", "road_sign_warn_6d_b_back");
+		road_sign_warn_6d_c = new BlockRoadSignRotatable("road_sign_warn_6d_c", "road_sign_warn_6d_c_back");
+		road_sign_warn_6d_d = new BlockRoadSignRotatable("road_sign_warn_6d_d", "road_sign_warn_6d_d_back");
+		road_sign_warn_7 = new BlockRoadSignRotatable("road_sign_warn_7", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_7a = new BlockRoadSignRotatable("road_sign_warn_7a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_8a = new BlockRoadSignRotatable("road_sign_warn_8a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_8b = new BlockRoadSignRotatable("road_sign_warn_8b", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_8c = new BlockRoadSignRotatable("road_sign_warn_8c", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_9 = new BlockRoadSignRotatable("road_sign_warn_9", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_10 = new BlockRoadSignRotatable("road_sign_warn_10", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_10a = new BlockRoadSignRotatable("road_sign_warn_10a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_10b = new BlockRoadSignRotatable("road_sign_warn_10b", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_10c = new BlockRoadSignRotatable("road_sign_warn_10c", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_11a = new BlockRoadSignRotatable("road_sign_warn_11a", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_11b = new BlockRoadSignRotatable("road_sign_warn_11b", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_12 = new BlockRoadSignRotatable("road_sign_warn_12", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_13 = new BlockRoadSignRotatable("road_sign_warn_13", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_14 = new BlockRoadSignRotatable("road_sign_warn_14", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_15 = new BlockRoadSignRotatable("road_sign_warn_15", BlockRoadSignRotatable.BACK_TRIANGLE);
+		road_sign_warn_16 = new BlockRoadSignRotatable("road_sign_warn_16", BlockRoadSignRotatable.BACK_TRIANGLE);
 
-		road_sign_mandat_1 = new BlockRoadSign("road_sign_mandat_1");
-		road_sign_mandat_2 = new BlockRoadSign("road_sign_mandat_2");
-		road_sign_mandat_3 = new BlockRoadSign("road_sign_mandat_3");
-		road_sign_mandat_4 = new BlockRoadSign("road_sign_mandat_4");
-		road_sign_mandat_5 = new BlockRoadSign("road_sign_mandat_5");
-		road_sign_mandat_6 = new BlockRoadSign("road_sign_mandat_6");
-		road_sign_mandat_7 = new BlockRoadSign("road_sign_mandat_7");
-		road_sign_mandat_8 = new BlockRoadSign("road_sign_mandat_8");
-		road_sign_mandat_9 = new BlockRoadSign("road_sign_mandat_9");
-		road_sign_mandat_10 = new BlockRoadSign("road_sign_mandat_10");
-		road_sign_mandat_16 = new BlockRoadSign("road_sign_mandat_16");
-		road_sign_mandat_16a = new BlockRoadSign("road_sign_mandat_16a");
-		road_sign_mandat_17 = new BlockRoadSign("road_sign_mandat_17");
-		road_sign_mandat_17a_a = new BlockRoadSign("road_sign_mandat_17a_a");
-		road_sign_mandat_17a_b = new BlockRoadSign("road_sign_mandat_17a_b");
-		road_sign_mandat_17a_c = new BlockRoadSign("road_sign_mandat_17a_c");
-		road_sign_mandat_17a_d = new BlockRoadSign("road_sign_mandat_17a_d");
-		road_sign_mandat_17b = new BlockRoadSign("road_sign_mandat_17b");
-		road_sign_mandat_17c = new BlockRoadSign("road_sign_mandat_17c");
-		road_sign_mandat_18 = new BlockRoadSign("road_sign_mandat_18");
-		road_sign_mandat_22 = new BlockRoadSign("road_sign_mandat_22");
-		road_sign_mandat_22a = new BlockRoadSign("road_sign_mandat_22a");
+		road_sign_mandat_1 = new BlockRoadSignRotatable("road_sign_mandat_1", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_2 = new BlockRoadSignRotatable("road_sign_mandat_2", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_3 = new BlockRoadSignRotatable("road_sign_mandat_3", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_4 = new BlockRoadSignRotatable("road_sign_mandat_4", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_5 = new BlockRoadSignRotatable("road_sign_mandat_5", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_6 = new BlockRoadSignRotatable("road_sign_mandat_6", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_7 = new BlockRoadSignRotatable("road_sign_mandat_7", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_8 = new BlockRoadSignRotatable("road_sign_mandat_8", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_9 = new BlockRoadSignRotatable("road_sign_mandat_9", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_10 = new BlockRoadSignRotatable("road_sign_mandat_10", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_16 = new BlockRoadSignRotatable("road_sign_mandat_16", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_16a = new BlockRoadSignRotatable("road_sign_mandat_16a", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17 = new BlockRoadSignRotatable("road_sign_mandat_17", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17a_a = new BlockRoadSignRotatable("road_sign_mandat_17a_a",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17a_b = new BlockRoadSignRotatable("road_sign_mandat_17a_b",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17a_c = new BlockRoadSignRotatable("road_sign_mandat_17a_c",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17a_d = new BlockRoadSignRotatable("road_sign_mandat_17a_d",
+				BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17b = new BlockRoadSignRotatable("road_sign_mandat_17b", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_17c = new BlockRoadSignRotatable("road_sign_mandat_17c", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_18 = new BlockRoadSignRotatable("road_sign_mandat_18", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_22 = new BlockRoadSignRotatable("road_sign_mandat_22", BlockRoadSignRotatable.BACK_ROUND);
+		road_sign_mandat_22a = new BlockRoadSignRotatable("road_sign_mandat_22a", BlockRoadSignRotatable.BACK_ROUND);
 
-		road_sign_priority_1 = new BlockRoadSign("road_sign_priority_1");
-		road_sign_priority_2 = new BlockRoadSign("road_sign_priority_2");
-		road_sign_priority_3a = new BlockRoadSign("road_sign_priority_3a");
-		road_sign_priority_3b = new BlockRoadSign("road_sign_priority_3b");
+		road_sign_priority_1 = new BlockRoadSignRotatable("road_sign_priority_1",
+				BlockRoadSignRotatable.BACK_INVERTED_TRIANGLE);
+		road_sign_priority_2 = new BlockRoadSignRotatable("road_sign_priority_2",
+				BlockRoadSignRotatable.BACK_HEXAGONAL);
+		road_sign_priority_3a = new BlockRoadSignRotatable("road_sign_priority_3a",
+				BlockRoadSignRotatable.BACK_DIAMOND);
+		road_sign_priority_3b = new BlockRoadSignRotatable("road_sign_priority_3b",
+				BlockRoadSignRotatable.BACK_DIAMOND);
 
-		road_sign_info_1a = new BlockRoadSign("road_sign_info_1a");
-		road_sign_info_1b = new BlockRoadSign("road_sign_info_1b");
-		road_sign_info_2 = new BlockRoadSign("road_sign_info_2");
-		road_sign_info_2a = new BlockRoadSign("road_sign_info_2a");
-		road_sign_info_2b = new BlockRoadSign("road_sign_info_2b");
-		road_sign_info_2c_a = new BlockRoadSign("road_sign_info_2c_a");
-		road_sign_info_2c_b = new BlockRoadSign("road_sign_info_2c_b");
-		road_sign_info_3 = new BlockRoadSign("road_sign_info_3");
-		road_sign_info_3a = new BlockRoadSign("road_sign_info_3a");
-		road_sign_info_4 = new BlockRoadSign("road_sign_info_4");
-		road_sign_info_5 = new BlockRoadSign("road_sign_info_5");
-		road_sign_info_6a = new BlockRoadSign("road_sign_info_6a");
-		road_sign_info_7a = new BlockRoadSign("road_sign_info_7a");
-		road_sign_info_8a = new BlockRoadSign("road_sign_info_8a");
-		road_sign_info_8b = new BlockRoadSign("road_sign_info_8b");
-		road_sign_info_8c = new BlockRoadSign("road_sign_info_8c");
-		road_sign_info_8d = new BlockRoadSign("road_sign_info_8d");
-		road_sign_info_9a = new BlockRoadSign("road_sign_info_9a");
-		road_sign_info_9b = new BlockRoadSign("road_sign_info_9b");
-		road_sign_info_9c = new BlockRoadSign("road_sign_info_9c");
-		road_sign_info_9d = new BlockRoadSign("road_sign_info_9d");
-		road_sign_info_9e = new BlockRoadSign("road_sign_info_9e");
-		road_sign_info_9f = new BlockRoadSign("road_sign_info_9f");
-		road_sign_info_9g = new BlockRoadSign("road_sign_info_9g");
-		road_sign_info_10a = new BlockRoadSign("road_sign_info_10a");
-		road_sign_info_10b = new BlockRoadSign("road_sign_info_10b");
-		road_sign_info_10c = new BlockRoadSign("road_sign_info_10c");
-		road_sign_info_10d = new BlockRoadSign("road_sign_info_10d");
-		road_sign_info_11 = new BlockRoadSign("road_sign_info_11");
-		road_sign_info_16a = new BlockRoadSign("road_sign_info_16a");
-		road_sign_info_16b = new BlockRoadSign("road_sign_info_16b");
-		road_sign_info_16c = new BlockRoadSign("road_sign_info_16c");
-		road_sign_info_16d = new BlockRoadSign("road_sign_info_16d");
+		road_sign_info_1a = new BlockRoadSignRotatable("road_sign_info_1a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_1b = new BlockRoadSignRotatable("road_sign_info_1b",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_2 = new BlockRoadSignRotatable("road_sign_info_2", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_2a = new BlockRoadSignRotatable("road_sign_info_2a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_2b = new BlockRoadSignRotatable("road_sign_info_2b", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_2c_a = new BlockRoadSignRotatable("road_sign_info_2c_a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_2c_b = new BlockRoadSignRotatable("road_sign_info_2c_b", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_3 = new BlockRoadSignRotatable("road_sign_info_3",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_3a = new BlockRoadSignRotatable("road_sign_info_3a",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_4 = new BlockRoadSignRotatable("road_sign_info_4",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_5 = new BlockRoadSignRotatable("road_sign_info_5",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_6a = new BlockRoadSignRotatable("road_sign_info_6a",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_7a = new BlockRoadSignRotatable("road_sign_info_7a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_8a = new BlockRoadSignRotatable("road_sign_info_8a",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_8b = new BlockRoadSignRotatable("road_sign_info_8b",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_8c = new BlockRoadSignRotatable("road_sign_info_8c",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_8d = new BlockRoadSignRotatable("road_sign_info_8d",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_9a = new BlockRoadSignRotatable("road_sign_info_9a",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_9b = new BlockRoadSignRotatable("road_sign_info_9b",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_9c = new BlockRoadSignRotatable("road_sign_info_9c",
+				BlockRoadSignRotatable.BACK_HORIZONTAL_RECTANGLE);
+		road_sign_info_9d = new BlockRoadSignRotatable("road_sign_info_9d",
+				BlockRoadSignRotatable.BACK_HORIZONTAL_RECTANGLE);
+		road_sign_info_9e = new BlockRoadSignRotatable("road_sign_info_9e",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_9f = new BlockRoadSignRotatable("road_sign_info_9f",
+				BlockRoadSignRotatable.BACK_VERTICAL_RECTANGLE);
+		road_sign_info_9g = new BlockRoadSignRotatable("road_sign_info_9g", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_10a = new BlockRoadSignRotatable("road_sign_info_10a",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_RECTANGLE);
+		road_sign_info_10b = new BlockRoadSignRotatable("road_sign_info_10b",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_RECTANGLE);
+		road_sign_info_10c = new BlockRoadSignRotatable("road_sign_info_10c",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_RECTANGLE);
+		road_sign_info_10d = new BlockRoadSignRotatable("road_sign_info_10d",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_RECTANGLE);
+		road_sign_info_11 = new BlockRoadSignRotatable("road_sign_info_11", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_16a = new BlockRoadSignRotatable("road_sign_info_16a", BlockRoadSignRotatable.BACK_ARROW_LEFT);
+		road_sign_info_16b = new BlockRoadSignRotatable("road_sign_info_16b", BlockRoadSignRotatable.BACK_ARROW_RIGHT);
+		road_sign_info_16c = new BlockRoadSignRotatable("road_sign_info_16c", BlockRoadSignRotatable.BACK_ARROW_LEFT);
+		road_sign_info_16d = new BlockRoadSignRotatable("road_sign_info_16d", BlockRoadSignRotatable.BACK_ARROW_RIGHT);
 		road_sign_info_17a = new BlockRoadTownSign("road_sign_info_17a");
 		road_sign_info_17b = new BlockRoadTownSign("road_sign_info_17b");
-		road_sign_info_23 = new BlockRoadSign("road_sign_info_23");
-		road_sign_info_23b = new BlockRoadSign("road_sign_info_23b");
+		road_sign_info_23 = new BlockRoadSignRotatable("road_sign_info_23",
+				BlockRoadSignRotatable.BACK_AVERAGE_VERTICAL_RECTANGLE);
+		road_sign_info_23b = new BlockRoadSignRotatable("road_sign_info_23b",
+				BlockRoadSignRotatable.BACK_AVERAGE_VERTICAL_RECTANGLE);
+		road_sign_info_24 = new BlockRoadSignRotatable("road_sign_info_24", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_25a = new BlockRoadSignRotatable("road_sign_info_25a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_25b = new BlockRoadSignRotatable("road_sign_info_25b", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_26a = new BlockRoadSignRotatable("road_sign_info_26a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_26b = new BlockRoadSignRotatable("road_sign_info_26b", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_26c = new BlockRoadSignRotatable("road_sign_info_26c", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_27a = new BlockRoadSignRotatable("road_sign_info_27a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_27b = new BlockRoadSignRotatable("road_sign_info_27b", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_27c = new BlockRoadSignRotatable("road_sign_info_27c", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_28a = new BlockRoadSignRotatable("road_sign_info_28a", BlockRoadSignRotatable.BACK_SQUARE);
+		road_sign_info_28b = new BlockRoadSignRotatable("road_sign_info_28b", BlockRoadSignRotatable.BACK_SQUARE);
+
+		road_sign_meta_1 = new BlockRoadSignRotatable("road_sign_meta_1",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_TOP_RECTANGLE);
+		road_sign_meta_2a = new BlockRoadSignRotatable("road_sign_meta_2a",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_TOP_RECTANGLE);
+		road_sign_meta_2b = new BlockRoadSignRotatable("road_sign_meta_2b",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_TOP_RECTANGLE);
+		road_sign_meta_2c = new BlockRoadSignRotatable("road_sign_meta_2c",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_TOP_RECTANGLE);
+		road_sign_meta_2d = new BlockRoadSignRotatable("road_sign_meta_2d",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_TOP_RECTANGLE);
+		road_sign_meta_2e = new BlockRoadSignRotatable("road_sign_meta_2e",
+				BlockRoadSignRotatable.BACK_SMALL_HORIZONTAL_TOP_RECTANGLE);
 
 		road_sign_post = new BlockRoadSignPost();
+		road_junction_marker = new BlockRoadMarker("road_junction_marker");
 
 		// other stuff
 		road_sidewalk = new BlockRoadSidewalk();
@@ -488,98 +573,94 @@ public class RoadBlocks {
 		road_lantern = new BlockRoadLantern("road_lantern", false);
 		road_lantern_lit = new BlockRoadLantern("road_lantern_lit", true);
 
-		// road_traffic_light = new BlockRoadSign("road_traffic_light");
-		road_traffic_light = new BlockRoadSign("road_traffic_light");
+		road_traffic_light = new BlockRoadSignLegacy("road_traffic_light_auto");
 		road_traffic_light_manual = new BlockRoadTrafficLight();
-
-		road_traffic_light_red =  new BlockRoadSign("road_traffic_light_red");		
-		road_traffic_light_red_dyn = new BlockRoadTrafficLightRed();
-		
-		road_traffic_light_yellow_fixed = new BlockRoadSign("road_traffic_light_yellow");
-		road_traffic_light_yellow_dyn = new BlockRoadTrafficLightYellow();
+		road_traffic_light_green = new BlockRoadTrafficLightGreen();
+		road_traffic_light_yellow = new BlockRoadTrafficLightYellow();
 		road_traffic_light_yellow_blinking = new BlockRoadTrafficLightBlinkingYellow();
-		
-		road_traffic_light_green =  new BlockRoadSign("road_traffic_light_green");
-		road_traffic_light_green_dyn = new BlockRoadTrafficLightGreen();
-		
+		road_traffic_light_red = new BlockRoadTrafficLightRed();
 
-		// road_traffic_light_off = new BlockRoadSign("road_traffic_light_off");
-
-		road_pedestrian_traffic_light = new BlockRoadSign("road_pedestrian_traffic_light");
+		road_pedestrian_traffic_light = new BlockRoadSignLegacy("road_pedestrian_traffic_light_auto");
 		road_pedestrian_traffic_light_manual = new BlockRoadPedestrianTrafficLight();
 		road_pedestrian_traffic_light_green = new BlockRoadPedestrianTrafficLightGreen();
 		road_pedestrian_traffic_light_red = new BlockRoadPedestrianTrafficLightRed();
 		road_pedestrian_traffic_light_off = new BlockRoadPedestrianTrafficLightOff();
 
 		sign_printer = new BlockSignPrinter();
+
+		ModelLoaderRegistry.registerLoader(new RoadSignModelLoader());
 	}
 
 	public static void register() {
 		registerBlock(asphalt);
-		registerBlock(road);
-		registerBlock(road_white);
-		registerBlock(road_white_half);
-		registerBlock(road_white_quarter);
-		registerBlock(road_line);
-		registerBlock(road_line_simple);
-		registerBlock(road_line_merge);
-		registerBlock(road_line_double);
-		registerBlock(road_line_double_simple);
-		registerBlock(road_line_half_double);
-		registerBlock(road_line_half_double_simple);
-		registerBlock(road_line_diagonal);
-		registerBlock(road_arrow_s);
-		registerBlock(road_arrow_r);
-		registerBlock(road_arrow_l);
-		registerBlock(road_arrow_rl);
-		registerBlock(road_arrow_sr);
-		registerBlock(road_arrow_sl);
-		registerBlock(road_arrow_srl);
-		registerBlock(road_crosswalk);
-		registerBlock(road_excl_zone);
-		registerBlock(road_excl_zone_line);
-		registerBlock(road_excl_zone_corner_in);
-		registerBlock(road_excl_zone_corner_out);
-		registerBlock(road_excl_zone_diagonal_in);
-		registerBlock(road_excl_zone_diagonal_out);
-		registerBlock(road_excl_zone_split_in_l);
-		registerBlock(road_excl_zone_split_in_r);
-		registerBlock(road_excl_zone_split_out_l);
-		registerBlock(road_excl_zone_split_out_r);
+		registerBlocks(road);
+		registerBlocks(road_white);
 
-		registerBlock(road_yellow);
-		registerBlock(road_white_half_yellow);
-		registerBlock(road_white_quarter_yellow);
-		registerBlock(road_line_yellow);
-		registerBlock(road_line_simple_yellow);
-		registerBlock(road_line_merge_yellow);
-		registerBlock(road_line_double_yellow);
-		registerBlock(road_line_double_simple_yellow);
-		registerBlock(road_line_half_double_yellow);
-		registerBlock(road_line_half_double_simple_yellow);
-		registerBlock(road_line_diagonal_yellow);
-		registerBlock(road_arrow_s_yellow);
-		registerBlock(road_arrow_r_yellow);
-		registerBlock(road_arrow_l_yellow);
-		registerBlock(road_arrow_rl_yellow);
-		registerBlock(road_arrow_sr_yellow);
-		registerBlock(road_arrow_sl_yellow);
-		registerBlock(road_arrow_srl_yellow);
-		registerBlock(road_crosswalk_yellow);
-		registerBlock(road_excl_zone_yellow);
-		registerBlock(road_excl_zone_line_yellow);
-		registerBlock(road_excl_zone_corner_in_yellow);
-		registerBlock(road_excl_zone_corner_out_yellow);
-		registerBlock(road_excl_zone_diagonal_in_yellow);
-		registerBlock(road_excl_zone_diagonal_out_yellow);
-		registerBlock(road_excl_zone_split_in_l_yellow);
-		registerBlock(road_excl_zone_split_in_r_yellow);
-		registerBlock(road_excl_zone_split_out_l_yellow);
-		registerBlock(road_excl_zone_split_out_r_yellow);
+		registerBlocks(road_white_half);
+		registerBlocks(road_white_quarter);
+
+		registerBlocks(road_line);
+		registerBlocks(road_line_simple);
+
+		registerBlocks(road_line_merge);
+		registerBlocks(road_line_double);
+		registerBlocks(road_line_double_simple);
+		registerBlocks(road_line_half_double);
+		registerBlocks(road_line_half_double_simple);
+		registerBlocks(road_line_diagonal);
+		registerBlocks(road_arrow_s);
+		registerBlocks(road_arrow_r);
+		registerBlocks(road_arrow_l);
+		registerBlocks(road_arrow_rl);
+		registerBlocks(road_arrow_sr);
+		registerBlocks(road_arrow_sl);
+		registerBlocks(road_arrow_srl);
+		registerBlocks(road_crosswalk);
+		registerBlocks(road_excl_zone);
+		registerBlocks(road_excl_zone_line);
+		registerBlocks(road_excl_zone_corner_in);
+		registerBlocks(road_excl_zone_corner_out);
+		registerBlocks(road_excl_zone_diagonal_in);
+		registerBlocks(road_excl_zone_diagonal_out);
+		registerBlocks(road_excl_zone_split_in_l);
+		registerBlocks(road_excl_zone_split_in_r);
+		registerBlocks(road_excl_zone_split_out_l);
+		registerBlocks(road_excl_zone_split_out_r);
+
+		registerBlocks(road_yellow);
+		registerBlocks(road_white_half_yellow);
+		registerBlocks(road_white_quarter_yellow);
+		registerBlocks(road_line_yellow);
+		registerBlocks(road_line_simple_yellow);
+		registerBlocks(road_line_merge_yellow);
+		registerBlocks(road_line_double_yellow);
+		registerBlocks(road_line_double_simple_yellow);
+		registerBlocks(road_line_half_double_yellow);
+		registerBlocks(road_line_half_double_simple_yellow);
+		registerBlocks(road_line_diagonal_yellow);
+		registerBlocks(road_arrow_s_yellow);
+		registerBlocks(road_arrow_r_yellow);
+		registerBlocks(road_arrow_l_yellow);
+		registerBlocks(road_arrow_rl_yellow);
+		registerBlocks(road_arrow_sr_yellow);
+		registerBlocks(road_arrow_sl_yellow);
+		registerBlocks(road_arrow_srl_yellow);
+		registerBlocks(road_crosswalk_yellow);
+		registerBlocks(road_excl_zone_yellow);
+		registerBlocks(road_excl_zone_line_yellow);
+		registerBlocks(road_excl_zone_corner_in_yellow);
+		registerBlocks(road_excl_zone_corner_out_yellow);
+		registerBlocks(road_excl_zone_diagonal_in_yellow);
+		registerBlocks(road_excl_zone_diagonal_out_yellow);
+		registerBlocks(road_excl_zone_split_in_l_yellow);
+		registerBlocks(road_excl_zone_split_in_r_yellow);
+		registerBlocks(road_excl_zone_split_out_l_yellow);
+		registerBlocks(road_excl_zone_split_out_r_yellow);
 
 		registerBlock(road_sidewalk);
 		registerBlock(road_guardrail);
 		registerBlock(road_sign_post);
+		registerBlock(road_junction_marker);
 		registerBlock(road_sign_prohib_1);
 		registerBlock(road_sign_prohib_2);
 		registerBlock(road_sign_prohib_3a);
@@ -733,22 +814,37 @@ public class RoadBlocks {
 		registerBlock(road_sign_info_17b);
 		registerBlock(road_sign_info_23);
 		registerBlock(road_sign_info_23b);
+		registerBlock(road_sign_info_24);
+		registerBlock(road_sign_info_25a);
+		registerBlock(road_sign_info_25b);
+		registerBlock(road_sign_info_26a);
+		registerBlock(road_sign_info_26b);
+		registerBlock(road_sign_info_26c);
+		registerBlock(road_sign_info_27a);
+		registerBlock(road_sign_info_27b);
+		registerBlock(road_sign_info_27c);
+		registerBlock(road_sign_info_28a);
+		registerBlock(road_sign_info_28b);
+
+		registerBlock(road_sign_meta_1);
+		registerBlock(road_sign_meta_2a);
+		registerBlock(road_sign_meta_2b);
+		registerBlock(road_sign_meta_2c);
+		registerBlock(road_sign_meta_2d);
+		registerBlock(road_sign_meta_2e);
 
 		registerBlock(road_lantern);
 		registerBlock(road_lantern_lit);
 
 		registerBlock(road_traffic_light);
+
 		registerBlock(road_traffic_light_manual);
+		registerBlock(road_traffic_light_green);
+
+		registerBlock(road_traffic_light_yellow);
+		registerBlock(road_traffic_light_yellow_blinking);
 
 		registerBlock(road_traffic_light_red);
-		registerBlock(road_traffic_light_red_dyn);
-		
-		registerBlock(road_traffic_light_yellow_dyn);
-		registerBlock(road_traffic_light_yellow_blinking);
-		registerBlock(road_traffic_light_yellow_fixed);
-		
-		registerBlock(road_traffic_light_green);
-		registerBlock(road_traffic_light_green_dyn);
 
 		registerBlock(road_pedestrian_traffic_light);
 		registerBlock(road_pedestrian_traffic_light_manual);
@@ -757,6 +853,15 @@ public class RoadBlocks {
 		registerBlock(road_pedestrian_traffic_light_off);
 
 		registerBlock(sign_printer);
+
+	}
+
+	private static void registerBlocks(Block[] blocks) {
+		for (Block block : blocks) {
+			registerBlock(block, ((BlockRoad) block).createItemBlock());
+		}
+		
+		RoadCrafting.RegistrationHandler.BLOCKS_ROAD.add(blocks);
 	}
 
 	private static void registerBlock(Block block) {
@@ -771,70 +876,74 @@ public class RoadBlocks {
 
 	public static void registerModels() {
 		registerModel(asphalt);
-		registerModel(road);
-		registerModel(road_white);
-		registerModel(road_white_half);
-		registerModel(road_white_quarter);
-		registerModel(road_line);
-		registerModel(road_line_simple);
-		registerModel(road_line_merge);
-		registerModel(road_line_double);
-		registerModel(road_line_double_simple);
-		registerModel(road_line_half_double);
-		registerModel(road_line_half_double_simple);
-		registerModel(road_line_diagonal);
-		registerModel(road_arrow_s);
-		registerModel(road_arrow_r);
-		registerModel(road_arrow_l);
-		registerModel(road_arrow_rl);
-		registerModel(road_arrow_sr);
-		registerModel(road_arrow_sl);
-		registerModel(road_arrow_srl);
-		registerModel(road_crosswalk);
-		registerModel(road_excl_zone);
-		registerModel(road_excl_zone_line);
-		registerModel(road_excl_zone_corner_in);
-		registerModel(road_excl_zone_corner_out);
-		registerModel(road_excl_zone_diagonal_in);
-		registerModel(road_excl_zone_diagonal_out);
-		registerModel(road_excl_zone_split_in_l);
-		registerModel(road_excl_zone_split_in_r);
-		registerModel(road_excl_zone_split_out_l);
-		registerModel(road_excl_zone_split_out_r);
+		registerModels(road);
+		registerModels(road_white);
 
-		registerModel(road_yellow);
-		registerModel(road_white_half_yellow);
-		registerModel(road_white_quarter_yellow);
-		registerModel(road_line_yellow);
-		registerModel(road_line_simple_yellow);
-		registerModel(road_line_merge_yellow);
-		registerModel(road_line_double_yellow);
-		registerModel(road_line_double_simple_yellow);
-		registerModel(road_line_half_double_yellow);
-		registerModel(road_line_half_double_simple_yellow);
-		registerModel(road_line_diagonal_yellow);
-		registerModel(road_arrow_s_yellow);
-		registerModel(road_arrow_r_yellow);
-		registerModel(road_arrow_l_yellow);
-		registerModel(road_arrow_rl_yellow);
-		registerModel(road_arrow_sr_yellow);
-		registerModel(road_arrow_sl_yellow);
-		registerModel(road_arrow_srl_yellow);
-		registerModel(road_crosswalk_yellow);
-		registerModel(road_excl_zone_yellow);
-		registerModel(road_excl_zone_line_yellow);
-		registerModel(road_excl_zone_corner_in_yellow);
-		registerModel(road_excl_zone_corner_out_yellow);
-		registerModel(road_excl_zone_diagonal_in_yellow);
-		registerModel(road_excl_zone_diagonal_out_yellow);
-		registerModel(road_excl_zone_split_in_l_yellow);
-		registerModel(road_excl_zone_split_in_r_yellow);
-		registerModel(road_excl_zone_split_out_l_yellow);
-		registerModel(road_excl_zone_split_out_r_yellow);
+		registerModels(road_white_half);
+		registerModels(road_white_quarter);
+
+		registerModels(road_line);
+		registerModels(road_line_simple);
+
+		registerModels(road_line_merge);
+		registerModels(road_line_double);
+		registerModels(road_line_double_simple);
+		registerModels(road_line_half_double);
+		registerModels(road_line_half_double_simple);
+		registerModels(road_line_diagonal);
+		registerModels(road_arrow_s);
+		registerModels(road_arrow_r);
+		registerModels(road_arrow_l);
+		registerModels(road_arrow_rl);
+		registerModels(road_arrow_sr);
+		registerModels(road_arrow_sl);
+		registerModels(road_arrow_srl);
+		registerModels(road_crosswalk);
+		registerModels(road_excl_zone);
+		registerModels(road_excl_zone_line);
+		registerModels(road_excl_zone_corner_in);
+		registerModels(road_excl_zone_corner_out);
+		registerModels(road_excl_zone_diagonal_in);
+		registerModels(road_excl_zone_diagonal_out);
+		registerModels(road_excl_zone_split_in_l);
+		registerModels(road_excl_zone_split_in_r);
+		registerModels(road_excl_zone_split_out_l);
+		registerModels(road_excl_zone_split_out_r);
+
+		registerModels(road_yellow);
+		registerModels(road_white_half_yellow);
+		registerModels(road_white_quarter_yellow);
+		registerModels(road_line_yellow);
+		registerModels(road_line_simple_yellow);
+		registerModels(road_line_merge_yellow);
+		registerModels(road_line_double_yellow);
+		registerModels(road_line_double_simple_yellow);
+		registerModels(road_line_half_double_yellow);
+		registerModels(road_line_half_double_simple_yellow);
+		registerModels(road_line_diagonal_yellow);
+		registerModels(road_arrow_s_yellow);
+		registerModels(road_arrow_r_yellow);
+		registerModels(road_arrow_l_yellow);
+		registerModels(road_arrow_rl_yellow);
+		registerModels(road_arrow_sr_yellow);
+		registerModels(road_arrow_sl_yellow);
+		registerModels(road_arrow_srl_yellow);
+		registerModels(road_crosswalk_yellow);
+		registerModels(road_excl_zone_yellow);
+		registerModels(road_excl_zone_line_yellow);
+		registerModels(road_excl_zone_corner_in_yellow);
+		registerModels(road_excl_zone_corner_out_yellow);
+		registerModels(road_excl_zone_diagonal_in_yellow);
+		registerModels(road_excl_zone_diagonal_out_yellow);
+		registerModels(road_excl_zone_split_in_l_yellow);
+		registerModels(road_excl_zone_split_in_r_yellow);
+		registerModels(road_excl_zone_split_out_l_yellow);
+		registerModels(road_excl_zone_split_out_r_yellow);
 
 		registerModel(road_sidewalk);
 		registerModel(road_guardrail);
 		registerModel(road_sign_post);
+		registerModel(road_junction_marker);
 		registerModel(road_sign_prohib_1);
 		registerModel(road_sign_prohib_2);
 		registerModel(road_sign_prohib_3a);
@@ -988,6 +1097,24 @@ public class RoadBlocks {
 		registerModel(road_sign_info_17b);
 		registerModel(road_sign_info_23);
 		registerModel(road_sign_info_23b);
+		registerModel(road_sign_info_24);
+		registerModel(road_sign_info_25a);
+		registerModel(road_sign_info_25b);
+		registerModel(road_sign_info_26a);
+		registerModel(road_sign_info_26b);
+		registerModel(road_sign_info_26c);
+		registerModel(road_sign_info_27a);
+		registerModel(road_sign_info_27b);
+		registerModel(road_sign_info_27c);
+		registerModel(road_sign_info_28a);
+		registerModel(road_sign_info_28b);
+
+		registerModel(road_sign_meta_1);
+		registerModel(road_sign_meta_2a);
+		registerModel(road_sign_meta_2b);
+		registerModel(road_sign_meta_2c);
+		registerModel(road_sign_meta_2d);
+		registerModel(road_sign_meta_2e);
 
 		registerModel(road_lantern);
 		registerModel(road_lantern_lit);
@@ -995,23 +1122,26 @@ public class RoadBlocks {
 		registerModel(road_traffic_light);
 		registerModel(road_traffic_light_manual);
 
-		registerModel(road_traffic_light_red);
-		registerModel(road_traffic_light_red_dyn);
-		
-		registerModel(road_traffic_light_yellow_fixed);
-		registerModel(road_traffic_light_yellow_dyn);
-		registerModel(road_traffic_light_yellow_blinking);
-		
 		registerModel(road_traffic_light_green);
-		registerModel(road_traffic_light_green_dyn);
 
-		// registerModel(road_traffic_light_off);
+		registerModel(road_traffic_light_yellow);
+		registerModel(road_traffic_light_yellow_blinking);
+		registerModel(road_traffic_light_red);
+
 		registerModel(road_pedestrian_traffic_light);
 		registerModel(road_pedestrian_traffic_light_manual);
 		registerModel(road_pedestrian_traffic_light_green);
 		registerModel(road_pedestrian_traffic_light_red);
 		registerModel(road_pedestrian_traffic_light_off);
 		registerModel(sign_printer);
+
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static void registerModels(Block[] blocks) {
+		for (Block block : blocks) {
+			registerModel(block);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -1023,12 +1153,13 @@ public class RoadBlocks {
 	@Mod.EventBusSubscriber()
 	public static class RegistrationHandler {
 		public static final List<Block> BLOCKS = new LinkedList<>();
-
+	
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Block> event) {
 			RoadBlocks.init();
 			RoadBlocks.register();
 			BLOCKS.stream().forEach(block -> event.getRegistry().register(block));
+	
 		}
 	}
 }

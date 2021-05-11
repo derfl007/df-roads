@@ -7,12 +7,14 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase;
 import net.minecraft.util.math.BlockPos;
 
 public class LightsGroup {
-
+	
 	private int greenDuration = -1;
 	private int delay = -1;
+	private int yellowDuration = BlockRoadTrafficLightBase.DEFAULT_YELLOW_DURATION;
 
 	private List<BlockPos> lights;
 
@@ -55,6 +57,14 @@ public class LightsGroup {
 	public void setDelay(int delay) {
 		this.delay = delay;
 	}
+	
+	public int getYellowDuration() {
+		return yellowDuration;
+	}
+	
+	public void setYellowDuration(int duration) {
+		this.yellowDuration = duration;
+	}
 
 	@Override
 	public boolean equals(Object other) {
@@ -79,7 +89,7 @@ public class LightsGroup {
 		for (BlockPos pos : lights) {
 			builder.add(String.format("(%d,%d,%d)", pos.getX(), pos.getY(), pos.getZ()));
 		}
-		return String.format("[greenDuration=%d;delay=%d;pos=[%s]]", greenDuration, delay,
+		return String.format("[greenDuration=%d;yellowDuration=%d;delay=%d;pos=[%s]]", greenDuration, yellowDuration, delay,
 				StringUtils.join(builder, "|"));
 	}
 
@@ -100,6 +110,8 @@ public class LightsGroup {
 			case "greenDuration":
 				group.greenDuration = Integer.valueOf(details[1]);
 				break;
+			case "yellowDuration":
+				group.yellowDuration = Integer.valueOf(details[1]);
 			case "delay":
 				group.delay = Integer.valueOf(details[1]);
 				break;

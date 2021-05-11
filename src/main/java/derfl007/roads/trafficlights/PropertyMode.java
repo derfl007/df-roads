@@ -5,30 +5,30 @@ import java.util.Collection;
 
 import com.google.common.base.Optional;
 
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen;
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen.Mode;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase.TrafficLightsControlMode;
 import net.minecraft.block.properties.PropertyHelper;
 
-public class PropertyMode extends PropertyHelper<BlockRoadTrafficLightGen.Mode> {
+public class PropertyMode extends PropertyHelper<BlockRoadTrafficLightBase.TrafficLightsControlMode> {
 
 	public PropertyMode(String name) {
-		super(name, Mode.class);
+		super(name, TrafficLightsControlMode.class);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Collection<Mode> getAllowedValues() {
+	public Collection<TrafficLightsControlMode> getAllowedValues() {
 		// TODO Auto-generated method stub
-		Mode[] modes = BlockRoadTrafficLightGen.Mode.values();
+		TrafficLightsControlMode[] modes = BlockRoadTrafficLightBase.TrafficLightsControlMode.values();
 		return Arrays.asList(modes);
 	}
 
 	@Override
-	public Optional<Mode> parseValue(String value) {
+	public Optional<TrafficLightsControlMode> parseValue(String value) {
 		// TODO Auto-generated method stub		
-		Mode mode;
+		TrafficLightsControlMode mode;
 		try {
-			mode = Mode.valueOf(value);
+			mode = TrafficLightsControlMode.valueOf(value);
 		}catch(IllegalArgumentException ex) {
 			return Optional.absent();
 		}
@@ -39,7 +39,7 @@ public class PropertyMode extends PropertyHelper<BlockRoadTrafficLightGen.Mode> 
 	}
 
 	@Override
-	public String getName(Mode value) {
+	public String getName(TrafficLightsControlMode value) {
 		// TODO Auto-generated method stub
 		 return value.name();
 	}

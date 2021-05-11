@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
 import derfl007.roads.Roads;
+import net.minecraft.world.World;
 
 @SuppressWarnings("serial")
 public class LightsSet extends ArrayList<LightsGroup> {
@@ -15,8 +16,8 @@ public class LightsSet extends ArrayList<LightsGroup> {
 	// private static final String DATA_NAME = Reference.MOD_ID +
 	// "_TrafficLightsSets";
 
-	public int currentGreenGroup = -1;
-	public long greenStartTime = -1;
+	private int currentGreenGroup = -1;
+	private long greenStartTime = -1;
 
 	public static LightsSet parseString(String value) throws IllegalArgumentException {
 		if (value == null || value.isEmpty()) {
@@ -88,4 +89,37 @@ public class LightsSet extends ArrayList<LightsGroup> {
 
 	private static final String formatSpecifier = "^\\[[\\s\\S]*\\]$";
 
+	public LightsGroup getCurrentGreenGroup() {
+		return get(currentGreenGroup);
+	}
+
+	public long getGreenStartTime() {
+		return greenStartTime;
+	}
+
+
+	public void initialize(World world) {
+		currentGreenGroup = 0;
+		greenStartTime = world.getTotalWorldTime();
+	}
+	
+	public void incrementGreenGroup(World world) {
+		currentGreenGroup++;
+		currentGreenGroup %= size();
+
+		greenStartTime = world.getTotalWorldTime();
+	}
+
+	void setGreenStartTime(long startTime) {
+		this.greenStartTime = startTime;
+	}
+
+	boolean setCurrentGreenGroup(int group) {
+		if (group < 0)
+			return false;
+
+		this.currentGreenGroup = group;
+		currentGreenGroup %= size();
+		return true;
+	}
 }

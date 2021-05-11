@@ -4,7 +4,6 @@ import derfl007.roads.common.blocks.BlockRoadLantern;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraft.world.border.IBorderListener;
 
 public class TileEntityRoadLantern extends TileEntity implements ITickable {
 

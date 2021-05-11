@@ -1,5 +1,6 @@
 package derfl007.roads.common.commands.group;
 
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase;
 import derfl007.roads.common.commands.CommandTrafficLights;
 import derfl007.roads.common.commands.CommandTrafficLightsBase;
 import derfl007.roads.trafficlights.LightsGroup;
@@ -37,6 +38,10 @@ public class CommandTrafficLightsGroupFinish extends CommandTrafficLightsBase {
 		}
 		int greenDuration = Integer.valueOf(args[0]);
 		int delay = Integer.valueOf(args[1]);
+		int yellowDuration = BlockRoadTrafficLightBase.DEFAULT_YELLOW_DURATION;
+		if(args.length == 3) {			
+			yellowDuration = Integer.valueOf(args[2]);
+		}
 		if (greenDuration < 1 || delay < 0) {
 			player.sendMessage(new TextComponentTranslation("command.trafficlights.group.invalidargs"));
 			return;
@@ -44,6 +49,7 @@ public class CommandTrafficLightsGroupFinish extends CommandTrafficLightsBase {
 
 		current.get(current.selectedGroupIndex).setGreenDuration(greenDuration);
 		current.get(current.selectedGroupIndex).setDelay(delay);
+		current.get(current.selectedGroupIndex).setYellowDuration(yellowDuration);
 
 		if (!current.get(current.size() - 1).getLights().isEmpty()) {
 			current.add(new LightsGroup());
@@ -63,6 +69,12 @@ public class CommandTrafficLightsGroupFinish extends CommandTrafficLightsBase {
 	protected int expectedArgumentsCount() {
 		// TODO Auto-generated method stub
 		return 2;
+	}
+	
+	@Override
+	protected boolean hasOptionalArguments() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

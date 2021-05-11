@@ -5,6 +5,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentString;
 
 public class Reference {
+	
+	public static final int TICK_RATE = 20;
 
     public static void sayDebugChat(EntityPlayer player, String string) {
         player.sendStatusMessage(new TextComponentString("[DEBUG]: " + string), true);

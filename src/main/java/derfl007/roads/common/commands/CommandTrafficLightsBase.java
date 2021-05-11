@@ -49,11 +49,17 @@ public abstract class CommandTrafficLightsBase extends CommandBase {
 			return;
 		}
 		if (args != null && expectedArgumentsCount() != args.length) {
-			unexpectedArguments(sender);
-			return;
+			if (args.length < expectedArgumentsCount() || !hasOptionalArguments()) {
+				unexpectedArguments(sender);
+				return;
+			}
 		}
 
 		execute(server, player, args);
+	}
+
+	protected boolean hasOptionalArguments() {
+		return false;
 	}
 
 	protected abstract int expectedArgumentsCount();

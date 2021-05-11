@@ -1,7 +1,7 @@
 package derfl007.roads.common.commands.set;
 
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen;
-import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightGen.Mode;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase;
+import derfl007.roads.common.blocks.trafficlights.BlockRoadTrafficLightBase.TrafficLightsControlMode;
 import derfl007.roads.common.commands.CommandTrafficLights;
 import derfl007.roads.common.commands.CommandTrafficLightsBase;
 import derfl007.roads.trafficlights.LightsGroup;
@@ -55,36 +55,36 @@ public class CommandTrafficLightsSetCheck extends CommandTrafficLightsBase {
 		for (LightsGroup group : set) {
 
 			if (selected == i - 1) {
-				state = state + "\n§9§l---" + getLocalizedString("dfroads.partial.group", TextFormatting.BLUE, i) + " "
+				state = state + "\nÂ§9Â§l---" + getLocalizedString("dfroads.partial.group", TextFormatting.BLUE, i) + " "
 						+ getLocalizedString("dfroads.partial.current", TextFormatting.BLUE) + " "
 						+ getLocalizedString("dfroads.partial.groupprop", TextFormatting.BLUE, group.getGreenDuration(),
 								group.getDelay());
 			} else {
-				state = state + "\n§r---" + getLocalizedString("dfroads.partial.group", i) + " "
-						+ getLocalizedString("dfroads.partial.groupprop", group.getGreenDuration(), group.getDelay());
+				state = state + "\nÂ§r---" + getLocalizedString("dfroads.partial.group", i) + " "
+						+ getLocalizedString("dfroads.partial.groupprop", group.getGreenDuration(), group.getYellowDuration(), group.getDelay());
 			}
 
 			for (BlockPos pos : group.getLights()) {
 
 				String posString = String.format("x=%d, y=%d,  z=%d", pos.getX(), pos.getY(), pos.getZ());
 
-				if (player.world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightGen) {
+				if (player.world.getBlockState(pos).getBlock() instanceof BlockRoadTrafficLightBase) {
 
-					BlockRoadTrafficLightGen block = (BlockRoadTrafficLightGen) player.world.getBlockState(pos)
+					BlockRoadTrafficLightBase block = (BlockRoadTrafficLightBase) player.world.getBlockState(pos)
 							.getBlock();
-					if (block.getMode(player.world.getBlockState(pos)) == Mode.command_controlled) {
+					if (block.getMode(player.world.getBlockState(pos)) == TrafficLightsControlMode.command_controlled) {
 						if (LightsSetList.get(player.world).isDuplicated(pos)) {
-							state = state + "\n§r------§m" + posString + "§r §6"
+							state = state + "\nÂ§r------Â§m" + posString + "Â§r Â§6"
 									+ getLocalizedString("dfroads.partial.duplicated");
 						} else {
-							state = state + "\n§r------" + posString + " §a" + getLocalizedString("dfroads.partial.ok");
+							state = state + "\nÂ§r------" + posString + "Â§a" + getLocalizedString("dfroads.partial.ok");
 						}
 					} else {
-						state = state + "\n§r------§m" + posString + "§r §6"
+						state = state + "\nÂ§r------Â§m" + posString + "Â§r Â§6"
 								+ getLocalizedString("dfroads.partial.illegalmode");
 					}
 				} else {
-					state = state + "\n§r------§m" + posString + "§r §4"
+					state = state + "\nÂ§r------Â§m" + posString + "Â§r Â§4"
 							+ getLocalizedString("dfroads.partial.destroyed");
 				}
 			}

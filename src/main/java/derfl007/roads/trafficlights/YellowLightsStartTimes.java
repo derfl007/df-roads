@@ -39,14 +39,18 @@ public class YellowLightsStartTimes extends WorldSavedData{
 
 	public Long getAddedTime(World worldIn, BlockPos pos) {
 		if (!addedTimes.containsKey(pos)) {
-			addedTimes.put(pos, worldIn.getTotalWorldTime());
-			markDirty();
+			updateAddedTime(worldIn, pos);
 		}
 		return addedTimes.get(pos);
 	}
 	
 	public void updateAddedTime(World worldIn, BlockPos pos) {
 		addedTimes.put(pos, worldIn.getTotalWorldTime());
+		markDirty();
+	}
+	
+	public void removeAddedTime(BlockPos pos) {
+		addedTimes.remove(pos);
 		markDirty();
 	}
 

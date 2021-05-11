@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"normal": {
+			"model": "df-roads:road_junction_marker"
+		},
+		"inventory": {
+			"model": "df-roads:road_junction_marker"
+		}
+	}
+}

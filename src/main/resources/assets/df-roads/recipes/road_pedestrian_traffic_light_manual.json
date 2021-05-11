@@ -7,7 +7,7 @@
     ],
        "key": {
         "F": {
-            "item": "df-roads:road_pedestrian_traffic_light"
+            "item": "df-roads:road_pedestrian_traffic_light_auto"
         },
         "R": {
             "item": "minecraft:redstone"

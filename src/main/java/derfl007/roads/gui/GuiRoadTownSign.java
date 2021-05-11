@@ -1,14 +1,15 @@
 package derfl007.roads.gui;
 
+import java.io.IOException;
+
+import org.lwjgl.input.Keyboard;
+
 import derfl007.roads.network.PacketHandler;
 import derfl007.roads.network.message.MessageRoadTownSign;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.resources.I18n;
-import org.lwjgl.input.Keyboard;
-
-import java.io.IOException;
 
 public class GuiRoadTownSign extends GuiScreen
 {

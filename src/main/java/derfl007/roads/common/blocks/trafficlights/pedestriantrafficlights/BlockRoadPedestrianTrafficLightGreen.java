@@ -1,30 +1,30 @@
 package derfl007.roads.common.blocks.trafficlights.pedestriantrafficlights;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockRoadPedestrianTrafficLightGreen extends BlockRoadPedestrianTrafficLightGen {
+public class BlockRoadPedestrianTrafficLightGreen extends BlockRoadPedestrianTrafficLightBase {
 
 	public BlockRoadPedestrianTrafficLightGreen() {
 		super("road_pedestrian_traffic_light_green");
 	}
 
 	@Override
-	protected void updateState(boolean updated, World worldIn, BlockPos pos, IBlockState state) {
-			if (updated) {
-			setBlockState(worldIn, pos, state, RoadBlocks.road_pedestrian_traffic_light_red);
-		}
+	protected void redstoneSignalReceived(World worldIn, BlockPos pos, IBlockState state) {
+			setLightsState(worldIn, pos, LightsState.RED);		
 	}
 	
 	@Override
-	protected List<Mode> getLegalModes() {
-		return new ArrayList<Mode>(Arrays.asList(Mode.redstone_controlled, Mode.command_controlled));
+	public LightsState getState() {
+		// TODO Auto-generated method stub
+		return LightsState.GREEN;
+	}
+
+	@Override
+	protected void redstoneSignalInterrupted(World worldIn, BlockPos pos, IBlockState state) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
