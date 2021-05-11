@@ -6,7 +6,7 @@ Update 1.5.4 (by E__Man's Application)
 
 * Crafts for different heights:
 
-Build a 0.75-height road block with previously added crafts.
+  - Build a 0.75-height road block with previously added crafts.
 
   - Put three 0.75-height blocks in a row (like for vanilla slabs) to get nine 0.25-height blocks
   - Put two 0.5-height blocks in a row to get four 0.25-height blocks
