@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=east": { "model": "df-roads:road_roadblock_sign" , "y": 270},
-        "facing=west": { "model": "df-roads:road_roadblock_sign", "y": 90 },
-        "facing=south": { "model": "df-roads:road_roadblock_sign", "y": 0 },
-        "facing=north": { "model": "df-roads:road_roadblock_sign", "y": 180 }
-    }
-}

@@ -1,0 +1,35 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "front": "df-roads:blocks/road_sign_warn_11a",
+        "back": "df-roads:blocks/road_sign_back_triangle",
+        "2": "df-roads:blocks/metal",
+        "particle": "df-roads:blocks/metal"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 1.0, 1.0, 9.45 ], 
+            "to": [ 15.0, 15.0, 9.45 ], 
+            "rotation": { "origin": [ 8, 0, 8 ], "axis": "y", "angle":-45 },
+            "faces": {
+                "north": { "texture": "#back", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "north" },
+                "south": { "texture": "#front", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "south" }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 7.0, 7.0, 7.34 ], 
+            "to": [ 9.0, 9.0, 9.4 ], 
+            "rotation": { "origin": [ 8, 0, 8 ], "axis": "y", "angle":-45 },
+            "faces": {
+                "east": { "texture": "#2", "uv": [ 0.0, 0.0, 2.1, 2.0 ] },
+                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 2.1, 2.0 ] },
+                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 2.0, 2.1 ] },
+                "down": { "texture": "#2", "uv": [ 0.0, 0.0, 2.0, 2.1 ] },
+                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 2.0, 2.1 ] }
+            }
+        }
+    ]
+}

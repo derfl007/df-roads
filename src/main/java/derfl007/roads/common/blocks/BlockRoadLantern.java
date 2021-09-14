@@ -1,5 +1,7 @@
 package derfl007.roads.common.blocks;
 
+import java.util.Random;
+
 import derfl007.roads.Reference;
 import derfl007.roads.Roads;
 import derfl007.roads.common.tileentities.TileEntityRoadLantern;
@@ -25,8 +27,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class BlockRoadLantern  extends Block {
     private final boolean isOn;

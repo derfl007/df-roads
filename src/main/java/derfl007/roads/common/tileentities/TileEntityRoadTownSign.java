@@ -7,51 +7,50 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityRoadTownSign extends TileEntity {
 
-    private String message = null;
+	private String message = null;
 
-    @Override
-    public boolean hasFastRenderer() {
-        return true;
-    }
+	@Override
+	public boolean hasFastRenderer() {
+		return true;
+	}
 
-    public String getMessage() {
+	public String getMessage() {
 //        System.out.println("get message: " + message);
-        return message;
-    }
+		return message;
+	}
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tagCompound) {
-        super.readFromNBT(tagCompound);
-        this.message = tagCompound.getString("message");
-    }
+	@Override
+	public void readFromNBT(NBTTagCompound tagCompound) {
+		super.readFromNBT(tagCompound);
+		this.message = tagCompound.getString("message");
+	}
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
-        super.writeToNBT(tagCompound);
-        if(this.message != null)
-        {
-            tagCompound.setString("message", this.message);
-        }
-        return tagCompound;
-    }
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
+		tagCompound = super.writeToNBT(tagCompound);
+		if (this.message != null) {
+			tagCompound.setString("message", this.message);
+		}
+		return tagCompound;
+	}
 
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 //        System.out.println("message received by te: " + pkt.getNbtCompound().getString("message"));
-        this.readFromNBT(pkt.getNbtCompound());
-    }
+		this.readFromNBT(pkt.getNbtCompound());
+	}
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
-    }
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
+	}
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return this.writeToNBT(new NBTTagCompound());
+	}
 }

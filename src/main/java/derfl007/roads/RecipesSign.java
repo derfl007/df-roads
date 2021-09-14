@@ -1,12 +1,11 @@
 package derfl007.roads;
 
+import static derfl007.roads.init.RoadBlocks.*;
+
 import derfl007.roads.init.RoadItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import static derfl007.roads.init.RoadBlocks.*;
 
 @SuppressWarnings("Duplicates")
 public class RecipesSign {
@@ -116,6 +115,17 @@ public class RecipesSign {
             road_sign_info_17b, //end of town sign
             road_sign_info_23, // two lanes merge into one
             road_sign_info_23b, // two lanes merge into one (german)
+            road_sign_info_24, 
+            road_sign_info_25a, 
+            road_sign_info_25b, 
+            road_sign_info_26a, 
+            road_sign_info_26b, 
+            road_sign_info_26c, 
+            road_sign_info_27a, 
+            road_sign_info_27b, 
+            road_sign_info_27c,
+            road_sign_info_28a, 
+            road_sign_info_28b, 
     };
 
     public static Block[] signs_3 = {

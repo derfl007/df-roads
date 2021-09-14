@@ -1,13 +1,13 @@
 package derfl007.roads.common.items;
 
+import java.text.DecimalFormat;
+import java.util.List;
+
 import derfl007.roads.Roads;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import java.text.DecimalFormat;
-import java.util.List;
 
 public class ItemColorCartridge extends Item {
     public ItemColorCartridge(String name) {

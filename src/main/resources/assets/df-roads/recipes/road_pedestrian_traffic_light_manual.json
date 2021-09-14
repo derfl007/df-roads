@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " G ",
+        "RFR",
+        " R "
+    ],
+       "key": {
+        "F": {
+            "item": "df-roads:road_pedestrian_traffic_light_auto"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        },
+        "G": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "df-roads:road_pedestrian_traffic_light_manual"
+    }
+}

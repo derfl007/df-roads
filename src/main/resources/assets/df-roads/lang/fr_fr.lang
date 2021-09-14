@@ -1,5 +1,6 @@
 item.item_tar.name=Goudron
 item.item_wrench.name=Clé à molette
+item.item_traffic_remote.name=Télécommande de feux
 item.round_sign_template.name=Modèle de panneau de signalisation rond
 item.square_sign_template.name=Modèle de panneau de signalisation rectangulaire
 item.triangle_sign_template.name=Modèle de panneau de signalisation triangulaire
@@ -105,14 +106,35 @@ tile.road_sign_info_16c.name=Détour à droite (Allemand)
 tile.road_sign_info_16d.name=Détour à gauche (Allemand)
 tile.road_sign_info_23.name=Réduction du nombre de voies (Anglais)
 tile.road_sign_info_23b.name=Réduction du nombre de voies (Allemand)
+tile.road_sign_info_24.name=Flèche de rabattement
+tile.road_sign_info_25a.name=Chevron (virage à gauche)
+tile.road_sign_info_25b.name=Chevron (virage à droite)
+tile.road_sign_info_26a.name=Sens unique
+tile.road_sign_info_26b.name=Deux voies à sens unique
+tile.road_sign_info_26c.name=Trois voies à sens unique
+tile.road_sign_info_27a.name=Réduction du nombre de voies de deux à un
+tile.road_sign_info_27b.name=Réduction du nombre de voies de trois à deux
+tile.road_sign_info_27c.name=Réduction du nombre de voies de quatre à trois
+tile.road_sign_info_28a.name=Séparation des deux voies de circulation
+tile.road_sign_info_28b.name=Séparation de la voie de droite
+
+tile.road_sign_meta_1.name=Panonceau Rappel
+tile.road_sign_meta_2a.name=Panonceau 50 m
+tile.road_sign_meta_2b.name=Panonceau 100 m
+tile.road_sign_meta_2c.name=Panonceau 150 m
+tile.road_sign_meta_2d.name=Panonceau 300 m
+tile.road_sign_meta_2e.name=Panonceau 500 m
+
 tile.road_town_sign.name=Agglomération
 tile.road_guardrail.name=Rail de sécurité
 tile.road_lantern.name=Révèrbère
-tile.road_traffic_light.name=Feu tricolore
-tile.road_traffic_light_red.name=Feu rouge
-tile.road_traffic_light_yellow.name=Feu orange
-tile.road_traffic_light_green.name=Feu rouge
-tile.road_pedestrian_traffic_light.name=Feu piétons
+tile.road_traffic_light_auto.name=Feu tricolore (automatique)
+tile.road_traffic_light_manual.name=Feu tricolore (manuel)
+tile.road_traffic_light_red.name=Feu rouge fixe
+tile.road_traffic_light_yellow.name=Feu orange fixe
+tile.road_traffic_light_green.name=Feu vert fixe
+tile.road_pedestrian_traffic_light_manual.name=Feu piétons (manuel)
+tile.road_pedestrian_traffic_light_auto.name=Feu piétons (automatique)
 tile.road_excl_zone.name=Zebras
 tile.road_excl_zone_line.name=Zebra (ligne droite)
 tile.road_excl_zone_corner_in.name=Zebra (coin intérieur)
@@ -125,6 +147,7 @@ tile.road_excl_zone_split_out_r.name=(ligne divisée extérieure droite)
 tile.road_excl_zone_split_out_l.name=(ligne divisée extérieure gauche)
 tile.road_crosswalk.name=Passage piéton
 tile.road_sidewalk.name=Trottoir
+tile.road_junction_marker.name=Balise d'intersection
 tile.road_sign_post.name=Support de panneau
 tile.road_slope.name=Pente
 tile.road_line_slope.name=Pente (ligne)
@@ -141,3 +164,122 @@ gui.sign_printer.warning=Avertissement
 gui.sign_printer.mandatory=Obligatoire
 gui.sign_printer.prohibitory=Prohibitif
 gui.sign_printer.others=Autres
+
+command.trafficlights.invalidsender=§4Cette commande doit être exécutée par un joueur.
+command.trafficlights.invalidhelditem=§4Vous devez exécuter cette commande en tenant une télécommande de feux dans la main.
+
+command.trafficlights.set.alreadyPending=§4Un ensemble de feux est déjà en cours de création. Vous devez terminer ou annuler cet ensemble pour en créer un nouveau.
+command.trafficlights.set.duplicatename=§4Un ensemble de feux portant ce nom existe déjà.
+command.trafficlights.set.creating=Création de l'ensemble de feux démarrée. Cliquez avec la télécommande sur un feu pour l'ajouter au groupe actuel. Utilisez §7/trafficlights set save §r pour sauvegarder et §7/trafficlights set cancel §rpour annuler.
+command.trafficlights.set.replacing=Reconfiguration de l'ensemble de feux démarrée. Configurez-le comme si vous créiez un nouvel ensemble. §5§lAttention : §r§dL'ensemble %s §dsera supprimé et remplacé par le nouveau quand vous utiliserez §7/trafficlights set save. §dPour annuler, utilisez §7/trafficlights set cancel. 
+command.trafficlights.set.illegalname=§4Le nom de l'ensemble de feux doit contenir uniqument des caractères alphanumériques et doit commencer par une lettre.
+command.trafficlights.set.noname=§4Veuillez définir un nom pour le nouvel ensemble de feux.
+command.trafficlights.set.cancelled=La création de l'ensemble de feux a été annulée.
+command.trafficlights.set.none=§4Aucun ensemble de feux n'est en cours de création.
+command.trafficlights.set.empty=§4L'ensemble de feux doit contenir au moins deux groupe de feux.
+command.trafficlights.set.saved=L'ensemble de feux %s a bien été créé et sauvegardé. Les feux devraient être synchronisés dans quelques instants.
+command.trafficlights.set.list.empty=Aucun ensemble de feux n'a été créé.
+command.trafficlights.set.list=Ensembles de feux créés : %s.
+command.trafficlights.set.renamed=L'ensemble de feux %1$s a bien été renommé %2$s
+command.trafficlights.set.nosuchset=§4Aucun ensemble de feux portant le nom %s §4n'a été trouvé dans le monde actuel.
+command.trafficlights.set.editing=Vous pouvez maintenant éditer l'ensemble de feux %s. Vous pouvez passer d'un groupe à un autre avec §7/trafficlights group select <numéro> §rpour mettre à jour leurs feux. Utilisez §7/trafficlights set save §r pour sauvegarder et §7/trafficlights set cancel §rpour annuler l'édition.
+command.trafficlights.set.deleted=L'ensemble de feux %s a été supprimé et la synchronisation a été interrompue.
+
+command.trafficlights.group.invalidargs=§4La durée et le délai doivent être des nombres non négatifs. La durée ne doit pas être nulle.
+command.trafficlights.group.finished=Groupe terminé. Vous pouvez sélectionner les feux du groupe suivant.
+command.trafficlights.group.notfinished=§4Vous devez terminer le groupe actuel avec §7/trafficlights group finish <durée> <délai> §4avant de terminer l'ensemble ou de sélectionner un autre groupe.
+command.trafficlights.group.empty=§4Le groupe actuel est vide. Il doit contenir au moins un feu.
+command.trafficlights.group.outofbounds=§4Le numéro entré est en dehors de la plage attendue et ne correspond à aucun groupe. Il doit être compris entre 0 et %s§4. Utilisez 1 pour le premier groupe et ainsi de suite. Si vous ne connaissez pas le nombre exact de groupes, utilisez 0 pour atteindre directement le dernier groupe créé.
+command.trafficlights.group.selected=Le groupe %s a été sélectionné. Les feux sélectionnés seront ajoutés à ce groupe jusqu'à ce que vous en sélectionniez un nouveau.
+command.trafficlights.group.created=Le nouveau groupe a été ajouté à la fin de la liste et a été sélectionné. Les feux sélectionnés seront ajoutés à ce groupe jusqu'à ce que vous en sélectionniez un nouveau.
+command.trafficlights.group.removed=Groupe supprimé. Le dernier groupe de l'ensemble a été sélectionné.
+command.trafficlights.group.moved=Le groupe %s a été déplacé à la position %s. Ce groupe est toujours sélectionné.
+
+command.trafficlights.light.invalidmode=§4Ce feu doit être configuré avec la clé à molette pour recevoir des commandes à distance.
+command.trafficlights.light.duplicate=§4Le feu aux coordonnées %1$s %2$s %3$s §4est déjà impliqué dans un autre ensemble de feux.
+command.trafficlights.light.added=Le feu aux coordonnées %1$s %2$s %3$s a été ajouté au groupe actuel.
+command.trafficlights.light.removed=Le feu aux coordonnées %1$s %2$s %3$s a été retiré du groupe actuel.
+command.trafficlights.light.notfound=§4Le groupe actuel ne contient pas de feu aux coordonnées %1$s %2$s %3$s.
+command.trafficlights.light.notalight=§4Le block aux coordonnées %1$s %2$s %3$s §4n'est pas un feu tricolore dynamique.
+
+command.trafficlights.usage=/trafficlights <sous commande> §rAjoutez §7help §rcomme argument de cette commande ou de n'importe quelle sous-commande pour obtenir plus d'informations sur la commande.
+command.trafficlights.help=Commande de base pour la gestion des feux tricolores. Ajoutez §7help §rcomme argument de cette commande ou de n'importe quelle sous-commande pour obtenir plus d'informations sur la commande.
+
+command.trafficlights.set.usage=/trafficlights set <sous commande>
+command.trafficlights.set.help=Gestion des ensembles de feux. Les feux d'un même ensemble sont synchronisés. Voir aussi §7/trafficlights group help.
+
+command.trafficlights.set.cancel.usage=/trafficlights set cancel
+command.trafficlights.set.cancel.help=Abandonne la création de l'ensemble de feux (si un ensemble de feux était en cours de création).
+
+command.trafficlights.set.create.usage=/trafficlights set create <nom>
+command.trafficlights.set.create.help=Commence la création d'un ensemble de feux. Le nom doit être unique, alphanumérique et doit commencer par une lettre.
+
+command.trafficlights.set.save.usage=/trafficlights set save
+command.trafficlights.set.save.help=Termine l'ensemble de feux en cours de création et démarre la synchronisation.
+
+command.trafficlights.set.remove.usage=/trafficlights set remove <nom>
+command.trafficlights.set.remove.help=Supprime l'ensemble de feux portant le nom spécifié.
+
+command.trafficlights.set.list.usage=/trafficlights set list
+command.trafficlights.set.list.help=Obtient la liste des ensembles de feux créés dans ce monde.
+
+command.trafficlights.set.check.usage=/trafficlights set check <nom>
+command.trafficlights.set.check.help=Vérifie et affiche des informations sur l'ensemble de feux spécifié.
+
+command.trafficlights.set.rename.usage=/trafficlights set rename <ancien nom> <nouveau nom>
+command.trafficlights.set.rename.help=Renomme un ensemble de feux préexistant par le nouveau nom spécifié.
+
+command.trafficlights.set.replace.usage=/trafficlights set replace <nom>
+command.trafficlights.set.replace.help=Reconfigure entièrement l'ensemble de feux indiqué, comme si vous en créiez un nouveau. L'ensemble de feux sera remplacé quand vous utiliserez /trafficlights set save.
+
+command.trafficlights.set.edit.usage=/trafficlights set edit <nom>
+command.trafficlights.set.edit.help=Charge l'ensemble de feux spécifié pour permettre sa modification. Les groupes de feux qu'il contient sont automatiquement importés.
+
+command.trafficlights.group.usage=/trafficlights group <sous commande>
+command.trafficlights.group.help=Gestion des groupes de feux dans l'ensemble en cours de création. Quand vous créez un ensemble, le premier groupe de feux est automatiquement ajouté. Les feux du même groupe seront au vert en même temps pendant la durée spécifiée, pendant que les autres seront au rouge.
+
+command.trafficlights.group.finish.usage=/trafficlights group finish <durée> <délai> [durée feu orange]
+command.trafficlights.group.finish.help=Termine le groupe de feux actuels et en commence un nouveau. La durée correspond à la durée du feu vert, en secondes. Le délai ajoute un délai supplémentaire (en plus de la durée du feu orange) avant que les feux des autres groupes passent au vert.
+
+command.trafficlights.group.reset.usage=/trafficlights group reset
+command.trafficlights.group.reset.help=Supprime tous les feux ajoutés dans le groupe actuel.
+
+command.trafficlights.group.select.usage=/trafficlights group select <numéro>
+command.trafficlights.group.select.help=Sélectionne le groupe correspondant au numéro spécifié. Les nouveaux feux seront ajoutés dans ce groupe jusqu'à ce qu'un nouveau groupe soit sélectionné. Passer la valeur 0 à l'argument <numéro> permet de sélectionner le dernier groupe.
+
+command.trafficlights.group.list.usage=/trafficlights group list
+command.trafficlights.group.list.help=Affiche la liste et le détail des groupes appartenant à l'ensemble en cours de création ou d'édition.
+
+command.trafficlights.group.remove.usage=/trafficlights group remove
+command.trafficlights.group.remove.help=Supprime le groupe de feux actuellement sélectionné. Le dernier groupe de l'ensemble est alors sélectionné.
+
+command.trafficlights.group.add.usage=/trafficlights group add
+command.trafficlights.group.add.help=Ajoute et sélectionne un groupe de feux vide à la fin de la liste. Si un groupe de feux vide est déjà présent à la fin de la liste, il est sélectionné sans qu'un nouveau groupe ne soit créé.
+
+command.trafficlights.group.move.usage=/trafficlights group move <nouvelle position>
+command.trafficlights.group.move.help=Déplace le groupe actuellement sélectionné à la nouvelle position. La position ne doit pas excéder le nombre de groupes. (L'ordre des groupes détermine l'ordre dans lequel les feux passent au vert.)
+
+command.trafficlights.light.usage=/trafficlights light <sous commande>
+command.trafficlights.light.help=Gestion des feux du groupe actuellement sélectionné.
+
+command.trafficlights.light.add.usage=/trafficlights light add <x> <y> <z>
+command.trafficlights.light.add.help=Ajoute le feu aux coordonnées spécifiées au groupe actuel. Le feu ne doit pas déjà être ajouté à un autre groupe ou à un autre ensemble de feux. Cette commande revient à cliquer directement sur le feu avec la télécommande.
+
+command.trafficlights.light.remove.usage=/trafficlights light remove <x> <y> <z>
+command.trafficlights.light.remove.help=Supprime le feu aux coordonnées spécifiées du groupe actuel.
+
+dfroads.trafficlight.mode.deactivated=Feu désactivé.
+dfroads.trafficlight.mode.redstone_controlled=Feu commandé par les impulsions de redstone.
+dfroads.trafficlight.mode.command_controlled=Feu commandé à distance.
+dfroads.trafficlight.mode.deprecated=§cCe feu est impliqué dans un ensemble de synchronisation à distance. Il ne sera plus synchronisé si vous modifiez son mode de fonctionnement.
+
+dfroads.partial.ok=OK
+dfroads.partial.destroyed=DETRUIT
+dfroads.partial.illegalmode=MODE INVALIDE
+dfroads.partial.duplicated=EN DOUBLE
+dfroads.partial.group=Groupe %s
+dfroads.partial.set=Ensemble %s
+dfroads.partial.groupprop=(durée=%s secondes, feu orange=%s secondes, délai=%s secondes) :
+dfroads.partial.current=(sélectionné)
+
+dfroads.partial.road_height=(taille %s)

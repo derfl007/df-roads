@@ -1,6 +1,9 @@
 package derfl007.roads.world;
 
+import java.util.Random;
+
 import com.google.common.base.Predicate;
+
 import derfl007.roads.init.RoadBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -11,8 +14,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
-
-import java.util.Random;
 
 public class WorldGenOre implements IWorldGenerator {
     @Override

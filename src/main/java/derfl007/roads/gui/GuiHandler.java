@@ -4,7 +4,6 @@ import derfl007.roads.common.tileentities.TileEntityRoadTownSign;
 import derfl007.roads.common.tileentities.TileEntitySignPrinter;
 import derfl007.roads.gui.containers.ContainerSignPrinter;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

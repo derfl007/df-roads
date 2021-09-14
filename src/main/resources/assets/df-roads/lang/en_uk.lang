@@ -1,5 +1,6 @@
 item.item_tar.name=Tar
 item.item_wrench.name=Wrench
+item.item_traffic_remote.name=Traffic remote
 item.round_sign_template.name=Round Sign Template
 item.square_sign_template.name=Rectangular Sign Template
 item.triangle_sign_template.name=Triangular Sign Template
@@ -206,14 +207,34 @@ tile.road_sign_info_17a.name=Town Sign
 tile.road_sign_info_17b.name=End of Town Sign
 tile.road_sign_info_23.name=Two lanes merge into one Sign
 tile.road_sign_info_23b.name=Two lanes merge into one Sign (German)
+tile.road_sign_info_24.name=Cut across arrow
+tile.road_sign_info_25a.name=Chevron (left curve)
+tile.road_sign_info_25b.name=Chevron (right curve)
+tile.road_sign_info_26a.name=One-way lane
+tile.road_sign_info_26b.name=Two lanes (one-way)
+tile.road_sign_info_26c.name=Three lanes (one-way)
+tile.road_sign_info_27a.name=Two lanes merge into one
+tile.road_sign_info_27b.name=Three lanes merge into two
+tile.road_sign_info_27c.name=Four lanes merge into three
+tile.road_sign_info_28a.name=Lanes split
+tile.road_sign_info_28b.name=Right lane splits
+
+tile.road_sign_meta_1.name=Reminder Sign
+tile.road_sign_meta_2a.name=50 m ahead Sign
+tile.road_sign_meta_2b.name=100 m ahead Sign
+tile.road_sign_meta_2c.name=150 m ahead Sign
+tile.road_sign_meta_2d.name=300 m ahead Sign
+tile.road_sign_meta_2e.name=500 m ahead Sign
 
 tile.road_guardrail.name=Guardrail
 tile.road_lantern.name=Lantern
-tile.road_traffic_light.name=Traffic Lights
-tile.road_traffic_light_red.name=Traffic Light (red)
-tile.road_traffic_light_yellow.name=Traffic Light (yellow)
-tile.road_traffic_light_green.name=Traffic Light (green)
-tile.road_pedestrian_traffic_light.name=Pedestrian Traffic Lights
+tile.road_traffic_light_auto.name=Traffic Lights (automated)
+tile.road_traffic_light_manual.name=Traffic Lights (manual)
+tile.road_traffic_light_red.name=Traffic Light (fixed red)
+tile.road_traffic_light_yellow.name=Traffic Light (fixed yellow)
+tile.road_traffic_light_green.name=Traffic Light (fixed green)
+tile.road_pedestrian_traffic_light_auto.name=Pedestrian Traffic Lights (automated)
+tile.road_pedestrian_traffic_light_manual.name=Pedestrian Traffic Lights (manual)
 tile.road_excl_zone.name=Crosshatch Block
 tile.road_excl_zone_line.name=Crosshatch with straight Line
 tile.road_excl_zone_corner_in.name=Crosshatch with inner Corner
@@ -238,6 +259,7 @@ tile.road_excl_zone_split_out_l_yellow.name=Crosshatch with splitting Lines (lef
 tile.road_crosswalk_yellow.name=Crosswalk (Yellow)
 tile.road_sidewalk.name=Sidewalk Curb
 tile.road_sign_post.name=Sign Post
+tile.road_junction_marker.name=Junction marker
 tile.road_slope.name=Slope
 tile.road_line_slope.name=Slope with Line
 tile.sign_printer.name=Sign Printer
@@ -255,3 +277,122 @@ gui.sign_printer.warning=Warning
 gui.sign_printer.mandatory=Mandatory
 gui.sign_printer.prohibitory=Prohibitory
 gui.sign_printer.others=Others
+
+command.trafficlights.invalidsender=§4This command may only be executed by a player.
+command.trafficlights.invalidhelditem=§4You must hold a traffic remote to perform this command.
+
+command.trafficlights.set.alreadyPending§4=You have already a traffic lights set pending. You must finish or cancel it before you may create a new one.
+command.trafficlights.set.duplicatename=§4Another traffic lights set already holds this name.
+command.trafficlights.set.creating=Starting creation of a traffic lights set. Right-click on a traffic light with the remote to add it to the current group. Use §7/trafficlights set save §rto save and §7/trafficlights set cancel §rto cancel.
+command.trafficlights.set.replacing=Traffic lights reconfiguration started. Set it up as if you were creating a new set. §5§lCaution: §r§dThe traffic light set with name %s §dwill be §lremoved §r§dand replaced with the new one when you will use §7/trafficlights set save. §dTo cancel, use §7/trafficlights set cancel. 
+command.trafficlights.set.illegalname=§4Set name may only consist of alphanumeric characters and should start with a letter.
+command.trafficlights.set.noname=§4You must name the new traffic lights set.
+command.trafficlights.set.cancelled=Pending traffic lights set cancelled.
+command.trafficlights.set.none=§4You have no pending traffic lights set.
+command.trafficlights.set.empty=§4Your traffic lights set must contains at least two lights groups.
+command.trafficlights.set.saved=Traffic lights set created. Starting lights synchronisation...
+command.trafficlights.set.list=Available traffic lights sets: %s
+command.trafficlights.set.list.empty=There is no available traffic lights sets yet.
+command.trafficlights.set.renamed=Traffic lights set %1$s was successfully renamed to %2$s.
+command.trafficlights.set.nosuchset=§4No traffic lights set with name %s exists in the current world.
+command.trafficlights.set.editing=Now editing set %s. You may switch between its groups with §7/trafficlights group select <number> §rto update their traffic lights. Use §7/trafficlights set save §rto save and §7/trafficlights set cancel §rto cancel editing.
+command.trafficlights.set.deleted=Traffic lights set %s was deleted, halting their synchronisation.
+
+command.trafficlights.group.empty=§4Current group does not contain any traffic lights.
+command.trafficlights.group.invalidargs=§4Duration and delay must be non negative numbers. Duration should not be zero.
+command.trafficlights.group.finished=Group complete. You may select traffic lights for the next group.
+command.trafficlights.group.notfinished=§4You must finish current group with §7/trafficlights group finish <duration> <delay> §4before to finish the set or to select a new group.
+command.trafficlights.group.outofbounds=§4Given index was out of bounds and does not match any groups. It should be between 0 and %s. Use 1 for first group and so on. If you don't exactly know how many groups are created, use 0 to reach last group directly.
+command.trafficlights.group.selected=Group %s selected. Traffic lights will be added to that group until you select a new one.
+command.trafficlights.group.created=New group was added at the bottom of the list and selected. Traffic lights will be added to that group until you select a new one.
+command.trafficlights.group.removed=Group removed. Last group is now selected.
+command.trafficlights.group.moved=Group %s was successfully moved to %s. This group is still selected.
+
+command.trafficlights.light.invalidmode=§4You must use a wrench to set up that traffic light before it may receive remote commands.
+command.trafficlights.light.duplicate=§4Traffic light at %1$s %2$s %3$s is already implied in another traffic lights set. 
+command.trafficlights.light.added=Traffic light at %1$s %2$s %3$s added to current group.
+command.trafficlights.light.removed=Traffic light at %1$s %2$s %3$s removed from current group.
+command.trafficlights.light.notfound=§4Current group contains no traffic light with coordinates %1$s %2$s %3$s.
+command.trafficlights.light.notalight=§4Block at %1$s %2$s %3$s is not a dynamic traffic light.
+
+command.trafficlights.usage=/trafficlights <subcommand> §rAdd help as argument of that command or any of its subcommands to get more information about it.
+command.trafficlights.help=Base command for managing traffic lights. Add help as argument of that command or any of its subcommands to get more information about it.
+
+command.trafficlights.set.usage=/trafficlights set <subcommand>
+command.trafficlights.set.help=Manage traffic lights sets. Traffic lights from a same set are synchronised. See also §7/trafficlights group help.
+
+command.trafficlights.set.cancel.usage=/trafficlights set cancel
+command.trafficlights.set.cancel.help=Aborts creation of the traffic light set (if such a creation was in progress).
+
+command.trafficlights.set.create.usage=/trafficlights set create <name>
+command.trafficlights.set.create.help=Starts a new traffic lights set. Name must be unique, alphanumeric and must start with a letter.
+
+command.trafficlights.set.save.usage=/trafficlights set save
+command.trafficlights.set.save.help=Saves the being-created traffic lights set and starts synchronisation.
+
+command.trafficlights.set.remove.usage=/trafficlights set remove <name>
+command.trafficlights.set.remove.help=Deletes the traffic lights set with the given name.
+
+command.trafficlights.set.list.usage=/trafficlights set list
+command.trafficlights.set.list.help=Gets the list of created sets in this world.
+
+command.trafficlights.set.check.usage=/trafficlights set check <name>
+command.trafficlights.set.check.help=Checks and shows information on given traffic lights set.
+
+command.trafficlights.set.rename.usage=/trafficlights set rename <old name> <new name>
+command.trafficlights.set.rename.help=Renames a pre-existing traffic lights set with the new given name.
+
+command.trafficlights.set.replace.usage=/trafficlights set replace <name>
+command.trafficlights.set.replace.help=Entirely reconfigures the given traffic lights set, as if you were creating a new one. The traffic lights set will not be replaced unless you use §7/trafficlights set save.
+
+command.trafficlights.set.edit.usage=/trafficlights set edit <name>
+command.trafficlights.set.edit.help=Loads given traffic lights set to allow its modification. Traffic lights groups are automatically imported.
+
+command.trafficlights.group.usage=/trafficlights group <subcommand>
+command.trafficlights.group.help=Manage traffic lights groups inside the being-created set. When you create a set, a group is automatically added. Traffic ligths from a same group shall be green simultaneously for the given duration, while the others shall be red.
+
+command.trafficlights.group.finish.usage=/trafficlights group finish <duration> <delay> [yellow light duration]
+command.trafficlights.group.finish.help=Completes current traffic lights group and starts a new one. Duration means green light duration, delay adds delay before traffic lights from other groups to turn green (in addition to yellow light duration).
+
+command.trafficlights.group.reset.usage=/trafficlights group reset
+command.trafficlights.group.reset.help=Deletes all traffic lights from current group.
+
+command.trafficlights.group.select.usage=/trafficlights group select <number>
+command.trafficlights.group.select.help=Selects group matching the given number. New traffic lights will be added in this group until another group is selected. Giving value 0 to <number> allows to select last group.
+
+command.trafficlights.group.list.usage=/trafficlights group list
+command.trafficlights.group.list.help=Shows list and details of groups in the being-edited set.
+
+command.trafficlights.group.remove.usage=/trafficlights group remove
+command.trafficlights.group.remove.help=Removes the currently selected traffic lights group from the set. Last group of the set is then selected.
+
+command.trafficlights.group.add.usage=/trafficlights group add
+command.trafficlights.group.add.help=Adds and selects an empty traffic lights group at the bottom of the list. If there is already an empty group at the bottom of the list, it is selected but no new group will be created.
+
+command.trafficlights.group.move.usage=/trafficlights group move <new position>
+command.trafficlights.group.move.help=Moves the selected group to new position. Position must not be negative nor greater than groups count - use 0 to move group at the bottom of the list. (Groups' order will determine order traffic lights switch to green.) 
+
+command.trafficlights.light.usage=/trafficlights light <subcommand>
+command.trafficlights.light.help=Manage traffic lights for currently selected group.
+
+command.trafficlights.light.add.usage=/trafficlights light add <x> <y> <z>
+command.trafficlights.light.add.help=Adds traffic light at given coordinates to current group. The traffic light must not already be added to another group or set. This command is equivalent to clicking on the traffic light with a traffic remote.
+
+command.trafficlights.light.remove.usage=/trafficlights light remove <x> <y> <z>
+command.trafficlights.light.remove.help=Removes traffic light at given coordinates from the current group.
+
+dfroads.trafficlight.mode.deactivated=Traffic light deactivated.
+dfroads.trafficlight.mode.redstone_controlled=Traffic light redstone-controlled.
+dfroads.trafficlight.mode.command_controlled=Traffic light remotely controlled.
+dfroads.trafficlight.mode.deprecated=§cThis traffic light is involved in a remote traffic lights synchronisation set. It will no longer be synchronised unless you turn it back into the appropriate mode.
+
+dfroads.partial.ok=OK
+dfroads.partial.destroyed=DESTROYED
+dfroads.partial.illegalmode=ILLEGAL MODE
+dfroads.partial.duplicated=DUPLICATED
+dfroads.partial.group=Group %s
+dfroads.partial.set=Set %s
+dfroads.partial.groupprop=(duration=%s seconds, yellow light=%s seconds, delay=%s seconds):
+dfroads.partial.current=(current)
+
+dfroads.partial.road_height=(height %s)

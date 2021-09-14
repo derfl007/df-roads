@@ -4,10 +4,12 @@
     "1.4-mc1.12.2": "Survival update: Added crafting recipes, a sign printer and asphalt generation for a better survival experience. Also added some more stuff, you can find the complete changelog on planetminecraft or my website",
     "1.5-mc1.12.2": "Added yellow road line blocks and new signs and fixed most known issues",
     "1.5.1-mc1.12.2": "Fixed a server bug",
-    "1.5.2-mc1.12.2": "Fixed several bugs"
+    "1.5.2-mc1.12.2": "Fixed several bugs",
+    "1.5.3-mc1.12.2": "(Unofficial) Redstone-or-remotely-controlled traffic lights",
+    "1.5.4-mc1.12.2": "Signs now rotatable in 16 directions (instead of 4); 4 different heights for each road block; a few new signs",
   },
   "promos": {
-    "1.12.2-latest": "1.5.2-mc1.12.2",
+    "1.12.2-latest": "1.5.4-mc1.12.2",
     "1.12.2-recommended": "1.5.2-mc1.12.2"
   }
 }
